@@ -1,4 +1,106 @@
 <ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle icon-only> 
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-card class="recently">
+        <ion-card-header>
+            Recently Subscribed
+            <a href="#" [navPush]="subscriptionPage">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col *ngFor="let kid of (KidsData | slice:KidsData.length - 5);">
+                        <img [src]="kid.profilePic">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="kidsPic">
+        <ion-card-header>
+            Kids Photos
+            <a href="#" [navPush]="kidsphotosPage">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
+                        <img [src]="kidPic.profilePic">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-card class="kidsVid">
+        <ion-card-header>
+            Kids Videos
+            <a href="#" [navPush]="kidsvideosPage">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                     <ion-col col-4 *ngFor="let kidVid of (KidsData | slice:KidsData.length - 3);">
+                        <img [src]="kidVid.profilePic">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+     <ion-card class="annouce">
+        <ion-card-header>
+            Announcements
+            <a href="#" [navPush]="announcementPage">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <h6>Today</h6>
+                </ion-row>
+                <ion-row>
+                    <h5>Art & Craft Festival</h5>
+                </ion-row>
+                <ion-row>
+                    <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-fab right bottom>
+        <button ion-fab color="confirm" class="openButton">
+            <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
+        </button>
+
+        <ion-fab-list side="left">
+            <button ion-fab> <ion-icon ios="ios-megaphone" md="md-megaphone"></ion-icon></button>
+            <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
+            <button ion-fab><ion-icon ios="logo-youtube" md="logo-youtube"></ion-icon></button>
+            <button ion-fab><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>
+<!--<ion-header>
   <ion-navbar>
     <ion-title>
       Ionic Blank
@@ -7,8 +109,9 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+  <ion-list>
+  <ion-item class="text" *ngFor="let item of items | async">
+    {{item.$value}}
+  </ion-item>
+  </ion-list>
+</ion-content>-->

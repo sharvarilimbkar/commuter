@@ -1,0 +1,56 @@
+page-login {
+    ion-content{
+        .fixed-content{
+            background: url(../assets/images/bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+         .formContain{
+            // height: 56vh;
+            height: 24em;
+            align-items: center;
+            justify-content: center;
+
+            .row{
+                width: 90%;
+                padding-bottom:16px;
+                
+                input{
+                border-bottom: 1px solid #f6a65c;
+                text-align: center;
+                padding: 0px !important;
+                margin-right: 0px;
+                color: #ffe8dc;
+            }
+            
+            input::placeholder {
+                color:#ffe8dc;
+            }
+
+            }
+        }
+
+        .buttons{
+                button{
+                background-color:#2e8bfe ;
+            }
+            .activated {
+                background-color: #2a80ea;;
+            }
+        }
+
+        a{
+        text-decoration: none;
+        }
+
+        .invalid {
+            border-bottom: 1px solid #FF6153;
+        }
+
+        .error-message .item-inner {
+            border-bottom: 0 !important;
+        }
+    }
+    
+}

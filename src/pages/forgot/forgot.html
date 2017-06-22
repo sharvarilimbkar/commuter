@@ -1,0 +1,59 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Forgot Password</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="resetPasswordForm" >
+      <ion-grid padding class="formContain">
+        <ion-list no-lines *ngIf="showEmail">
+          <ion-row>
+            <ion-input type="email" formControlName="email" name="email" placeholder="Email"  [class.invalid]="!resetPasswordForm.controls.email.valid && resetPasswordForm.controls.email.dirty" clearInput [(ngModel)]="email" ></ion-input>
+          </ion-row>
+          <ion-item class="error-message" 
+            *ngIf="!resetPasswordForm.controls.email.valid  && resetPasswordForm.controls.email.dirty">
+            <p>Please enter a valid email.</p>
+          </ion-item>
+
+        </ion-list>
+
+        <!--<ion-list no-lines *ngIf="showOTP">
+          <ion-row>
+            <ion-input type="number" name="number" placeholder="OTP" clearInput ngModel required></ion-input>
+          </ion-row>
+        </ion-list>-->
+
+
+        <!--<ion-list no-lines *ngIf="showPassword">
+          <ion-row>
+            <ion-input type="password" name="password" placeholder="New Password" clearInput ngModel required></ion-input>
+          </ion-row>
+
+          <ion-row>
+            <ion-input type="password" name="confirmPass" placeholder="Confirm Password" clearInput ngModel required></ion-input>
+          </ion-row>
+        </ion-list>-->
+      </ion-grid>
+    </form>
+
+    <ion-grid class="buttons">
+        <!--<ion-row *ngIf="showEmail">
+            <button ion-button round block (click)="sendOTP()" [disabled]="!resetPasswordForm.valid">SEND OTP</button>
+        </ion-row>-->
+<ion-row >
+            <button ion-button round block (click)="resetPassword()" [disabled]="!resetPasswordForm.valid">SEND</button>
+        </ion-row>
+        <!--<ion-row *ngIf="showOTP">
+           <button ion-button round block (click)="confirmOTP()" [disabled]="!forgotPassForm.valid">Verify</button>
+        </ion-row>
+
+        <ion-row  *ngIf="showPassword">
+            <button ion-button round block (click)="savePassword()" [disabled]="!forgotPassForm.valid">Submit</button>
+        </ion-row>-->
+    </ion-grid>
+
+</ion-content>

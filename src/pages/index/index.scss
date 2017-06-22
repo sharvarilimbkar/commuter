@@ -1,0 +1,31 @@
+page-index {
+    ion-content{
+        background: url('../assets/images/img1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        
+        .scroll-content{
+            display: flex;
+            align-items: center;
+
+            .grid{
+                align-items: center;
+                .row:first-child{
+                    margin-bottom:38px; 
+                    color:#fff9f5;
+                    word-spacing: 1px;
+                    letter-spacing: 1px;
+                }
+                .row{
+                     button{
+                        padding-left: 5.6rem;
+                        padding-right: 5.6rem;
+                        height: 2.8em;
+                        border-bottom: 1.5px solid #5a4c4c;
+                    }
+                }
+            }
+        }
+    }
+}

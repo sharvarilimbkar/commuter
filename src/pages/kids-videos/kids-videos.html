@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Kids List - Videos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button clear>
+      <ion-icon ios="ios-funnel" md="md-funnel" item-end></ion-icon>
+      <span id="filter">Filter</span>
+   </button>
+   
+  <ion-card *ngFor="let kids of kidsVideo">
+      <ion-card-header>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="kids.profilePic">
+          </ion-avatar>
+          <h3>{{kids.name}}</h3>
+          <p>Child of {{kids.parents}}</p>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
+          <ion-grid>
+              <ion-row>
+                  <ion-col><p>Videos</p></ion-col>
+                  <ion-col> <a href="#" (click)="allVideos(kids)">view more...</a></ion-col>
+              </ion-row>
+
+              <ion-row>
+                  <ion-col col-4 *ngFor="let kidVid of (kids.allvid | slice:kids.allvid.length - 3);">
+                      <img [src]="kidVid.vid">
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -14,3 +14,75 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+/* Global style */
+h1, h2,h3,h4,h5,h6,p{
+    padding: 0px;
+    margin:0px;
+}
+
+
+//Navbar Global Style
+.header{
+    
+    .toolbar-background{
+        border-width: inherit !important;
+        background-color: #ff6f18;
+    }
+    .toolbar-title{
+        color:#fff;
+    }
+} 
+
+//Global Form & Buttons Style
+.buttons{
+    justify-content: center;
+    align-items: center;
+
+    button{
+        padding-left: 5rem;
+        padding-right: 5rem;
+        height: 2.5em;
+        background-color:#4bcf18 ;
+    }
+    .activated{
+        background-color:#49c31a;
+    }
+}
+
+/*Menu Style*/
+.back-button{
+    .back-button-text, .back-button-icon{
+        color: #fff;
+    }
+}
+.bar-buttons{
+    button{
+        color: #fff;
+    }
+}
+
+.menuBar{
+    padding: 20px 5px;
+    .col{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        img{
+            border-radius: 50px;
+            height: 70px;
+            width: 70px;
+        }
+    }
+}
+
+.menuButton{
+    .item{
+        height: 4rem;
+        .button{
+            color: #a1a0a0;
+            font-size: 14px;    
+        }
+    }
+}
