@@ -1,0 +1,59 @@
+page-addchild {
+    .grid{
+        .list{
+            margin-bottom:0px;
+
+            .item{
+                padding-right: 16px;
+                padding-bottom: 16px;
+                .item-inner{
+                     padding: 0px !important;
+
+                    ion-label{
+                    padding-left: 15px !important;
+                    }
+                }
+                .input{
+                    border: 1px solid #c1c1c1;
+                    border-radius: 50px;
+
+                    .text-input{
+                    margin: 0px !important;    
+                    padding: 10px 15px;
+                    }
+                }
+                ion-datetime{
+                    @extend .input;
+
+                    .datetime-text{
+                        padding: 0px 15px;
+                    }
+                    .datetime-placeholder {
+                        @extend .datetime-placeholder;
+                    }
+                }
+            }
+            .item-input:last-child{
+                border-bottom: none;
+            }
+        }
+
+        .row{
+            align-items: center;
+            .col{
+                text-align: right;
+                button{
+                    width:100%;
+                    height: 2.2em;
+                }
+
+                img{
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50px;
+                }
+            }
+        }
+    }
+    
+}

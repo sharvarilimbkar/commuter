@@ -1,0 +1,56 @@
+<ion-header>
+  <div class="layer">
+    <ion-navbar>
+      <ion-buttons start>
+        <button ion-button menuToggle icon-only> 
+          <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+        </button>
+      </ion-buttons>
+
+      <ion-title>Mychild</ion-title>
+    </ion-navbar>
+    <ion-grid>
+      <h4>Marshall</h4>
+      <p>D.O.B: 23-08-2013</p>
+    </ion-grid>
+  </div>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-segment [(ngModel)]="picvid">
+    <ion-segment-button value="photos">
+      Photos
+    </ion-segment-button>
+    <ion-segment-button value="videos">
+      Videos
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="picvid">
+    <!--Photos-->
+    <ion-grid *ngSwitchCase="'photos'">
+      <ion-grid>
+        <ion-row>
+            <ion-col col-4 *ngFor="let kidPic of kidsPhotos">
+                <img [src]="kidPic.profilePic">
+                <p>pic name</p>
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+    <!--Photos-->
+
+    <!--Videos-->
+    <ion-grid *ngSwitchCase="'videos'">
+        <ion-grid>
+          <ion-row>
+              <ion-col col-4 *ngFor="let kidPic of kidsPhotos">
+                  <img [src]="kidPic.profilePic">
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-grid>
+    <!--Videos-->
+  </div>
+</ion-content>

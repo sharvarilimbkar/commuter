@@ -3,13 +3,17 @@
     </ion-header>
     <ion-content>
          <ion-grid class="menuBar">
-            <ion-row>
-                <ion-col col-4>
+            <ion-row *ngIf="userProfile">
+                <ion-col col-4 *ngIf="userProfile.profile_pic !=''">
                     <!--<img src="../assets/images/profile.png" alt="Profile Pic">-->
-                    <img src="../assets/images/profile1.png" alt="Profile Pic">
+                    <img src="{{userProfile.profile_pic}}" alt="Profile Pic">
+                </ion-col>
+                <ion-col col-4>
+                    <img src="../assets/images/profile.png" alt="Profile Pic">
+                    <!--<img src="{{userProfile.profile_pic}}" alt="Profile Pic">-->
                 </ion-col>
                 <ion-col>
-                    <h4>User Name</h4>
+                    <h4>{{userProfile.username}}</h4>
                 </ion-col>
             </ion-row>
          </ion-grid>
@@ -17,8 +21,8 @@
         <ion-grid class="menuButton">
             <ion-row>
                 <ion-list no-lines>
-                    <ion-item> 
-                        <button ion-button clear (click)="onLoad(homepage)">
+                    <ion-item>
+                        <button ion-button clear (click)="onLoad('HomePage')">
                         Home
                         </button>
                     </ion-item>
@@ -30,19 +34,19 @@
                     </ion-item>
 
                     <ion-item> 
-                        <button ion-button clear (click)="onLoad(addchildpage)">
+                        <button ion-button clear (click)="onLoad('AddchildPage')">
                         Add Child
                         </button>
                     </ion-item>
 
                      <ion-item> 
-                        <button ion-button clear (click)="onLoad(subscriptionpage)">
+                        <button ion-button clear (click)="onLoad('SubscriptionPage')">
                         Subscription
                         </button>
                     </ion-item>
 
                     <ion-item> 
-                        <button ion-button clear (click)="onLoad(settingsPage)">
+                        <button ion-button clear (click)="onLoad('SettingsPage')">
                         Settings
                         </button>
                     </ion-item>
@@ -59,4 +63,4 @@
     </ion-content>
 </ion-menu>
 
-<ion-nav [root]="rootPage" #nav></ion-nav>
+<ion-nav [root]="rootPage" #nav swipeBackEnabled="false"></ion-nav>

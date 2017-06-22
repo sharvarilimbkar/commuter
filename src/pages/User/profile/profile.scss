@@ -1,20 +1,34 @@
 page-profile {
-.scroll-content{
+    .scroll-content{
         padding: 0px !important;
     }
     .profilePic{
-        align-items: flex-end;
+        align-items: center;
+        justify-content: flex-end;
         padding: 0px;
 
         img{
             width: 100%;
-            height: 35vh;
+           //height: 35vh;
+           height: 62vw;
         }
-
+        .layer{
+            background-color: rgba(0, 0, 0, 0.21);
+            position: absolute;
+            width: 100%;
+            height: 62vw;
+        }
+        .row{
+            position: absolute;
+            padding-bottom: 16px;
+            color: #fff;
+        }
         button{
             z-index: 1000;
-            top: 30vh;
-            right: 2vh;
+            // top: 30vh;
+            top:53vw;
+            // right: 2vh;
+            right: 3vw;
             position: absolute;
             background: #2e8bfe;
             color: #fff;

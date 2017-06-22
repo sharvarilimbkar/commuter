@@ -3,6 +3,9 @@ page-kid-videos {
         padding: 16px 5px !important;
          background-color: #f2f2f2;
          
+        .dateDiv{
+            max-width: 450px;
+        }
         .grid{
             padding:  0px;
 
@@ -47,7 +50,8 @@ page-kid-videos {
                 .col{
                     padding-top: 0px;
                     img{
-                    height: 10vh;
+                    // height: 10vh;
+                    height: 20vw;
                     width: 100%;
                     border: 1px solid #f1e9e9;
                     border-radius: 2px;

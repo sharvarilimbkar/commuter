@@ -1,8 +1,10 @@
-page-kid-photos {
+        page-kid-photos {
     .scroll-content{
         padding: 16px 5px !important;
          background-color: #f2f2f2;
-         
+         .dateDiv{
+            max-width: 450px;
+        }
         .grid{
             padding:  0px;
 
@@ -48,7 +50,9 @@ page-kid-photos {
                 .col{
                     padding:0 5px 2px;
                     img{
-                    height: 16vh;
+                    // height: 110px;
+                    //height: 90%;
+                    height: 25vw;
                     width: 100%;
                     border: 1px solid #f1e9e9;
                     border-radius: 2px;

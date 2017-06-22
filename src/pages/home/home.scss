@@ -1,5 +1,5 @@
 page-home {
-    .scroll-content{
+ .scroll-content{
         background-color: #f2f2f2;
 
         .card {
@@ -39,9 +39,13 @@ page-home {
                    width: 20%; 
                     img{
                         border-radius: 100%;
-                        width: 40px;
-                        height: 40px;
+                        // width: 55px;
+                        // height: 55px;    
+                        height: 100%;
+                        width: 100%;
                         border: 1px solid #f1e9e9;
+                        margin-left: auto;
+                        margin-right: auto;
                     }
                 }
             }
@@ -49,7 +53,10 @@ page-home {
 
         .kidsPic, .kidsVid{
                img{
-                height: 4em;
+                //height: 4em;
+                //height: 80px;
+                height: 90%;
+                width: 100%;
                 border: 1px solid #f1e9e9;
                 border-radius: 5px;
                }

@@ -1,8 +1,8 @@
-export default [
+ export default [
   {
     "index": 0,
     "name": "Manuela Martinez",
-    "parents": "Richard Becker",
+    "parents": "Richard Martinez",
     "profilePic": "./assets/images/kidsData/kid1.jpg",
     "age": 4,
     "allpic": [
@@ -42,7 +42,7 @@ export default [
   {
     "index": 1,
     "name": "Martinez James",
-    "parents": "Moore Sanford",
+    "parents": "Moore James",
     "profilePic": "./assets/images/kidsData/kid2.jpg",
     "age": 6,
     "allpic": [
@@ -79,7 +79,7 @@ export default [
   {
     "index": 2,
     "name": "Lindsey Aguirre",
-    "parents": "Ramos Dominguez",
+    "parents": "Ramos Aguirre",
     "profilePic": "./assets/images/kidsData/kid3.jpg",
     "age": 4,
     "allpic": [
@@ -107,7 +107,7 @@ export default [
   {
     "index": 3,
     "name": "Gross Cleveland",
-    "parents": "Oliver Sweeney",
+    "parents": "Oliver Cleveland",
     "profilePic": "./assets/images/kidsData/kid4.jpg",
     "age": 3,
     "allpic": [
@@ -135,7 +135,7 @@ export default [
   {
     "index": 4,
     "name": "Kidd Fox",
-    "parents":"Christensen Mcneil",
+    "parents":"Christensen Fox",
     "profilePic": "./assets/images/kidsData/kid6.jpg",
     "age": 5,
     "allpic": [

@@ -1,0 +1,69 @@
+page-kids-videos {
+    .scroll-content{
+         background-color: #f2f2f2;
+        padding-top: 0px !important;
+        button{
+            float: right;
+            font-size: 1.5rem;
+            height: 2.2em;
+            margin: 0px;
+            padding: 0px 10px 0;
+            color: #545454;
+
+            #filter{
+                font-size: 12px;
+                padding-left:5px;
+            }
+        }
+        .card {
+            margin: 0px;
+            width:100%;
+            margin-bottom: 10px;
+            .card-header{
+                padding:10px 10px 0px;
+
+                .item{
+                    padding:0px;
+
+                    ion-avatar img {
+                        width: 45px;
+                        height: 45px;
+                    }
+                    .label{
+                        padding:11px 0 0;
+                    }
+                    h3{
+                        color:#525050
+                    }
+                    p{
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .card-content{
+                padding:0px 10px 10px;
+                .grid{
+                    padding: 0px;
+                    }
+
+                a{
+                    color: #416cb6;
+                    text-decoration: none;
+                    float: right;
+                }
+                p{
+                    color:#525050;
+                }
+                img{
+                    // height: 4em;
+                    height: 10vh;
+                    border: 1px solid #f1e9e9;
+                    border-radius: 5px;
+                }
+
+            }
+            
+        }
+    }
+}

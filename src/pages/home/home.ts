@@ -1,50 +1,185 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
-/**
- * Generated class for the HomePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+// import KidsData from '../../data/KidsData';
 @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
 })
 export class HomePage {
+  KidsData: any= [];
 
- constructor(public navCtrl: NavController, db: AngularFireDatabase) {
-    // this.items = db.list('/items');
-    // console.log(this.items);
-    // let subscription =  this.items.subscribe(
-    //       value => this.values.push(value),
-    //       error => this.anyErrors = true,
-    //       () => this.finished = true
-    //   );
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-   items: FirebaseListObservable<any[]>;
-
-   private values: Array<any> = [];
-   private anyErrors: boolean;
-  private finished: boolean;
-  value :Array<any> = [];
-
-
-  // subscriptionPage = SubscriptionPage;
-  // kidsphotosPage = KidsPhotosPage;
-  // kidsvideosPage = KidsVideosPage;
-  // announcementPage = AnnouncementPage;
-
-  KidsData;
 
   ngOnInit(){
-    this.KidsData = [];
+    this.KidsData= [
+  {
+    "index": 0,
+    "name": "Manuela Martinez",
+    "parents": "Richard Martinez",
+    "profilePic": "./assets/images/kidsData/kid1.jpg",
+    "age": 4,
+    "allpic": [
+        {
+          'id':1,
+          'pic':"./assets/images/kidsData/kid1.1.jpg"
+        },
+        {
+          'id':2,
+          'pic':"./assets/images/kidsData/kid1.2.jpg"
+        },
+        {
+          'id':3,
+          'pic':"./assets/images/kidsData/kid1.1.jpg"
+        },
+        {
+          'id':4,
+          'pic':"./assets/images/kidsData/kid1.2.jpg"
+        },
+        {
+          'id':5,
+          'pic':"./assets/images/kidsData/kid1.1.jpg"
+        }
+      ],
+    "allvid":[
+        {
+          'id':1,
+          'vid':"./assets/images/kidsData/kid1.2.jpg"
+        },
+        {
+          'id':2,
+          'vid':"./assets/images/kidsData/kid1.1.jpg"
+        }
+      ]
+  },
+
+  {
+    "index": 1,
+    "name": "Martinez James",
+    "parents": "Moore James",
+    "profilePic": "./assets/images/kidsData/kid2.jpg",
+    "age": 6,
+    "allpic": [
+        {
+          'id':1,
+          'pic':"./assets/images/kidsData/kid2.1.jpg"
+        },
+        {
+          'id':2,
+          'pic':"./assets/images/kidsData/kid2.2.jpg"
+        }
+      ],
+    "allvid":[
+        {
+          'id':1,
+          'vid':"./assets/images/kidsData/kid2.2.jpg"
+        },
+        {
+          'id':2,
+          'vid':"./assets/images/kidsData/kid2.1.jpg"
+        },
+        {
+          'id':3,
+          'vid':"./assets/images/kidsData/kid2.2.jpg"
+        },
+        {
+          'id':4,
+          'vid':"./assets/images/kidsData/kid2.1.jpg"
+        }
+      ]
+  },
+
+
+  {
+    "index": 2,
+    "name": "Lindsey Aguirre",
+    "parents": "Ramos Aguirre",
+    "profilePic": "./assets/images/kidsData/kid3.jpg",
+    "age": 4,
+    "allpic": [
+        {
+          'id':1,
+          'pic':"./assets/images/kidsData/kid3.1.jpg"
+        },
+        {
+          'id':2,
+          'pic':"./assets/images/kidsData/kid3.2.jpg"
+        }
+      ],
+    "allvid":[
+        {
+          'id':1,
+          'vid':"./assets/images/kidsData/kid3.2.jpg"
+        },
+        {
+          'id':2,
+          'vid':"./assets/images/kidsData/kid3.1.jpg"
+        }
+      ]
+  },
+
+  {
+    "index": 3,
+    "name": "Gross Cleveland",
+    "parents": "Oliver Cleveland",
+    "profilePic": "./assets/images/kidsData/kid4.jpg",
+    "age": 3,
+    "allpic": [
+        {
+          'id':1,
+          'pic':"./assets/images/kidsData/kid4.1.jpg"
+        },
+        {
+          'id':2,
+          'pic':"./assets/images/kidsData/kid4.2.jpg"
+        }
+      ],
+    "allvid":[
+        {
+          'id':1,
+          'vid':"./assets/images/kidsData/kid4.2.jpg"
+        },
+        {
+          'id':2,
+          'vid':"./assets/images/kidsData/kid4.1.jpg"
+        }
+      ]
+  },
+
+  {
+    "index": 4,
+    "name": "Kidd Fox",
+    "parents":"Christensen Fox",
+    "profilePic": "./assets/images/kidsData/kid6.jpg",
+    "age": 5,
+    "allpic": [
+        {
+          'id':1,
+          'pic':"./assets/images/kidsData/kid6.1.jpg"
+        },
+        {
+          'id':2,
+          'pic':"./assets/images/kidsData/kid6.2.jpg"
+        }
+      ],
+    "allvid":[
+        {
+          'id':1,
+          'vid':"./assets/images/kidsData/kid6.2.jpg"
+        },
+        {
+          'id':2,
+          'vid':"./assets/images/kidsData/kid6.1.jpg"
+        }
+      ]
   }
 
+];
+  }
+
+  goToPage(page:any){
+    this.navCtrl.push(page);
+  }
 }

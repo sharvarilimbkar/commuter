@@ -6,9 +6,12 @@ page-login {
             background-size: cover;
         }
         
+        .grid{
+            max-width: 450px;
+        }
          .formContain{
-            // height: 56vh;
-            height: 24em;
+            height: 105vw;
+            //height: 24em;
             align-items: center;
             justify-content: center;
 
@@ -43,14 +46,7 @@ page-login {
         a{
         text-decoration: none;
         }
-
-        .invalid {
-            border-bottom: 1px solid #FF6153;
-        }
-
-        .error-message .item-inner {
-            border-bottom: 0 !important;
-        }
+        
     }
     
 }

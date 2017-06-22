@@ -1,0 +1,48 @@
+page-forgot-pass {
+    ion-content{
+        .fixed-content{
+            background: url(../assets/images/bg.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+        .grid{
+            max-width: 450px;
+        }
+        .formContain{
+            height: 105vw;
+            //height: 24em;
+            align-items: center;
+            justify-content: center;
+
+            .list{
+                width: 90%;
+
+                input{
+                border-bottom: 1px solid #f6a65c;
+                text-align: center;
+                padding: 0px !important;
+                margin-right: 0px;
+                color: #ffe8dc;
+            }
+            
+            input::placeholder {
+                color:#ffe8dc;
+            }
+
+          }
+        }
+
+        .buttons{
+            justify-content: center;
+            align-items: center;
+
+             button{
+                padding-left: 5.5rem;
+                padding-right: 5.5rem;
+                height: 2.8em;
+                background-color:#4bcf18 ;
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,50 @@
+page-mychild {
+    ion-header{
+        background-image: url(http://static.jbcgroup.com/amd/pictures/e8b1887eedf1efa4139038c9b3a049a2.jpg);
+        background-repeat: no-repeat;
+        height: 50vh;
+
+        .toolbar-background{
+            background-color: transparent !important;
+        }
+        .grid{
+            align-items: center;
+            margin-top: 25vh;
+        }
+        .layer{ 
+            background-color: rgba(0, 0, 0, 0.21);
+            height: 50vh;
+        }
+    }
+
+    .scroll-content{
+        padding: 0px !important;
+        background: #f2f2f2;
+
+        ion-segment{
+            .segment-button{
+                color: #b9b9b9 !important;
+                background: #fff;
+                border: none !important;
+            }
+            .segment-activated{
+                background-color: #fff !important;
+                color:#000 !important;
+                border-bottom: 2px solid #fd0684 !important; 
+            }
+        }
+
+        .col{
+            padding:0 5px 2px;
+            
+            img{
+                height: 25vw;
+                width: 100%;
+                border: 1px solid #f1e9e9;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    
+}   
