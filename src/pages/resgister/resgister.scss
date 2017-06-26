@@ -1,6 +1,5 @@
 page-resgister {
-	ion-content{
-        .fixed-content{
+	 .fixed-content{
             background: url(../assets/images/bg.png);
             background-repeat: no-repeat;
             background-size: cover;
@@ -39,6 +38,9 @@ page-resgister {
                 background-color:#2e8bfe ;
             }
         }
-        
-    }
+        .invalid { border-bottom: 1px solid #FF6153; }
+
+         .error-message .item-inner { border-bottom: 0 !important; }
+    
+
 }

@@ -55,6 +55,6 @@ logindata ={email:'',password:''}
     this.navCtrl.push("ForgotPage")
   }
   signup(){
-    this.navCtrl.push("SignUpPage")
+    this.navCtrl.push("ResgisterPage")
   }
 }
