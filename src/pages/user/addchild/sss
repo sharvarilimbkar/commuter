@@ -55,11 +55,8 @@
 
       <ion-row>
         <ion-col padding-left>
-          <!--<button ion-button round (click)="Selectprofile()">
+          <button ion-button round>
             Select
-          </button>-->
-           <button ion-button round (click)="uploadChildImages()">
-            multiSelect
           </button>
         </ion-col>
 
@@ -70,11 +67,8 @@
 
     </ion-grid>
      <ion-grid class="buttons">
-        <!--<button ion-button round (click)="uploadChild()">
+        <button ion-button round (click)="uploadChild()">
           Upload
-        </button>-->
-        <button ion-button round (click)="multiuploadChildImages()">
-          multiUpload
         </button>
       </ion-grid>
 </ion-content>

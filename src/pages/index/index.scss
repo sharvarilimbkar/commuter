@@ -3,12 +3,10 @@ page-index {
         background: url('../assets/images/img1.png');
         background-repeat: no-repeat;
         background-size: cover;
-
         
         .scroll-content{
             display: flex;
             align-items: center;
-
             .grid{
                 align-items: center;
                 .row:first-child{

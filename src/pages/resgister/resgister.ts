@@ -44,7 +44,7 @@ registerdata={email:'',password:''}
         console.log("data ==>>>> "+data)
          this.navCtrl.setRoot('HomePage');
         
-        
+        // this.navCtrl.setRoot('SelectDaycarePage');
 
       }, error => {
         // console.log(error);

@@ -3,12 +3,13 @@
     </ion-header>
     <ion-content>
          <ion-grid class="menuBar">
+             <!--{{userProfile |json}}-->
             <ion-row *ngIf="userProfile">
                 <ion-col col-4 *ngIf="userProfile.profile_pic !=''">
                     <!--<img src="../assets/images/profile.png" alt="Profile Pic">-->
                     <img src="{{userProfile.profile_pic}}" alt="Profile Pic">
                 </ion-col>
-                <ion-col col-4>
+                <ion-col col-4 *ngIf="userProfile.profile_pic ==''">
                     <img src="../assets/images/profile.png" alt="Profile Pic">
                     <!--<img src="{{userProfile.profile_pic}}" alt="Profile Pic">-->
                 </ion-col>
@@ -33,7 +34,7 @@
                         </button>
                     </ion-item>
 
-                    <ion-item> 
+                    <ion-item *ngIf="daycare"> 
                         <button ion-button clear (click)="onLoad('AddchildPage')">
                         Add Child
                         </button>
@@ -45,11 +46,11 @@
                         </button>
                     </ion-item>
 
-                    <ion-item> 
+                    <!--<ion-item> 
                         <button ion-button clear (click)="onLoad('SettingsPage')">
                         Settings
                         </button>
-                    </ion-item>
+                    </ion-item>-->
 
                     <ion-item> 
                         <button ion-button clear (click)="onLogout()">

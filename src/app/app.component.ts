@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Platform, MenuController, Nav, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { StorageProvider } from '../providers/storage/storage';
 // import {HomePage} from "../pages/home/home"
 import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
   import{Camera} from "@ionic-native/camera"
+  import { Storage } from '@ionic/storage';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -16,7 +19,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   pages: Array<{title: string, component: any}>;
   userProfile
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider) {
+  daycare:boolean;
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider,public storage:StorageProvider,public store:Storage, public event:Events) {
       platform.ready().then(() => {
    
         statusBar.styleDefault();
@@ -25,32 +29,47 @@ export class MyApp {
       });
         const authObserver = afAuth.authState.subscribe( user => {
                 if (user) {
-                  this.rootPage = "HomePage";
-                  // this.userProfile=this.home.userProfile;
-                  this.auth.getUserProfile().then( profileSnap => {
-                      this.userProfile = profileSnap;
-                      console.log("hello "+this.userProfile.profile_pic)
-                      // this.birthDate = this.userProfile.birthDate;
+                    this.rootPage = "HomePage";
+                    this.event.subscribe('userProfile', (userProfile) => {
+                        this.userProfile = userProfile;
+                        this.storage.getStorage("isparent").then(data=>{
+                            if(data){
+                              this.daycare=false
+                          }else if(!data){
+                              this.daycare=true
+                          }
+                        })
+                        console.log('Welcome '+ JSON.stringify(userProfile));
                     });
-                  authObserver.unsubscribe();
+
+                    authObserver.unsubscribe();
                     
                 } else {
-                  this.rootPage = 'LoginPage';
-                  authObserver.unsubscribe();
+                  // this.rootPage = 'SelectDaycarePage';
+                    this.rootPage = 'LoginPage';
+                    authObserver.unsubscribe();
                 }
               })
 
               
   }
-
-  onLogout(){ 
+  ngOnInit(){
+     //called after the constructor and called  after the first ngOnChanges() 
+  }
+onLogout(){ 
+    // this.storage.removeStorage("isparent")
+  this.store.remove("isparent")
     this.menuCtrl.close();
+    
+    this.auth.doLogout();
     this.nav.setRoot("LoginPage");
+    
   }
 
   onLoad(page: any){
       this.nav.setRoot(page);
       this.menuCtrl.close();
     } 
+ 
 }
 

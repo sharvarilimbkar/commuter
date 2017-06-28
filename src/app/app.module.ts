@@ -10,11 +10,19 @@ import firebase from 'firebase';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthProvider } from '../providers/auth/auth';
 import{ HttpModule} from '@angular/http'
-  import { AngularFireAuth } from 'angularfire2/auth';
+  import { AngularFireAuth, } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 // import {Transfer} from "@ionic-native/transfer"
   import{Camera} from "@ionic-native/camera"
+import { StorageProvider } from '../providers/storage/storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { SearchProvider } from '../providers/search/search';
+import { SelectImageProvider } from '../providers/select-image/select-image';
+import { Toast } from "@ionic-native/toast"
+
 const config = {
  apiKey: "AIzaSyBM1ysxV1LMxhfhpvT67H26DlxlWZpyWfQ",
  authDomain: "ssss-164410.firebaseapp.com",
@@ -30,7 +38,8 @@ firebase.initializeApp(config);
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-     AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
+     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,10 +52,16 @@ firebase.initializeApp(config);
      AngularFireModule,
      AuthProvider,
     AngularFireAuth,
+    AngularFireDatabase,
     HttpModule,
     Camera,
-    // Transfer,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    ImagePicker,
+    Toast,// Transfer,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    StorageProvider,
+    SearchProvider,
+    SelectImageProvider
+
   ]
 })
 export class AppModule {}
