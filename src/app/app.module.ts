@@ -9,14 +9,14 @@ import { MyApp } from './app.component';
 import firebase from 'firebase';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AuthProvider } from '../providers/auth/auth';
-import{ HttpModule} from '@angular/http'
-  import { AngularFireAuth, } from 'angularfire2/auth';
+import{ HttpModule,Http} from '@angular/http'
+import { AngularFireAuth, } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ImagePicker } from '@ionic-native/image-picker';
 
-// import {Transfer} from "@ionic-native/transfer"
-  import{Camera} from "@ionic-native/camera"
+import {Transfer} from "@ionic-native/transfer"
+import{Camera} from "@ionic-native/camera"
 import { StorageProvider } from '../providers/storage/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { SearchProvider } from '../providers/search/search';
@@ -37,6 +37,7 @@ firebase.initializeApp(config);
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
      IonicStorageModule.forRoot()
@@ -49,14 +50,14 @@ firebase.initializeApp(config);
   providers: [
     StatusBar,
     SplashScreen,
-     AngularFireModule,
-     AuthProvider,
+    AngularFireModule,
+    AuthProvider,
     AngularFireAuth,
     AngularFireDatabase,
-    HttpModule,
     Camera,
     ImagePicker,
-    Toast,// Transfer,
+    Toast,
+    Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageProvider,
     SearchProvider,

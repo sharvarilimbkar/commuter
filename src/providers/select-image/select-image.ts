@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CameraOptions,Camera} from "@ionic-native/camera"
-import { ImagePicker } from '@ionic-native/image-picker';
+import { ImagePicker,ImagePickerOptions} from '@ionic-native/image-picker';
 
 /*
   Generated class for the SelectImageProvider provider.
@@ -22,13 +22,15 @@ export class SelectImageProvider {
       const options: CameraOptions = {
            quality: 100,
            sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-           destinationType: this.camera.DestinationType.DATA_URL,
+          //  destinationType: this.camera.DestinationType.DATA_URL,
+           destinationType: this.camera.DestinationType.FILE_URI,
            encodingType: this.camera.EncodingType.JPEG,
          }
             return new Promise((resolve) =>
               {
                 this.camera.getPicture(options).then((imageUri) => {
-                  imageUri = 'data:image/jpeg;base64,'+ imageUri;
+                  // imageUri = 'data:image/jpeg;base64,'+ imageUri;
+                  imageUri =  imageUri;
                   resolve(imageUri);
 
                   // alert(this.profile.profile_pic);
@@ -43,8 +45,7 @@ export class SelectImageProvider {
 
 selectMultipleImages():Promise<any>{
   let options ={
-        maximumImagesCount: 10, 
-        width: 800,
+        maximumImagesCount: 8,
         outputType: 1
       }
       let imageUris = [];
@@ -52,14 +53,17 @@ selectMultipleImages():Promise<any>{
               {
                  this.imagePicker.getPictures(options).then((results) => {
                     for (var i = 0; i < results.length; i++) {
-                        console.log('Image URI: ' + results[i]);
-                        imageUris.push(results[i]);
-
+                         console.log('Image URI sharvari: ' + results[i]);
+                        imageUris.push({id:i,images:results[i]});
+                        console.log(imageUris);
                     }
+                    console.log("final imageuri ===>"+imageUris)
                     resolve(imageUris);
                   }, (err) => { });
               });
    
     }
+   
 
 }
+

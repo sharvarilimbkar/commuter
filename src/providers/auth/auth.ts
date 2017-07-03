@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-// import { Http } from '@angular/http';
+import { Http, HttpModule, RequestOptions, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Rx';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Transfer,TransferObject,FileUploadOptions } from '@ionic-native/transfer';
+import {Toast} from '@ionic-native/toast'
 // import SERVER_NAME from ‘../config’;
 // 
 /*
@@ -15,7 +17,10 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 @Injectable()
 export class AuthProvider {
   database
-  constructor(public afDatabase: AngularFireDatabase) {
+
+  base64textString
+   public domainURL = 'http://192.168.10.193:3000/api/';
+  constructor(public afDatabase: AngularFireDatabase,public http:Http,public transfer:Transfer,public toast:Toast) {
     console.log('Hello AuthProvider Provider');
     
    }
@@ -50,6 +55,16 @@ export class AuthProvider {
           });
         });
       }
+      getProfile(){
+        let formData = new URLSearchParams();
+        formData.append("uid",firebase.auth().currentUser.uid);
+        // formData.append("password", data.password);
+        // formData.append("gcm_token", data.gcm_token);
+        //  formData.append("device_type", data.device_type);
+        return this.http.post(this.domainURL + 'getProfile', {"uid":firebase.auth().currentUser.uid})
+          .map(res => res.json())
+          .catch(this.handleError);
+      }
 
       getUserProfile(): Promise<any> {
         // console.log("helloo sharvari ===> "+SERVER_NAME)
@@ -58,7 +73,8 @@ export class AuthProvider {
           //  firebase.database().ref(db)
           .child(firebase.auth().currentUser.uid)
           .on('value', data => {
-            resolve(data.val());
+            
+            resolve(data.val())
           });
         });
          
@@ -109,31 +125,49 @@ export class AuthProvider {
   //        resolve(true);
   //     });
   //  }
-    uploadImage(imageString) : Promise<any>
+    // uploadImage(imageString) : Promise<any>
+    // {
+    //   let image       : string  =  new Date().getTime() + '.jpg',
+    //       storageRef  : any,
+    //       parseUpload : any;
+
+    //   return new Promise((resolve, reject) =>
+    //   {
+    //       storageRef       = firebase.storage().ref('images/' + image);
+    //       parseUpload      = storageRef.putString(imageString, 'data_url');
+
+    //       parseUpload.on('state_changed', (_snapshot) =>
+    //       {
+    //         // We could log the progress here IF necessary
+    //         console.log('snapshot progess ' + _snapshot);
+    //       },
+    //       (_err) =>
+    //       {
+    //         reject(_err);
+    //       },
+    //       (success) =>
+    //       {
+    //         resolve(parseUpload.snapshot);
+    //       });
+    //   });
+    // }
+    uploadImage(data)
     {
-      let image       : string  =  new Date().getTime() + '.jpg',
-          storageRef  : any,
-          parseUpload : any;
+        //let body = JSON.parse(JSON.stringify(data));
+        // console.log("ssssllll ====>" + data);
+        // //let headers = new Headers();
+        // //let options = new RequestOptions({ headers: headers });
+        // let formData = new URLSearchParams();
+        // formData.append("uid", data.email);
+        // formData.append("password", data.password);
+        // formData.append("gcm_token", data.gcm_token);
+        //  formData.append("device_type", data.device_type);
+        // return this.http.post(this.domainURL + 'signin', formData)
+        //   .map(res => res.json())
+        //   .catch(this.handleError);
 
-      return new Promise((resolve, reject) =>
-      {
-          storageRef       = firebase.storage().ref('images/' + image);
-          parseUpload      = storageRef.putString(imageString, 'data_url');
-
-          parseUpload.on('state_changed', (_snapshot) =>
-          {
-            // We could log the progress here IF necessary
-            console.log('snapshot progess ' + _snapshot);
-          },
-          (_err) =>
-          {
-            reject(_err);
-          },
-          (success) =>
-          {
-            resolve(parseUpload.snapshot);
-          });
-      });
+                  
+ 
     }
     uploadMultiImage(imageurils): Promise<any>{
       let image       : string  =  new Date().getTime() + '.jpg',
@@ -145,9 +179,15 @@ export class AuthProvider {
         console.log("sdkfhjskjdfh ===> "+imageurils.length)
         console.log("sdkfhjskjdfh ===> "+imageurils)
           for(var i=0;i<imageurils.length;i++){
+            console.log(imageurils[i].images)
+           var reader = new FileReader();
+
+              reader.onload =this._handleReaderLoaded.bind(this);
+
+              reader.readAsBinaryString(imageurils[i].images);
             // storageRef       = firebase.storage().ref('images/' + image);
             storageRef       = firebase.storage().ref('childrenImages/' + image);
-            parseUpload      = storageRef.putString(imageurils[i], 'data_url');
+            parseUpload      = storageRef.putString(imageurils[i].images, 'data_url');
 
             parseUpload.on('state_changed', (_snapshot) =>
             {
@@ -169,19 +209,99 @@ export class AuthProvider {
       });
     }
 
+    _handleReaderLoaded(readerEvt) {
+      var binaryString = readerEvt.target.result;
+              this.base64textString= btoa(binaryString);
+              console.log(btoa(binaryString));
+      }
+    
+  //    uploadPics() {
+  //       console.log("Ok, going to upload "+images.length+" images.");
+  //       var defs = [];
+        
+  //       var fd = new FormData();
+        
+  //       images.forEach(function(i) {
+  //           console.log('processing '+i);
+  //           var def = $.Deferred();
+
+  //           window.resolveLocalFileSystemURL(i, function(fileEntry) {
+  //               console.log('got a file entry');
+  //               fileEntry.file(function(file) {
+  //                   console.log('now i have a file ob');
+  //                   console.dir(file);
+  //                   fd.append('file', file);
+  //                   def.resolve();
+  //               }, function(e) {
+  //                   console.log('error getting file', e);
+  //               });         
+  //           }, function(e) {
+  //               console.log('Error resolving fs url', e);
+  //           });
+
+  //           defs.push(def.promise());
+                
+  //       });
+
+  //       $.when.apply($, defs).then(function() {
+  //           console.log("all things done");
+  //           var request = new XMLHttpRequest();
+  //           request.open('POST', 'http://192.168.5.13:3000/upload');
+  //           request.send(fd);
+  //       });
+
+  // }
     addChild(data):Promise<any>{
-        // addchild ={childname:'',age:'',birthday:'',pro_image:'',uid_parent:''profileUri}
+        
         let uid_child       : string  =  new Date().getTime().toString();
         return new Promise((resolve) =>
               {
-                firebase.database().ref('childrenData').child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:data.profileUri,age:data.age,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
-                resolve(true);
+                // firebase.database().ref('childrenData').child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:'',age:data.age,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
+                  //  var params = {
+                  //           "parent_uid": this.addchild.uid_parent,
+                  //           "daycare_uid":firebase.auth().currentUser.uid
+                  //       }
+                         var params = {
+                           uid:uid_child,
+                            // uid_parent:data.uid_parent,
+                            // uid_daycare:firebase.auth().currentUser.uid
+                          }
+                      const fileTransfer: TransferObject = this.transfer.create();
+
+                            let options1: FileUploadOptions = {
+                            fileKey: 'profile_pic',
+                            fileName: data.pro_image.split('/').pop(),
+                            headers: {}
+
+                        }
+                        options1.params = params;
+                        fileTransfer.upload(data.pro_image, encodeURI(this.domainURL+'uploadChild'), options1)
+                            .then((data1) => {
+                              let res = JSON.parse(data1.response); 
+                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                                // this.toastCtrl.dismissLoadin();
+                                if(data1.response){
+                                    // this.picChange=false;
+                                    // this.toastCtrl.publishToast("Profile Updated Successfully..");
+                                    //  alert("updated Successfully")
+                                     console.log(res.profile_pic);
+                                     firebase.database().ref('childrenData').child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
+                                    resolve(true);
+
+                                 }
+
+                                }, (err) => {
+                            // error
+                            alert("error" + JSON.stringify(err));
+                            resolve(false);
+                            }); 
+              
               });
         //  return firebase.database().ref('/childrenData').child(data.uid_parent).set({name: data.childname,dob:data.birthday,profile_pic:data.pro_image,age:data.age});
     }
-     handleError(error) {
+      handleError(error) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
-  }
+    }
 
 }

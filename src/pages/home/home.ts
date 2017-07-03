@@ -57,7 +57,6 @@ public childDataList:Array<any>;
       let childData = [];
       
       childDataList.forEach( child => {
-          
           // console.log()
           // this.uid = child.val().d_uid;
           // console.log(typeof this.uid+" "+this.uid);
