@@ -14,7 +14,7 @@ export class HomePage {
   KidsData: any= [];
 userProfile
 daycare
-public childDataList:Array<any>;
+  public childDataList:Array<any>;
   public loadedChildList:Array<any>;
   public childDataRef:firebase.database.Reference;
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage:StorageProvider,public auth:AuthProvider,public event:Events) {
@@ -28,7 +28,7 @@ public childDataList:Array<any>;
                             this.userProfile = profileSnap;
                             this.event.publish('userProfile', this.userProfile);
                             this.daycare=false
-                                                      // this.birthDate = this.userProfile.birthDate;
+                            // this.birthDate = this.userProfile.birthDate;
                           });
                           // this.event.subscribe('userProfile', (userProfile) => {
                           //   // user and time are the same arguments passed in `events.publish(user, time)`
@@ -55,7 +55,7 @@ public childDataList:Array<any>;
      this.childDataRef = firebase.database().ref('childrenData');
      this.childDataRef.on('value', childDataList => {
       let childData = [];
-      
+      var user = childDataList.val();
       childDataList.forEach( child => {
           // console.log()
           // this.uid = child.val().d_uid;
@@ -63,15 +63,33 @@ public childDataList:Array<any>;
           // console.log(typeof firebase.auth().currentUser.uid.toString() + " "+firebase.auth().currentUser.uid);
           // console.log(this.uid === firebase.auth().currentUser.uid)
           // if(this.uid === firebase.auth().currentUser.uid){
-              childData.push({id:child.key,value:child.val()});
+            var photos=child.val().photos;
+         photos.forEach( child1 => {
+           console.log("123/ ",child1.key);
+         })
+         //   console.log("123/ ",child.val().photos.key("-KoBUZ8N0AIiOCxw0Xk5").val());
+         /*for(var i = 0; i < newfriends.length; i++){
+    var ref = firebase.database().ref('users/' + newfriends[i].$id);
+         }*/
+            childData.push({id:child.key,value:child.val()});
+           //   return false;
+          // }
+           
               return false;
           // }
           
       });
       this.childDataList = childData;
-      this.loadedChildList = childData;
-      console.log("childDataList "+JSON.stringify(this.childDataList));
+      this.loadedChildList = childData;     
+      console.log("childDataList ====>  "+JSON.stringify(this.childDataList));
     });
+      // forEach(function (openTicketSnapshot) {
+      //   console.log(openTicketSnapshot.key); // The random key.
+      //   var val = openTicketSnapshot.val();
+      //   console.log(val.address);
+      //   console.log(val.assignedInspector);
+      //   // etc.
+      // });
   }
 
 

@@ -65,6 +65,16 @@ export class AuthProvider {
           .map(res => res.json())
           .catch(this.handleError);
       }
+      getChildrens(){
+        let formData = new URLSearchParams();
+        // formData.append("uid",firebase.auth().currentUser.uid);
+        // formData.append("password", data.password);
+        // formData.append("gcm_token", data.gcm_token);
+        //  formData.append("device_type", data.device_type);
+        return this.http.post(this.domainURL + 'getAllChildrens', {})
+          .map(res => res.json())
+          .catch(this.handleError);
+      }
 
       getUserProfile(): Promise<any> {
         // console.log("helloo sharvari ===> "+SERVER_NAME)
@@ -169,43 +179,56 @@ export class AuthProvider {
                   
  
     }
+    uploadChildImages(){
+      
+    }
     uploadMultiImage(imageurils): Promise<any>{
-      let image       : string  =  new Date().getTime() + '.jpg',
-          storageRef  : any,
-          parseUpload : any;
-          let downloadUri=[]
+      // let image       : string  =  new Date().getTime() + '.jpg',
+          // storageRef  : any,
+          // parseUpload : any;
+          // let downloadUri=[]
       return new Promise((resolve, reject) =>
       {
         console.log("sdkfhjskjdfh ===> "+imageurils.length)
         console.log("sdkfhjskjdfh ===> "+imageurils)
           for(var i=0;i<imageurils.length;i++){
             console.log(imageurils[i].images)
-           var reader = new FileReader();
 
-              reader.onload =this._handleReaderLoaded.bind(this);
+                var params = {
+                          uid:'1499086186812'
+                            // uid_parent:data.uid_parent,
+                            // uid_daycare:firebase.auth().currentUser.uid
+                          }
+                      const fileTransfer: TransferObject = this.transfer.create();
 
-              reader.readAsBinaryString(imageurils[i].images);
-            // storageRef       = firebase.storage().ref('images/' + image);
-            storageRef       = firebase.storage().ref('childrenImages/' + image);
-            parseUpload      = storageRef.putString(imageurils[i].images, 'data_url');
+                            let options1: FileUploadOptions = {
+                            fileKey: 'profile_pic',
+                            fileName: imageurils[i].images.split('/').pop(),
+                            headers: {}
 
-            parseUpload.on('state_changed', (_snapshot) =>
-            {
-              // We could log the progress here IF necessary
-              console.log('snapshot progess ' + _snapshot);
-            },
-            (_err) =>
-            {
-              reject(_err);
-            },
-            (success) =>
-            { 
-              console.log("success")
-              downloadUri.push(parseUpload.snapshot)
-              
-            });
+                        }
+                        options1.params = params;
+                        fileTransfer.upload(imageurils[i].images, encodeURI(this.domainURL+'uploadChildPhotos'), options1)
+                            .then((data1) => {
+                              let res = JSON.parse(data1.response); 
+                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                                // this.toastCtrl.dismissLoadin();
+                                if(data1.response){
+                                     console.log(res.profile_pic);
+                                     firebase.database().ref('childrenData/'+'1499086186812/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time});
+                                    // resolve(true);
+                                    //  resolve({status:true,flag:0});
+                                 }
+
+                                }, (err) => {
+                            // error
+                                alert("error" + JSON.stringify(err));
+                                resolve(false);
+                              });
+
+           
           }
-          resolve({stats:"true",values:downloadUri});
+          resolve({status:true,flag:1});
       });
     }
 
@@ -263,7 +286,11 @@ export class AuthProvider {
                   //       }
                          var params = {
                            uid:uid_child,
-                            // uid_parent:data.uid_parent,
+                           name: data.childname,
+                           dob:data.birthday,
+                           age:data.age,
+                           uid_parent:data.uid_parent,
+                           uid_daycare:firebase.auth().currentUser.uid                            // uid_parent:data.uid_parent,
                             // uid_daycare:firebase.auth().currentUser.uid
                           }
                       const fileTransfer: TransferObject = this.transfer.create();

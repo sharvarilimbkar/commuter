@@ -5,6 +5,8 @@ import { SelectImageProvider } from '../../../providers/select-image/select-imag
 // import { Toast } from '@ionic-native/toast';
 import { Toast } from "@ionic-native/toast"
 import firebase from "firebase";
+import{Camera,CameraOptions} from "@ionic-native/camera"
+
 import {Transfer ,TransferObject,FileUploadOptions} from '@ionic-native/transfer'
 @IonicPage()
 @Component({
@@ -31,7 +33,7 @@ showParents:boolean = false
   uploadedImage
   multiImages = []
   constructor(public navCtrl: NavController, public navParams: NavParams,private el:ElementRef,public e2:ElementRef,public auth:AuthProvider,
-  public selectImage:SelectImageProvider,private toast: Toast,public transfer:Transfer) {
+  public selectImage:SelectImageProvider,private toast: Toast,public transfer:Transfer,public camera:Camera) {
            
   }
   ionViewDidLoad() {
@@ -83,7 +85,7 @@ showParents:boolean = false
 
   }
   multiuploadChildImages(){
-       console.log("hiiii ");
+      console.log("hiiii ");
       console.log("imageuris length====>>>> " +this.multiImages.length);
       console.log("this.multiImages ==>"+this.multiImages);
         this.auth.uploadMultiImage(this.multiImages)
@@ -96,57 +98,66 @@ showParents:boolean = false
       }
 
   uploadChild(){
-    console.log(" addchild ===>>> "+JSON.stringify(this.addchild)+"parent ===> "+this.uid_parent)
-    this.addchild.uid_parent = this.uid_parent;
-    this.addchild.profileUri =this.addchild.pro_image;
-                             
-        this.auth.addChild(this.addchild).then((data)=>{
-            if(data){
-                this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
-                    toast => {
-                      console.log(toast);
-                    }
-                );
-                this.navCtrl.setRoot("HomePage");
-            }
-            console.log(data);
-          }).catch(error => {
-            this.errorMessage = 'Error - ' + error.message
-            alert(this.errorMessage);
-          })
+      console.log(" addchild ===>>> "+JSON.stringify(this.addchild)+"parent ===> "+this.uid_parent)
+      this.addchild.uid_parent = this.uid_parent;
+      this.addchild.profileUri =this.addchild.pro_image;
+                              
+          this.auth.addChild(this.addchild).then((data)=>{
+              if(data){
+                    this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
+                        toast => {
+                          console.log(toast);
+                        }
+                    );
+                    this.navCtrl.setRoot("HomePage");
+              }
+              console.log(data);
+            }).catch(error => {
+              this.errorMessage = 'Error - ' + error.message
+              alert(this.errorMessage);
+            })
   }
   Selectprofile(){
-     this.selectImage.Selectprofile().then(imageUri=>{
-      console.log(imageUri);
-      this.addchild.pro_image= imageUri;
-    })
+      this.selectImage.Selectprofile(this.camera.PictureSourceType.SAVEDPHOTOALBUM).then(imageUri=>{
+        console.log(imageUri);
+        this.addchild.pro_image= imageUri;
+      })
+  }
+  takephoto(){
+    this.selectImage.Selectprofile(this.camera.PictureSourceType.CAMERA).then(imageUri=>{
+        console.log(imageUri);
+        var images=[];
+         images.push({id:0,images:imageUri});
+        this.multiImages=images
+       
+      })
   }
  getItems(searchbar) {
   
-  this.initializeItems();
-  var q = searchbar.srcElement.value;
-  if (!q) {
-    return;
-  }
-
-  this.countryList = this.countryList.filter((v) => {
-    // console.log(v.value.username)
-    if(v.value.username && q) {
-      //  console.log(v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1)
-
-      if (v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-         this.showList = true;
-        return true;
-
+      this.initializeItems();
+      var q = searchbar.srcElement.value;
+      if (!q) {
+        return;
       }
-      
-      return false;
-    }else{
-       this.showList = false;
-    }
-  });
 
-  console.log(q, this.countryList.length);
+      this.countryList = this.countryList.filter((v) => {
+        // console.log(v.value.username)
+        if(v.value.username && q) {
+          //  console.log(v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1)
+
+          if (v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+            this.showList = true;
+            return true;
+
+          }
+          
+          return false;
+        }else{
+          this.showList = false;
+        }
+      });
+
+      console.log(q, this.countryList.length);
 
 }
 

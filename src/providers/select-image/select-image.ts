@@ -17,11 +17,11 @@ export class SelectImageProvider {
     console.log('Hello SelectImageProvider Provider');
   }
 
-  Selectprofile() :Promise<any>{
+  Selectprofile(sourceType) :Promise<any>{
 // alert("hiii");
       const options: CameraOptions = {
            quality: 100,
-           sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+           sourceType: sourceType,
           //  destinationType: this.camera.DestinationType.DATA_URL,
            destinationType: this.camera.DestinationType.FILE_URI,
            encodingType: this.camera.EncodingType.JPEG,
@@ -46,7 +46,7 @@ export class SelectImageProvider {
 selectMultipleImages():Promise<any>{
   let options ={
         maximumImagesCount: 8,
-        outputType: 1
+        // outputType: 1
       }
       let imageUris = [];
       return new Promise((resolve) =>

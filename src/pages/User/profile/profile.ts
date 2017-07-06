@@ -62,7 +62,7 @@ ionViewDidLoad() {
 }
 
 Selectprofile(){
-            this.selectImage.Selectprofile().then(imageUri=>{
+            this.selectImage.Selectprofile(this.camera.PictureSourceType.SAVEDPHOTOALBUM).then(imageUri=>{
             console.log(imageUri);
             this.userProfile.profile_pic = imageUri;
              var params = {
@@ -86,17 +86,15 @@ Selectprofile(){
                               console.log(toast);
                             }
                         );
+                        //file transfer to upload image
                         fileTransfer.upload(imageUri, encodeURI(this.auth.domainURL+'upload'), options1)
                             .then((data) => {
                               let res = JSON.parse(data.response); 
                               console.log('JSON parsed result.response = ' + JSON.stringify(res));
                                 // this.toastCtrl.dismissLoadin();
                                 if(data.response){
-                                    // this.picChange=false;
-                                    // this.toastCtrl.publishToast("Profile Updated Successfully..");
-                                    alert("updated Successfully")
                                      console.log(res.profile_pic);
-                                      if(this.isparent){
+                                      if(this.isparent){ // checks if parents log in or daycare login if true parents login
                                           this.auth.updateDatabase({profile_pic:res.profile_pic}).then((data)=>{
                                                 console.log(data);
                                                 if(data){
@@ -107,7 +105,7 @@ Selectprofile(){
                                                     );
                                                 }
                                           })
-                                        }else if(!this.isparent){
+                                        }else if(!this.isparent){// daycare login update data
                                             this.auth.updateDaycareDatabase({profile_pic:res.profile_pic}).then((data)=>{
                                                 console.log(data);
                                                 if(data){

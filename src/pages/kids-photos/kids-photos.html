@@ -12,15 +12,19 @@
       <ion-icon ios="ios-funnel" md="md-funnel" item-end></ion-icon>
       <span id="filter">Filter</span>
    </button>
-   
-  <ion-card *ngFor="let kids of kidsPhotos">
-      <ion-card-header>
+   <div *ngIf="kidsPhotos">
+      <!--hiiiii {{ kidsPhotos.status }}-->
+      <div *ngFor="let kids of kidsPhotos">
+    <ion-card *ngFor="let kid of kids.values">
+      hii{{kid |json}}
+      
+            <ion-card-header>
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="kids.profilePic">
+            <img src="{{kid.profileUrl}}">
           </ion-avatar>
-          <h3>{{kids.name}}</h3>
-          <p>Child of {{kids.parents}}</p>
+          <!--<h3>{{kids.name}}</h3>-->
+          <!--<p>Child of {{kids.parents}}</p>-->
         </ion-item>
       </ion-card-header>
 
@@ -32,12 +36,16 @@
               </ion-row>
 
               <ion-row>
-                  <ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">
-                      <img [src]="kidPic.pic">
-                  </ion-col>
+                  <!--hiiii {{Kids.photos}}-->
+                  <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
+                 <!--<ion-col col-3 *ngFor="let kidPicdata of kids.values.photos;">
+                    fghf{{kidPicdata|json}}
+                      <img [src]="kidPicdata.url">
+                  </ion-col>-->
               </ion-row>
           </ion-grid>
       </ion-card-content>
     </ion-card>
-
+      </div>
+   </div>
 </ion-content>

@@ -37,14 +37,18 @@
     <ion-card class="kidsPic">
         <ion-card-header>
             Kids Photos
+            <!--<a (click)="goToPage('KidsPhotosPage')">view all...</a>-->
             <a (click)="goToPage('KidsPhotosPage')">view all...</a>
         </ion-card-header>
 
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
+                    <!--<ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
                         <img [src]="kidPic.profilePic">
+                    </ion-col>-->
+                    <ion-col col-4 *ngFor="let kidPic of childDataList;let i=index">
+                       <div *ngIf="i<3"> <img [src]="kidPic.value.profile_pic"></div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
