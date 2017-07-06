@@ -1,18 +1,69 @@
-<!--
-  Generated template for the AddChildVideosPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>addChildVideos</ion-title>
+    <ion-title>Add Videos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-card>
+    <!--<ion-item>
+        <ion-label stacked>Select Child</ion-label>
+        <ion-input type="text" placeholder="Add Child Name"></ion-input>
+      </ion-item>-->
+    <ion-label class="sigleLbl">Select Child</ion-label>
+    <ion-searchbar placeholder="Add Child Name"></ion-searchbar>
 
+    <ion-item>
+      <ion-label stacked>Parent's Name</ion-label>
+      <ion-input type="text" placeholder="Enter Parent's Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col col-2>
+          <button ion-button clear>  
+              <img src="" alt="">
+            </button>
+        </ion-col>
+        <ion-col>
+          <p>Take a Videos</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col col-2>
+          <button ion-button clear>  
+              <img src="" alt="">
+            </button>
+        </ion-col>
+        <ion-col>
+          <p>Select From gallery</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="vid">
+    <video controls>
+      <source src="movie.mp4" type="video/mp4">
+    </video>
+  </ion-card>
+
+  <ion-card class="desc">
+    <ion-item>
+      <ion-label stacked>Add Description</ion-label>
+      <ion-textarea type="text" rows="2"></ion-textarea>
+    </ion-item>
+  </ion-card>
+
+  <ion-row class="pblBtn">
+    <button ion-button round color="secondary">
+        Upload
+      </button>
+  </ion-row>
 </ion-content>
