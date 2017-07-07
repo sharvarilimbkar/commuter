@@ -12,16 +12,16 @@
       <ion-icon ios="ios-funnel" md="md-funnel" item-end></ion-icon>
       <span id="filter">Filter</span>
    </button>
-   <div *ngIf="kidsPhotos">
+   <div *ngIf="childDataList">
       <!--hiiiii {{ kidsPhotos.status }}-->
-      <div *ngFor="let kids of kidsPhotos">
-    <ion-card *ngFor="let kid of kids.values">
-      hii{{kid |json}}
-      
+   
+    <ion-card *ngFor="let obj of childDataList">
+      <!--hii{{kid |json}}-->
+      <!--{{obj |json}}-->
             <ion-card-header>
         <ion-item>
           <ion-avatar item-start>
-            <img src="{{kid.profileUrl}}">
+            <img src="{{obj.value.profile_pic}}">
           </ion-avatar>
           <!--<h3>{{kids.name}}</h3>-->
           <!--<p>Child of {{kids.parents}}</p>-->
@@ -32,20 +32,33 @@
           <ion-grid>
               <ion-row>
                   <ion-col><p>Photos</p></ion-col>
-                  <ion-col> <a (click)="allPhotos(kids)">view more...</a></ion-col>
+                  <ion-col> <a (click)="allPhotos(kids,obj.id)">view more...</a></ion-col>
               </ion-row>
 
               <ion-row>
                   <!--hiiii {{Kids.photos}}-->
                   <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
-                 <!--<ion-col col-3 *ngFor="let kidPicdata of kids.values.photos;">
-                    fghf{{kidPicdata|json}}
-                      <img [src]="kidPicdata.url">
-                  </ion-col>-->
+                 <ion-col col-3 *ngFor="let route of obj.value.photos | keys">
+                    <!--fghf{{route|json}}-->
+                      <img src="{{route.url}}">
+                  </ion-col>
               </ion-row>
           </ion-grid>
       </ion-card-content>
     </ion-card>
-      </div>
+    
+        <!--<div *ngFor="let obj of childDataList">
+    <table>
+    <tr>
+      <th>Destination: </th>
+      <th>Budget: </th>
+    </tr>
+      <tr *ngFor="let route of obj.value.photos | keys">
+      {{route |json}}
+        <td>{{route.toCity}}</td>
+        <td>{{route.budget}}</td>
+      </tr>
+    </table>
+  </div>-->
    </div>
 </ion-content>

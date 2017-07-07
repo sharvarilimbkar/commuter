@@ -15,8 +15,10 @@ export class HomePage {
 userProfile
 daycare
   public childDataList:Array<any>;
+   public childDataList1:Array<any>;
   public loadedChildList:Array<any>;
-  public childDataRef:firebase.database.Reference;
+  public childDataRef:firebase.database.Reference
+  mykey
   constructor(public navCtrl: NavController, public navParams: NavParams,public storage:StorageProvider,public auth:AuthProvider,public event:Events) {
 
   }
@@ -57,39 +59,14 @@ daycare
       let childData = [];
       var user = childDataList.val();
       childDataList.forEach( child => {
-          // console.log()
-          // this.uid = child.val().d_uid;
-          // console.log(typeof this.uid+" "+this.uid);
-          // console.log(typeof firebase.auth().currentUser.uid.toString() + " "+firebase.auth().currentUser.uid);
-          // console.log(this.uid === firebase.auth().currentUser.uid)
-          // if(this.uid === firebase.auth().currentUser.uid){
-            var photos=child.val().photos;
-         photos.forEach( child1 => {
-           console.log("123/ ",child1.key);
-         })
-         //   console.log("123/ ",child.val().photos.key("-KoBUZ8N0AIiOCxw0Xk5").val());
-         /*for(var i = 0; i < newfriends.length; i++){
-    var ref = firebase.database().ref('users/' + newfriends[i].$id);
-         }*/
-            childData.push({id:child.key,value:child.val()});
-           //   return false;
-          // }
-           
-              return false;
-          // }
+           childData.push({id:child.key,value:child.val()});
+            return false;
           
       });
       this.childDataList = childData;
-      this.loadedChildList = childData;     
-      console.log("childDataList ====>  "+JSON.stringify(this.childDataList));
-    });
-      // forEach(function (openTicketSnapshot) {
-      //   console.log(openTicketSnapshot.key); // The random key.
-      //   var val = openTicketSnapshot.val();
-      //   console.log(val.address);
-      //   console.log(val.assignedInspector);
-      //   // etc.
-      // });
+      this.loadedChildList = childData;  
+   });
+      
   }
 
 
