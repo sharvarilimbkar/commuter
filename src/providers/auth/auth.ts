@@ -19,7 +19,7 @@ export class AuthProvider {
   database
 
   base64textString
-   public domainURL = 'http://192.168.10.193:3000/api/';
+   public domainURL = 'http://192.168.10.194:3000/api/';
   constructor(public afDatabase: AngularFireDatabase,public http:Http,public transfer:Transfer,public toast:Toast) {
     console.log('Hello AuthProvider Provider');
     
@@ -58,20 +58,14 @@ export class AuthProvider {
       getProfile(){
         let formData = new URLSearchParams();
         formData.append("uid",firebase.auth().currentUser.uid);
-        // formData.append("password", data.password);
-        // formData.append("gcm_token", data.gcm_token);
-        //  formData.append("device_type", data.device_type);
+      
         return this.http.post(this.domainURL + 'getProfile', {"uid":firebase.auth().currentUser.uid})
           .map(res => res.json())
           .catch(this.handleError);
       }
       getChildrens(){
         let formData = new URLSearchParams();
-        // formData.append("uid",firebase.auth().currentUser.uid);
-        // formData.append("password", data.password);
-        // formData.append("gcm_token", data.gcm_token);
-        //  formData.append("device_type", data.device_type);
-        return this.http.post(this.domainURL + 'getAllChildrens', {})
+         return this.http.post(this.domainURL + 'getAllChildrens', {})
           .map(res => res.json())
           .catch(this.handleError);
       }
@@ -82,6 +76,19 @@ export class AuthProvider {
           firebase.database().ref('/parentsData')
           //  firebase.database().ref(db)
           .child(firebase.auth().currentUser.uid)
+          .on('value', data => {
+            
+            resolve(data.val())
+          });
+        });
+         
+    }
+    getKidPhotos(uid): Promise<any> {
+        // console.log("helloo sharvari ===> "+SERVER_NAME)
+        return new Promise( (resolve, reject) => {
+          firebase.database().ref('/childrenData')
+          //  firebase.database().ref(db)
+          .child(uid)
           .on('value', data => {
             
             resolve(data.val())
@@ -161,27 +168,7 @@ export class AuthProvider {
     //       });
     //   });
     // }
-    uploadImage(data)
-    {
-        //let body = JSON.parse(JSON.stringify(data));
-        // console.log("ssssllll ====>" + data);
-        // //let headers = new Headers();
-        // //let options = new RequestOptions({ headers: headers });
-        // let formData = new URLSearchParams();
-        // formData.append("uid", data.email);
-        // formData.append("password", data.password);
-        // formData.append("gcm_token", data.gcm_token);
-        //  formData.append("device_type", data.device_type);
-        // return this.http.post(this.domainURL + 'signin', formData)
-        //   .map(res => res.json())
-        //   .catch(this.handleError);
-
-                  
- 
-    }
-    uploadChildImages(){
-      
-    }
+   
     uploadMultiImage(imageurils): Promise<any>{
       // let image       : string  =  new Date().getTime() + '.jpg',
           // storageRef  : any,
@@ -195,7 +182,7 @@ export class AuthProvider {
             console.log(imageurils[i].images)
 
                 var params = {
-                          uid:'1499086186812'
+                          uid:'1499346628069'
                             // uid_parent:data.uid_parent,
                             // uid_daycare:firebase.auth().currentUser.uid
                           }
@@ -215,7 +202,7 @@ export class AuthProvider {
                                 // this.toastCtrl.dismissLoadin();
                                 if(data1.response){
                                      console.log(res.profile_pic);
-                                     firebase.database().ref('childrenData/'+'1499086186812/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time});
+                                     firebase.database().ref('childrenData/'+'1499346628069/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time});
                                     // resolve(true);
                                     //  resolve({status:true,flag:0});
                                  }

@@ -42,7 +42,8 @@
         </ion-row>
 
         <ion-row>
-            <ion-col col-4 *ngFor="let kidpic of allPhotos.allpic">
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos |keys">
+                {{KidPhotos|json}}
                 <img [src]="kidpic.pic">
             </ion-col>
         </ion-row>

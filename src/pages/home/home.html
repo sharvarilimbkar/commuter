@@ -47,9 +47,12 @@
                     <!--<ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
                         <img [src]="kidPic.profilePic">
                     </ion-col>-->
-                    <ion-col col-4 *ngFor="let kidPic of childDataList;let i=index">
-                       <div *ngIf="i<3"> <img [src]="kidPic.value.profile_pic"></div>
+                    <!--<div *ngIf="childDataList">-->
+                    <ion-col col-4 *ngFor="let kidPic of childDataList ;let i = index">
+                        <!--{{kidPic.value.profile_pic}}-->
+                       <div *ngIf="i<3"> <img src="{{kidPic.value.profile_pic}}"></div>
                     </ion-col>
+                    <!--</div>-->
                 </ion-row>
             </ion-grid>
         </ion-card-content>
