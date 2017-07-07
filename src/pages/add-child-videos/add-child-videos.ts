@@ -12,5 +12,4 @@ export class AddChildVideosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
- 
 }

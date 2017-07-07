@@ -11,7 +11,6 @@ export class AddChildPhotosPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-
  
 
 }
