@@ -35,11 +35,11 @@ ionViewDidLoad() {
                         // alert("hiii")
                         this.auth.getUserProfile().then( profileSnap => {
                             
-                            this.auth.getProfile().subscribe((data) =>{
-                                console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
+                            // this.auth.getProfile().subscribe((data) =>{
+                            //     console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
                                 this.userProfile = profileSnap;
                                   // this.userProfile.profile_pic=data.values[0].profileUrl
-                            })
+                            // })
                             // this.birthDate = this.userProfile.birthDate;
                           });
                     }else if(!data){
@@ -54,12 +54,8 @@ ionViewDidLoad() {
                           });
                     }
                   })
-  // this.auth.getUserProfile().then( profileSnap => {
-  //   this.userProfile = profileSnap;
-  //   console.log("hello "+this.userProfile.username)
-  //   // this.birthDate = this.userProfile.birthDate;
-  // });
-}
+
+  }
 
 Selectprofile(){
             this.selectImage.Selectprofile(this.camera.PictureSourceType.SAVEDPHOTOALBUM).then(imageUri=>{

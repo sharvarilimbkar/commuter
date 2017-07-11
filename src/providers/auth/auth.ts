@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Rx';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Transfer,TransferObject,FileUploadOptions } from '@ionic-native/transfer';
 import {Toast} from '@ionic-native/toast'
+import { MediaCapture } from '@ionic-native/media-capture';
+
 // import SERVER_NAME from ‘../config’;
 // 
 /*
@@ -16,9 +18,12 @@ import {Toast} from '@ionic-native/toast'
 */
 @Injectable()
 export class AuthProvider {
-  database
-
+  public databaseParents ='/parentsData'
+  public databaseChildren ='/childrenData'
+  public databaseDaycare ='/userData'
+countryList=[]
   base64textString
+  public domainStorageUrl = 'http://192.168.10.194:3000/'
    public domainURL = 'http://192.168.10.194:3000/api/';
   constructor(public afDatabase: AngularFireDatabase,public http:Http,public transfer:Transfer,public toast:Toast) {
     console.log('Hello AuthProvider Provider');
@@ -34,7 +39,7 @@ export class AuthProvider {
         return firebase.auth().createUserWithEmailAndPassword(email, password)
         
           .then((newUser) => {
-              firebase.database().ref('/parentsData').child(newUser.uid).set({email: email,password:password,mobile:mobile,username:username,isparent:1,profile_pic:''});
+              firebase.database().ref(this.databaseParents).child(newUser.uid).set({email: email,password:password,mobile:mobile,username:username,isparent:1,profile_pic:''});
           })
       }
 
@@ -48,7 +53,7 @@ export class AuthProvider {
 
       getDaycare(data): Promise<any>{
         return new Promise( (resolve, reject) => {
-        firebase.database().ref('/userData')
+        firebase.database().ref(this.databaseDaycare)
           .child(data.email)
           .on('value', data => {
             resolve(data.val());
@@ -63,30 +68,30 @@ export class AuthProvider {
           .map(res => res.json())
           .catch(this.handleError);
       }
-      getChildrens(){
-        let formData = new URLSearchParams();
-         return this.http.post(this.domainURL + 'getAllChildrens', {})
-          .map(res => res.json())
-          .catch(this.handleError);
-      }
+      // getChildrens(){
+      //   let formData = new URLSearchParams();
+      //    return this.http.post(this.domainURL + 'getAllChildrens', {})
+      //     .map(res => res.json())
+      //     .catch(this.handleError);
+      // }
 
       getUserProfile(): Promise<any> {
         // console.log("helloo sharvari ===> "+SERVER_NAME)
         return new Promise( (resolve, reject) => {
-          firebase.database().ref('/parentsData')
+          firebase.database().ref(this.databaseParents)
           //  firebase.database().ref(db)
           .child(firebase.auth().currentUser.uid)
           .on('value', data => {
-            
-            resolve(data.val())
+              resolve(data.val())
           });
         });
          
-    }
+      }
+    
     getKidPhotos(uid): Promise<any> {
         // console.log("helloo sharvari ===> "+SERVER_NAME)
         return new Promise( (resolve, reject) => {
-          firebase.database().ref('/childrenData')
+          firebase.database().ref(this.databaseChildren)
           //  firebase.database().ref(db)
           .child(uid)
           .on('value', data => {
@@ -96,10 +101,11 @@ export class AuthProvider {
         });
          
     }
+    
     getdaycareProfile(): Promise<any> {
       // console.log("helloo sharvari ===> "+SERVER_NAME)
         return new Promise( (resolve, reject) => {
-          firebase.database().ref('/userData')
+          firebase.database().ref(this.databaseDaycare)
           //  firebase.database().ref(db)
           .child(firebase.auth().currentUser.uid)
           .on('value', data => {
@@ -107,6 +113,19 @@ export class AuthProvider {
           });
         });
       }
+      
+      getkidsProfile(uid): Promise<any> {
+      // console.log("helloo sharvari ===> "+SERVER_NAME)
+        return new Promise( (resolve, reject) => {
+          firebase.database().ref(this.databaseChildren)
+          //  firebase.database().ref(db)
+          .child(uid)
+          .on('value', data => {
+            resolve(data.val());
+          });
+        });
+      }
+
     updateDaycare(data): Promise<any>{
        return new Promise((resolve) =>
       {
@@ -116,6 +135,74 @@ export class AuthProvider {
       });
     }
      
+     getChildren():Promise<any>{
+      return new Promise((resolve)=>{
+        firebase.database().ref(this.databaseChildren).on('value', countryList => {
+          let countries = [];
+          
+          countryList.forEach( country => {
+              
+                  countries.push({id:country.key,value:country.val()});
+                  return false;
+            
+          });
+          this.countryList = countries;
+          })
+          resolve(this.countryList);
+      })
+     }
+  //    getKidsDataByCondition():Promise<any>{
+  //     return new Promise((resolve)=>{
+  //     firebase.database().ref(this.databaseChildren)
+  //      .on('value', childDataList => {
+  //       let childData = [];
+  //       let parentData = [];
+  //       let i =0
+  //       var user = childDataList.val();
+  //       childDataList.forEach( child => {
+  //           //  childData.push({id:child.key,value:child.val()});
+  //             //  console.log(child.val().uid_parent)
+  //             firebase.database().ref(this.databaseParents)
+            
+  //               .child(child.val().uid_parent)
+  //               .on('value', data => {
+                  
+  //                 parentData = data.val().username
+  //                 if(this.navParams.get("isDaycare")){
+                    
+  //                    childData.push({id:child.key,value:child.val(),parentsData:parentData});
+                  
+  //                 }else{
+  //                   if(child.val().uid_parent === firebase.auth().currentUser.uid)
+  //                    childData.push({id:child.key,value:child.val(),parentsData:parentData});
+  //                 }
+                  
+  //               });
+                
+                
+  //             return false;
+            
+  //     });
+  //     this.childDataList = childData;
+  //     // this.loadedChildList = childData;  
+  //     console.log(this.childDataList)
+  //  });
+
+  //     })
+  //    }
+     
+     getData(dbname,uid):Promise<any>{
+        return  new Promise((resolve)=>{
+            firebase.database().ref(dbname)
+          //  firebase.database().ref(db)
+             .child(uid)
+              .on('value', data => {
+                resolve(data.val());
+              });
+
+        })
+     }
+
     updateDatabase(data) : Promise<any>
    {
       return new Promise((resolve) =>
@@ -125,6 +212,7 @@ export class AuthProvider {
          resolve(true);
       });
    }
+
    updateDaycareDatabase(data) : Promise<any>
    {
       return new Promise((resolve) =>
@@ -134,46 +222,9 @@ export class AuthProvider {
          resolve(true);
       });
    }
-  //  updateChildData(data):Promise<any>{
-  //    return new Promise((resolve) =>
-  //     {
-  //        var updateRef = firebase.database().ref('childrenData').child(firebase.auth().currentUser.uid);
-	//         updateRef.update(data);
-  //        resolve(true);
-  //     });
-  //  }
-    // uploadImage(imageString) : Promise<any>
-    // {
-    //   let image       : string  =  new Date().getTime() + '.jpg',
-    //       storageRef  : any,
-    //       parseUpload : any;
-
-    //   return new Promise((resolve, reject) =>
-    //   {
-    //       storageRef       = firebase.storage().ref('images/' + image);
-    //       parseUpload      = storageRef.putString(imageString, 'data_url');
-
-    //       parseUpload.on('state_changed', (_snapshot) =>
-    //       {
-    //         // We could log the progress here IF necessary
-    //         console.log('snapshot progess ' + _snapshot);
-    //       },
-    //       (_err) =>
-    //       {
-    //         reject(_err);
-    //       },
-    //       (success) =>
-    //       {
-    //         resolve(parseUpload.snapshot);
-    //       });
-    //   });
-    // }
-   
-    uploadMultiImage(imageurils): Promise<any>{
-      // let image       : string  =  new Date().getTime() + '.jpg',
-          // storageRef  : any,
-          // parseUpload : any;
-          // let downloadUri=[]
+ 
+    uploadMultiImage(imageurils,uid_children,description): Promise<any>{
+      
       return new Promise((resolve, reject) =>
       {
         console.log("sdkfhjskjdfh ===> "+imageurils.length)
@@ -182,10 +233,8 @@ export class AuthProvider {
             console.log(imageurils[i].images)
 
                 var params = {
-                          uid:'1499346628069'
-                            // uid_parent:data.uid_parent,
-                            // uid_daycare:firebase.auth().currentUser.uid
-                          }
+                          uid:uid_children
+                         }
                       const fileTransfer: TransferObject = this.transfer.create();
 
                             let options1: FileUploadOptions = {
@@ -202,81 +251,80 @@ export class AuthProvider {
                                 // this.toastCtrl.dismissLoadin();
                                 if(data1.response){
                                      console.log(res.profile_pic);
-                                     firebase.database().ref('childrenData/'+'1499346628069/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time});
-                                    // resolve(true);
-                                    //  resolve({status:true,flag:0});
+                                     var d = new Date();
+                                      var month = d.getMonth();
+                                     firebase.database().ref('childrenData/'+'1499346628069/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time,description:description,key_month:month});
+                                   
                                  }
-
                                 }, (err) => {
                             // error
                                 alert("error" + JSON.stringify(err));
                                 resolve(false);
                               });
-
-           
-          }
+              }
           resolve({status:true,flag:1});
       });
     }
 
+
+    uploadVideoDataChild(videourl,uid,description): Promise<any>{
+      console.log(videourl)
+      return new Promise((resolve, reject) =>
+      {
+        var params = {
+                          uid:uid
+                         }
+                      const fileTransfer: TransferObject = this.transfer.create();
+
+                            let options1: FileUploadOptions = {
+                            fileKey: 'videoFile',
+                            fileName: videourl.split('/').pop(),
+                            headers: {}
+
+                        }
+                        options1.params = params;
+                        fileTransfer.upload(videourl, encodeURI(this.domainURL+'uploadVideoOfChild'), options1)
+                            .then((data1) => {
+                              let res = JSON.parse(data1.response); 
+                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                                  if(data1.response){
+                                     console.log(res.profile_pic);
+                                     var d = new Date();
+                                      var month = d.getMonth();
+                                     firebase.database().ref('childrenData/'+uid+'/'+'videos').push({ url: res.profile_pic,added_date_time:res.added_date_time,discription:description,key_month:month});
+                                   
+                                 }
+                                }, (err) => {
+                            // error
+                                alert("error" + JSON.stringify(err));
+                                resolve(false);
+                              });
+              
+          resolve({status:true,flag:1});
+      });
+    }
+
+   
     _handleReaderLoaded(readerEvt) {
       var binaryString = readerEvt.target.result;
               this.base64textString= btoa(binaryString);
               console.log(btoa(binaryString));
       }
-    
-  //    uploadPics() {
-  //       console.log("Ok, going to upload "+images.length+" images.");
-  //       var defs = [];
-        
-  //       var fd = new FormData();
-        
-  //       images.forEach(function(i) {
-  //           console.log('processing '+i);
-  //           var def = $.Deferred();
-
-  //           window.resolveLocalFileSystemURL(i, function(fileEntry) {
-  //               console.log('got a file entry');
-  //               fileEntry.file(function(file) {
-  //                   console.log('now i have a file ob');
-  //                   console.dir(file);
-  //                   fd.append('file', file);
-  //                   def.resolve();
-  //               }, function(e) {
-  //                   console.log('error getting file', e);
-  //               });         
-  //           }, function(e) {
-  //               console.log('Error resolving fs url', e);
-  //           });
-
-  //           defs.push(def.promise());
-                
-  //       });
-
-  //       $.when.apply($, defs).then(function() {
-  //           console.log("all things done");
-  //           var request = new XMLHttpRequest();
-  //           request.open('POST', 'http://192.168.5.13:3000/upload');
-  //           request.send(fd);
-  //       });
-
-  // }
+  
     addChild(data):Promise<any>{
         
         let uid_child       : string  =  new Date().getTime().toString();
         return new Promise((resolve) =>
               {
-                // firebase.database().ref('childrenData').child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:'',age:data.age,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
-                  //  var params = {
-                  //           "parent_uid": this.addchild.uid_parent,
-                  //           "daycare_uid":firebase.auth().currentUser.uid
-                  //       }
+                
                          var params = {
                            uid:uid_child,
                            name: data.childname,
                            dob:data.birthday,
                            age:data.age,
+                           gender:data.gender,
                            uid_parent:data.uid_parent,
+
                            uid_daycare:firebase.auth().currentUser.uid                            // uid_parent:data.uid_parent,
                             // uid_daycare:firebase.auth().currentUser.uid
                           }
@@ -311,7 +359,7 @@ export class AuthProvider {
                             }); 
               
               });
-        //  return firebase.database().ref('/childrenData').child(data.uid_parent).set({name: data.childname,dob:data.birthday,profile_pic:data.pro_image,age:data.age});
+        //  return firebase.database().ref(this.databaseChildren).child(data.uid_parent).set({name: data.childname,dob:data.birthday,profile_pic:data.pro_image,age:data.age});
     }
       handleError(error) {
         console.error(error);

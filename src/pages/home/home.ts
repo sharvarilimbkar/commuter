@@ -32,6 +32,8 @@ daycare
                             this.daycare=false
                             // this.birthDate = this.userProfile.birthDate;
                           });
+                         
+                            this.loadParentspage()
                           // this.event.subscribe('userProfile', (userProfile) => {
                           //   // user and time are the same arguments passed in `events.publish(user, time)`
                           //   console.log('Welcome '+ JSON.stringify(userProfile));
@@ -42,23 +44,24 @@ daycare
                             this.event.publish('userProfile', this.userProfile);
                               this.daycare=true
                           });
+                           this.loadDaycarepage();
                           //  this.event.subscribe('userProfile', (userProfile) => {
                           //   // user and time are the same arguments passed in `events.publish(user, time)`
                           //   console.log('Welcome '+ JSON.stringify(userProfile));
                           // });
                     }
                   })
-                this.images();
-                this.loadHomepage();
+               
 
   }
 
-  loadHomepage(){
+  loadDaycarepage(){
      this.childDataRef = firebase.database().ref('childrenData');
      this.childDataRef.on('value', childDataList => {
       let childData = [];
       var user = childDataList.val();
       childDataList.forEach( child => {
+        
            childData.push({id:child.key,value:child.val()});
             return false;
           
@@ -68,175 +71,26 @@ daycare
    });
       
   }
-
-
-images(){
-
-    this.KidsData= [
-  {
-    "index": 0,
-    "name": "Manuela Martinez",
-    "parents": "Richard Martinez",
-    "profilePic": "./assets/images/kidsData/kid1.jpg",
-    "age": 4,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':3,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
-        },
-        {
-          'id':4,
-          'pic':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':5,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
+   loadParentspage(){
+     this.childDataRef = firebase.database().ref('childrenData');
+     this.childDataRef.on('value', childDataList => {
+      let childData = [];
+      var user = childDataList.val();
+      childDataList.forEach( child => {
+        console.log((child.val().uid_parent === firebase.auth().currentUser.uid))
+        if(child.val().uid_parent === firebase.auth().currentUser.uid){
+           childData.push({id:child.key,value:child.val()});
+            return false;
         }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid1.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 1,
-    "name": "Martinez James",
-    "parents": "Moore James",
-    "profilePic": "./assets/images/kidsData/kid2.jpg",
-    "age": 6,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid2.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid2.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid2.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid2.1.jpg"
-        },
-        {
-          'id':3,
-          'vid':"./assets/images/kidsData/kid2.2.jpg"
-        },
-        {
-          'id':4,
-          'vid':"./assets/images/kidsData/kid2.1.jpg"
-        }
-      ]
-  },
-
-
-  {
-    "index": 2,
-    "name": "Lindsey Aguirre",
-    "parents": "Ramos Aguirre",
-    "profilePic": "./assets/images/kidsData/kid3.jpg",
-    "age": 4,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid3.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid3.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid3.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid3.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 3,
-    "name": "Gross Cleveland",
-    "parents": "Oliver Cleveland",
-    "profilePic": "./assets/images/kidsData/kid4.jpg",
-    "age": 3,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid4.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid4.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid4.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid4.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 4,
-    "name": "Kidd Fox",
-    "parents":"Christensen Fox",
-    "profilePic": "./assets/images/kidsData/kid6.jpg",
-    "age": 5,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid6.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid6.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid6.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid6.1.jpg"
-        }
-      ]
+      });
+      this.childDataList = childData;
+      this.loadedChildList = childData;  
+   });
+      
   }
 
-];
-}
+
   goToPage(page:any){
-    this.navCtrl.push(page);
+    this.navCtrl.push(page,{"isDaycare":this.daycare});
   }
 }

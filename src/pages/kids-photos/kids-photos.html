@@ -15,16 +15,16 @@
    <div *ngIf="childDataList">
       <!--hiiiii {{ kidsPhotos.status }}-->
    
-    <ion-card *ngFor="let obj of childDataList">
+    <ion-card *ngFor="let obj of childDataList | reverse">
       <!--hii{{kid |json}}-->
-      <!--{{obj |json}}-->
+      <!--{{obj.parentsData}}-->
             <ion-card-header>
         <ion-item>
           <ion-avatar item-start>
             <img src="{{obj.value.profile_pic}}">
           </ion-avatar>
-          <!--<h3>{{kids.name}}</h3>-->
-          <!--<p>Child of {{kids.parents}}</p>-->
+          <h3>{{obj.value.name}}</h3>
+          <p>Child of {{obj.parentsData}}</p>
         </ion-item>
       </ion-card-header>
 
@@ -32,13 +32,13 @@
           <ion-grid>
               <ion-row>
                   <ion-col><p>Photos</p></ion-col>
-                  <ion-col> <a (click)="allPhotos(kids,obj.id)">view more...</a></ion-col>
+                  <ion-col > <a (click)="allPhotos(kids,obj.id,childDataList)" *ngIf="obj.value.photos">view more...</a></ion-col>
               </ion-row>
 
               <ion-row>
                   <!--hiiii {{Kids.photos}}-->
                   <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
-                 <ion-col col-3 *ngFor="let route of obj.value.photos | keys">
+                 <ion-col col-3 *ngFor="let route of obj.value.photos | keys ">
                     <!--fghf{{route|json}}-->
                       <img src="{{route.url}}">
                   </ion-col>

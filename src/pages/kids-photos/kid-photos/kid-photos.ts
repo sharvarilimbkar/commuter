@@ -10,7 +10,7 @@ import firebase from 'firebase';
 })
 export class KidPhotosPage {
   allPhotos=[];
-  KidPhotos
+  KidPhotos =[]
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
   }
 
@@ -20,11 +20,11 @@ export class KidPhotosPage {
   }
 
   getkidData(){
-    alert(this.navParams.get("uid"))
+    // alert(this.navParams.get("uid"))
                         
-                            this.auth.getKidPhotos(this.navParams.get("uid")).then((data) =>{
+                            this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
                                 // console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
-                                this.KidPhotos = data.photos;
+                                this.KidPhotos = data.photos
                                 console.log("ppp =>> "+JSON.stringify(this.KidPhotos))
                                   // this.userProfile.profile_pic=data.values[0].profileUrl
                             })

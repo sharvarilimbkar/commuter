@@ -17,6 +17,7 @@
 
 
 <ion-content padding>
+   <div *ngIf="daycare">
     <ion-card class="recently">
         <ion-card-header>
             Recently Subscribed
@@ -49,8 +50,8 @@
                     </ion-col>-->
                     <!--<div *ngIf="childDataList">-->
                     <ion-col col-4 *ngFor="let kidPic of childDataList ;let i = index">
-                        <!--{{kidPic.value.profile_pic}}-->
-                       <div *ngIf="i<3"> <img src="{{kidPic.value.profile_pic}}"></div>
+                        <!--{{kidPic.value.videos}}-->
+                       <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
                     </ion-col>
                     <!--</div>-->
                 </ion-row>
@@ -67,9 +68,12 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                     <ion-col col-4 *ngFor="let kidVid of (KidsData | slice:KidsData.length - 3);">
-                        <img [src]="kidVid.profilePic">
+                    <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
+                     <ion-col  *ngIf="kidPic.value.videos" col-4>
+                        <!--{{kidPic.value.videos}}-->
+                         <img  src="{{kidPic.value.profile_pic}}">
                     </ion-col>
+                    </div>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
@@ -98,16 +102,59 @@
         </ion-card-content>
     </ion-card>
 
-    <ion-fab right bottom>
+    <ion-fab right bottom *ngIf="daycare">
         <button ion-fab color="confirm" class="openButton">
             <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
         </button>
 
         <ion-fab-list side="left">
-            <button ion-fab> <ion-icon ios="ios-megaphone" md="md-megaphone"></ion-icon></button>
+            <button ion-fab > <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
             <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
-            <button ion-fab><ion-icon ios="logo-youtube" md="logo-youtube"></ion-icon></button>
-            <button ion-fab><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
+            <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
+            <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>
+   </div>
+   <div *ngIf="!daycare">
+            <ion-card class="kidsPic">
+        <ion-card-header>
+            Kids Photos
+            <!--<a (click)="goToPage('KidsPhotosPage')">view all...</a>-->
+            <a (click)="goToPage('KidsPhotosPage')">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                   
+                    <ion-col col-4 *ngFor="let kidPic of childDataList ;let i = index">
+                        <!--{{kidPic.value.videos}}-->
+                       <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
+                    </ion-col>
+                    <!--</div>-->
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-card class="kidsVid">
+        <ion-card-header>
+            Kids Videos
+            <a (click)="goToPage('KidsVideosPage')">view all...</a>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
+                     <ion-col  *ngIf="kidPic.value.videos" col-4>
+                        <!--{{kidPic.value.videos}}-->
+                         <img  src="{{kidPic.value.profile_pic}}">
+                    </ion-col>
+                    </div>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+   </div>
 </ion-content>

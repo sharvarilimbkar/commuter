@@ -13,14 +13,28 @@
         <ion-input type="text" placeholder="Add Child Name"></ion-input>
       </ion-item>-->
     <ion-label class="sigleLbl">Select Child</ion-label>
-    <ion-searchbar placeholder="Add Child Name"></ion-searchbar>
+    <ion-searchbar placeholder="Add Child Name" [(ngModel)]="childName" (ionInput)="getItems($event)">
+      </ion-searchbar>
+        <!--<ion-list>-->
+           <ion-list *ngIf="showList">
+          <ion-item *ngFor="let item of searchChildren">
+            <ion-avatar item-start >
+              <img src="{{item.value.profile_pic}}">
+            </ion-avatar>
+            <h2> {{ item.value.name }}</h2>
+            <!--<p>{{ item.value.email }}</p>-->
+            <button ion-button outline item-end (click)="selectChildren(item.id,item.value.uid_parent,item.value.name)">select</button>
+            <!--<ion-checkbox  item-end  [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>-->
+          </ion-item>
+          
+        </ion-list>
 
     <ion-item>
-      <ion-label stacked>Parent's Name</ion-label>
-      <ion-input type="text" placeholder="Enter Parent's Name"></ion-input>
+        <ion-label stacked>Parent's Name</ion-label>
+        <ion-input type="text" [(ngModel)]="showParents" placeholder=" Parent's Name"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="takeVideo()">
       <ion-row>
         <ion-col col-2>
           <button ion-button clear>  
@@ -33,7 +47,7 @@
       </ion-row>
     </ion-item>
 
-    <ion-item>
+    <ion-item (click)="selectVideo()">
       <ion-row>
         <ion-col col-2>
           <button ion-button clear>  
@@ -48,20 +62,20 @@
   </ion-card>
 
   <ion-card class="vid">
-    <video controls>
-      <source src="movie.mp4" type="video/mp4">
+    <video #myvideo  controls>
+      <source src="{{videoUrl}}" type="video/mp4">
     </video>
   </ion-card>
 
   <ion-card class="desc">
     <ion-item>
       <ion-label stacked>Add Description</ion-label>
-      <ion-textarea type="text" rows="2"></ion-textarea>
+      <ion-textarea type="text" [(ngModel)]="description" rows="2"></ion-textarea>
     </ion-item>
   </ion-card>
 
   <ion-row class="pblBtn">
-    <button ion-button round color="secondary">
+    <button ion-button round color="secondary" (click)="UploadVideoData()">
         Upload
       </button>
   </ion-row>

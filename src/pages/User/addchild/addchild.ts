@@ -23,10 +23,11 @@ showParents:boolean = false
   items;
   uid_parent
   errorMessage
-  addchild ={childname:'',age:'',birthday:'',pro_image:'',uid_parent:'',profileUri:''}
+  addchild ={childname:'',age:'',birthday:'',pro_image:'',uid_parent:'',profileUri:'',gender:''}
   name:string = "shssh"
   uid :string
   profile
+  gender
   public countryList:Array<any>;
   public loadedCountryList:Array<any>;
   public countryRef:firebase.database.Reference;
@@ -38,7 +39,7 @@ showParents:boolean = false
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-      this.countryRef = firebase.database().ref('/parentsData');
+      this.countryRef = firebase.database().ref(this.auth.databaseParents);
       this.countryRef.on('value', countryList => {
       let countries = [];
       
@@ -75,33 +76,34 @@ showParents:boolean = false
     console.log(email)
    
   }
-  uploadChildImages(){
-    this.selectImage.selectMultipleImages().then(imageUris =>{
-        console.log("imageUrls =>> " +imageUris)
-        this.multiImages=imageUris
-    }) .catch(error => {
-      this.errorMessage = 'Error - ' + error.message
-    })
+  // uploadChildImages(){
+  //   this.selectImage.selectMultipleImages().then(imageUris =>{
+  //       console.log("imageUrls =>> " +imageUris)
+  //       this.multiImages=imageUris
+  //   }) .catch(error => {
+  //     this.errorMessage = 'Error - ' + error.message
+  //   })
 
-  }
-  multiuploadChildImages(){
-      console.log("hiiii ");
-      console.log("imageuris length====>>>> " +this.multiImages.length);
-      console.log("this.multiImages ==>"+this.multiImages);
-        this.auth.uploadMultiImage(this.multiImages)
-                .then((snapshot : any) =>
-                {
-                    this.uploadedImage  = snapshot.downloadURL;
-                    console.log(this.uploadedImage)
-                })
+  // }
+  // multiuploadChildImages(){
+  //     console.log("hiiii ");
+  //     console.log("imageuris length====>>>> " +this.multiImages.length);
+  //     console.log("this.multiImages ==>"+this.multiImages);
+  //       this.auth.uploadMultiImage(this.multiImages)
+  //               .then((snapshot : any) =>
+  //               {
+  //                   this.uploadedImage  = snapshot.downloadURL;
+  //                   console.log(this.uploadedImage)
+  //               })
 
-      }
+  //     }
 
   uploadChild(){
-      console.log(" addchild ===>>> "+JSON.stringify(this.addchild)+"parent ===> "+this.uid_parent)
+      // console.log(" addchild ===>>> "+JSON.stringify(this.addchild)+"parent ===> "+this.uid_parent)
       this.addchild.uid_parent = this.uid_parent;
       this.addchild.profileUri =this.addchild.pro_image;
-                              
+      this.addchild.gender = this.gender  
+                     console.log("parent ===> "+this.addchild.gender)        
           this.auth.addChild(this.addchild).then((data)=>{
               if(data){
                     this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
@@ -123,15 +125,15 @@ showParents:boolean = false
         this.addchild.pro_image= imageUri;
       })
   }
-  takephoto(){
-    this.selectImage.Selectprofile(this.camera.PictureSourceType.CAMERA).then(imageUri=>{
-        console.log(imageUri);
-        var images=[];
-         images.push({id:0,images:imageUri});
-        this.multiImages=images
+  // takephoto(){
+  //   this.selectImage.Selectprofile(this.camera.PictureSourceType.CAMERA).then(imageUri=>{
+  //       console.log(imageUri);
+  //       var images=[];
+  //        images.push({id:0,images:imageUri});
+  //       this.multiImages=images
        
-      })
-  }
+  //     })
+  // }
  getItems(searchbar) {
   
       this.initializeItems();

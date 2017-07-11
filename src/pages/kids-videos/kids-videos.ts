@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AuthProvider } from '../../providers/auth/auth'
+import {Toast} from '@ionic-native/toast'
+import firebase from 'firebase';
 
 // import KidsData from '../../data/KidsData';
 @IonicPage()
@@ -9,179 +12,65 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class KidsVideosPage {
   kidsVideo;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  domainFileUrl
+  public childDataList:Array<any>;
+  // public loadedChildList:Array<any>;
+  public childDataRef:firebase.database.Reference
+    public childDataRef12:firebase.database.Reference
+  constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
+    this.domainFileUrl = this.auth.domainStorageUrl
   }
-
-
-  ngOnInit(){
-    this.kidsVideo = [
-  {
-    "index": 0,
-    "name": "Manuela Martinez",
-    "parents": "Richard Martinez",
-    "profilePic": "./assets/images/kidsData/kid1.jpg",
-    "age": 4,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':3,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
-        },
-        {
-          'id':4,
-          'pic':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':5,
-          'pic':"./assets/images/kidsData/kid1.1.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid1.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid1.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 1,
-    "name": "Martinez James",
-    "parents": "Moore James",
-    "profilePic": "./assets/images/kidsData/kid2.jpg",
-    "age": 6,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid2.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid2.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid2.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid2.1.jpg"
-        },
-        {
-          'id':3,
-          'vid':"./assets/images/kidsData/kid2.2.jpg"
-        },
-        {
-          'id':4,
-          'vid':"./assets/images/kidsData/kid2.1.jpg"
-        }
-      ]
-  },
-
-
-  {
-    "index": 2,
-    "name": "Lindsey Aguirre",
-    "parents": "Ramos Aguirre",
-    "profilePic": "./assets/images/kidsData/kid3.jpg",
-    "age": 4,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid3.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid3.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid3.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid3.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 3,
-    "name": "Gross Cleveland",
-    "parents": "Oliver Cleveland",
-    "profilePic": "./assets/images/kidsData/kid4.jpg",
-    "age": 3,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid4.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid4.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid4.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid4.1.jpg"
-        }
-      ]
-  },
-
-  {
-    "index": 4,
-    "name": "Kidd Fox",
-    "parents":"Christensen Fox",
-    "profilePic": "./assets/images/kidsData/kid6.jpg",
-    "age": 5,
-    "allpic": [
-        {
-          'id':1,
-          'pic':"./assets/images/kidsData/kid6.1.jpg"
-        },
-        {
-          'id':2,
-          'pic':"./assets/images/kidsData/kid6.2.jpg"
-        }
-      ],
-    "allvid":[
-        {
-          'id':1,
-          'vid':"./assets/images/kidsData/kid6.2.jpg"
-        },
-        {
-          'id':2,
-          'vid':"./assets/images/kidsData/kid6.1.jpg"
-        }
-      ]
+ionViewDidLoad(){
+        this.getKidsPhotos()  
+}
+loadHomepage(){
+   
+      
   }
-
-];
-  }
-
-  allVideos(kids){
-    this.navCtrl.push("KidVideosPage", kids);
+getKidsPhotos(){
+    this.childDataRef = firebase.database().ref(this.auth.databaseChildren);
+      this.childDataRef.on('value', childDataList => {
+        let childData = [];
+        let parentData = [];
+        let i =0
+        var user = childDataList.val();
+        childDataList.forEach( child => {
+            //  childData.push({id:child.key,value:child.val()});
+              //  console.log(child.val().uid_parent)
+              firebase.database().ref(this.auth.databaseParents)
+            
+                .child(child.val().uid_parent)
+                .on('value', data => {
+                  console.log('this.navParams.get("isDaycare")'+this.navParams.get("isDaycare"))
+                   parentData = data.val().username
+                  if(this.navParams.get("isDaycare")){
+                   
+                     childData.push({id:child.key,value:child.val(),parentsData:parentData});
+                  
+                  }else{
+                     if(child.val().uid_parent === firebase.auth().currentUser.uid)
+                     childData.push({id:child.key,value:child.val(),parentsData:parentData});
+                  }
+                  
+                });
+                
+                
+              return false;
+            
+      });
+      this.childDataList = childData;
+      // this.loadedChildList = childData;  
+      console.log(this.childDataList)
+   });
+   
+}
+  
+// allPhotos(kids,uid){
+//     // alert(uid)
+//     this.navCtrl.push("KidPhotosPage", {"uid":uid});
+//   }
+  allVideos(kids,uid){
+    this.navCtrl.push("KidVideosPage", {"uid":uid});
   }
 
 }

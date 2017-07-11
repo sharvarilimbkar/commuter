@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<!--<ion-content padding>
   <button ion-button clear>
       <ion-icon ios="ios-funnel" md="md-funnel" item-end></ion-icon>
       <span id="filter">Filter</span>
@@ -39,4 +39,63 @@
           </ion-grid>
       </ion-card-content>
     </ion-card>
+</ion-content>-->
+<ion-content padding>
+   <button ion-button clear>
+      <ion-icon ios="ios-funnel" md="md-funnel" item-end></ion-icon>
+      <span id="filter">Filter</span>
+   </button>
+   <div *ngIf="childDataList">
+      <!--hiiiii {{ kidsPhotos.status }}-->
+   
+    <ion-card *ngFor="let obj of childDataList | reverseVideos">
+      <!--hii{{kid |json}}-->
+      <!--{{obj.parentsData}}-->
+            <ion-card-header>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="{{obj.value.profile_pic}}">
+          </ion-avatar>
+          <h3>{{obj.value.name}}</h3>
+          <p>Child of {{obj.parentsData}}</p>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
+          <ion-grid>
+              <ion-row>
+                  <ion-col><p>Videos</p></ion-col>
+                  <ion-col> <a (click)="allVideos(kids,obj.id)">view more...</a></ion-col>
+              </ion-row>
+
+              <ion-row>
+                  <!--hiiii {{Kids.photos}}-->
+                  <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
+                 <ion-col col-3 *ngFor="let route of obj.value.videos | keysvideos ">
+                    <!--fghf{{route|json}}-->
+                    <video #myvideo height="200" width="300" controls>
+                    <source src="{{domainFileUrl+route.url}}" type="video/mp4">
+                    </video>
+                     
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    
+        <!--<div *ngFor="let obj of childDataList">
+    <table>
+    <tr>
+      <th>Destination: </th>
+      <th>Budget: </th>
+    </tr>
+      <tr *ngFor="let route of obj.value.photos | keys">
+      {{route |json}}
+        <td>{{route.toCity}}</td>
+        <td>{{route.budget}}</td>
+      </tr>
+    </table>
+  </div>-->
+   </div>
 </ion-content>
+

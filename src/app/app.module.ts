@@ -22,6 +22,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SearchProvider } from '../providers/search/search';
 import { SelectImageProvider } from '../providers/select-image/select-image';
 import { Toast } from "@ionic-native/toast"
+import { MediaCapture } from '@ionic-native/media-capture';
 
 const config = {
  apiKey: "AIzaSyBM1ysxV1LMxhfhpvT67H26DlxlWZpyWfQ",
@@ -56,6 +57,7 @@ firebase.initializeApp(config);
     AngularFireDatabase,
     Camera,
     ImagePicker,
+    MediaCapture,
     Toast,
     Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

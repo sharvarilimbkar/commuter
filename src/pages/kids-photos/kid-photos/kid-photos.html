@@ -42,9 +42,23 @@
         </ion-row>
 
         <ion-row>
-            <ion-col col-4 *ngFor="let kidpic of KidPhotos |keys">
-                {{KidPhotos|json}}
-                <img [src]="kidpic.pic">
+         
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | reverse1| slice:0:5 ">
+                
+                <img [src]="kidpic.url">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+     <ion-grid class="photos">
+        <ion-row padding-left>
+            <p>Photos <span></span></p>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | reverse1| slice:5">
+                <!--{{KidPhotos|json}}-->
+                <img [src]="kidpic.url">
             </ion-col>
         </ion-row>
     </ion-grid>
