@@ -39,7 +39,11 @@
                         Add Child
                         </button>
                     </ion-item>
-
+                      <ion-item *ngIf="daycare"> 
+                            <button ion-button clear (click)="onLoad('EditProfilePage')">
+                            Edit Child
+                            </button>
+                    </ion-item>   
                      <ion-item> 
                         <button ion-button clear (click)="onLoad('SubscriptionPage')">
                         Subscription

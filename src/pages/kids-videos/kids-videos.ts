@@ -23,6 +23,9 @@ export class KidsVideosPage {
 ionViewDidLoad(){
         this.getKidsPhotos()  
 }
+ionViewDidEnter(){
+        this.getKidsPhotos()  
+}
 loadHomepage(){
    
       
@@ -44,7 +47,8 @@ getKidsPhotos(){
                   console.log('this.navParams.get("isDaycare")'+this.navParams.get("isDaycare"))
                    parentData = data.val().username
                   if(this.navParams.get("isDaycare")){
-                   
+                    var duid= child.val().uid_daycare;
+                    if(duid == firebase.auth().currentUser.uid)
                      childData.push({id:child.key,value:child.val(),parentsData:parentData});
                   
                   }else{

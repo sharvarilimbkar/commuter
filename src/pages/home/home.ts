@@ -66,7 +66,7 @@ daycare
             return false;
           
       });
-      this.childDataList = childData;
+      this.childDataList = childData.reverse();
       this.loadedChildList = childData;  
    });
       

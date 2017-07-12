@@ -20,14 +20,13 @@ export class KidPhotosPage {
   }
 
   getkidData(){
-    // alert(this.navParams.get("uid"))
-                        
-                            this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
-                                // console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
-                                this.KidPhotos = data.photos
-                                console.log("ppp =>> "+JSON.stringify(this.KidPhotos))
-                                  // this.userProfile.profile_pic=data.values[0].profileUrl
-                            })
+    // alert(this.navParams.get("uid"))                     
+    this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
+        // console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
+        this.KidPhotos = data.photos
+        console.log("ppp =>> "+JSON.stringify(this.KidPhotos))
+          // this.userProfile.profile_pic=data.values[0].profileUrl
+    })
                             // this.birthDate = this.userProfile.birthDate;
                       
   }

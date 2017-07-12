@@ -10,19 +10,19 @@
     <ion-card>
       <ion-item>
         <ion-label stacked>Add Title</ion-label>
-        <ion-input type="text"  placeholder="Enter Title Here"></ion-input>
+        <ion-input type="text" [(ngModel)]="anno.title" placeholder="Enter Title Here"></ion-input>
       </ion-item> 
     </ion-card>
 
     <ion-card>
       <ion-item>
         <ion-label stacked>Add Description</ion-label>
-        <ion-textarea type="text" rows="10"></ion-textarea>
+        <ion-textarea type="text" [(ngModel)]="anno.description" rows="10"></ion-textarea>
       </ion-item>
     </ion-card>
 
     <ion-row class="pblBtn">
-      <button ion-button round color="secondary">
+      <button ion-button (click)="publishAnnouncement()" round color="secondary">
         Publish
       </button>
     </ion-row>

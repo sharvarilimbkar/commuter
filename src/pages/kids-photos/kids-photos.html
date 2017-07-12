@@ -38,9 +38,9 @@
               <ion-row>
                   <!--hiiii {{Kids.photos}}-->
                   <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
-                 <ion-col col-3 *ngFor="let route of obj.value.photos | keys ">
+                 <ion-col col-3 *ngFor="let route of obj.value.photos | keys  let i = index;">
                     <!--fghf{{route|json}}-->
-                      <img src="{{route.url}}">
+                      <img *ngIf="i<4" src="{{route.url}}">
                   </ion-col>
               </ion-row>
           </ion-grid>

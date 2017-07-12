@@ -40,7 +40,7 @@ import { Storage } from '@ionic/storage';
                 this.daycare=true
               }
               })
-            // console.log('Welcome '+ JSON.stringify(userProfile));
+         
             });
 
             authObserver.unsubscribe();

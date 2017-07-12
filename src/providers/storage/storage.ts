@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { LoadingController } from 'ionic-angular'
 import { Storage } from '@ionic/storage';
 
 /*
@@ -11,8 +12,7 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class StorageProvider {
-
-  constructor(public storage:Storage) {
+  constructor(public storage:Storage,public loadingCtrl:LoadingController) {
     console.log('Hello StorageProvider Provider');
   }
 
@@ -32,4 +32,6 @@ export class StorageProvider {
   removeStorage(vale){
     this.storage.remove(vale);
   }
+
+  
 }

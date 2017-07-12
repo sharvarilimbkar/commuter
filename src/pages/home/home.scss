@@ -54,12 +54,13 @@ page-home {
         .kidsPic, .kidsVid{
                img{
                 //height: 4em;
-                //height: 80px;
-                height: 90%;
+                height: 80px;
+                //    height: 90% !important;
                 width: 100%;
                 border: 1px solid #f1e9e9;
                 border-radius: 5px;
                }
+               
         }
 
         .annouce{

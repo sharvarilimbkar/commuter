@@ -29,6 +29,12 @@ const config = {
  authDomain: "ssss-164410.firebaseapp.com",
  databaseURL: "https://ssss-164410.firebaseio.com",
  storageBucket: "ssss-164410.appspot.com"
+    // apiKey: "AIzaSyCcdNryutkZ9PaliOSS_rH1hfsCZpE_BYw",
+    // authDomain: "daycare-8da84.firebaseapp.com",
+    // databaseURL: "https://daycare-8da84.firebaseio.com",
+    // projectId: "daycare-8da84",
+    // storageBucket: "",
+    // messagingSenderId: "398522364586"
 };
 firebase.initializeApp(config);
 @NgModule({

@@ -49,7 +49,7 @@
                         <img [src]="kidPic.profilePic">
                     </ion-col>-->
                     <!--<div *ngIf="childDataList">-->
-                    <ion-col col-4 *ngFor="let kidPic of childDataList ;let i = index">
+                    <ion-col col-4 *ngFor="let kidPic of childDataList;let i = index">
                         <!--{{kidPic.value.videos}}-->
                        <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
                     </ion-col>
@@ -68,7 +68,7 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
+                    <div *ngFor="let kidPic of childDataList ; let i = index" col-4>
                      <ion-col  *ngIf="kidPic.value.videos" col-4>
                         <!--{{kidPic.value.videos}}-->
                          <img  src="{{kidPic.value.profile_pic}}">
@@ -108,7 +108,7 @@
         </button>
 
         <ion-fab-list side="left">
-            <button ion-fab > <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
+            <button ion-fab (click)="goToPage('SendAnnoncementPage')"> <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
             <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
             <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
             <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>

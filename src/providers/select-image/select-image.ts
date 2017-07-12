@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable,NgModule } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
+import { LoadingController, IonicPageModule } from 'ionic-angular'
 
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -12,10 +13,12 @@ import {MediaCapture} from '@ionic-native/media-capture'
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
+
 @Injectable()
 export class SelectImageProvider {
+loading;
 
-  constructor(public camera:Camera,public imagePicker:ImagePicker,public videoCature:MediaCapture) {
+  constructor(public camera:Camera,public imagePicker:ImagePicker,public videoCature:MediaCapture,public loadingCtrl:LoadingController) {
     console.log('Hello SelectImageProvider Provider');
   }
 
@@ -110,6 +113,18 @@ selectMultipleImages():Promise<any>{
                 })
           })
     }
+
+    presentLoading() {
+        this.loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+
+        this.loading.present();
+    }
+
+    dismissLoading(){
+      this.loading.dismiss();
+  }
    
 
 }
@@ -129,7 +144,7 @@ export class  KeysPipe implements PipeTransform {
             dataArr.push(value[key]);
         });
         // return the resulting array
-        return dataArr;
+        return dataArr.reverse();
       }
     }
 }
@@ -148,7 +163,7 @@ export class  keysPhotos implements PipeTransform {
             dataArr.push(value[key]);
         });
         // return the resulting array
-        return dataArr;
+        return dataArr.reverse();
       }
     }
 }
@@ -167,7 +182,7 @@ export class  KeysVideoPipe implements PipeTransform {
             dataArr.push(value[key]);
         });
         // return the resulting array
-        return dataArr;
+        return dataArr.reverse();
       }
     }
 }
@@ -186,10 +201,11 @@ export class  keysvideos implements PipeTransform {
             dataArr.push(value[key]);
         });
         // return the resulting array
-        return dataArr;
+        return dataArr.reverse();
       }
     }
 }
+
 @Pipe({
   name: 'reverse',
   pure: false
@@ -200,6 +216,17 @@ transform (values) {
     return values.reverse();
   }
 }
+@NgModule({
+  declarations: [
+    ReversePipe,
+  ],
+  imports: [
+    IonicPageModule.forChild(ReversePipe),
+  ],
+  exports: [
+    ReversePipe
+  ]
+})
 
 @Pipe({
   name: 'reverse1',
@@ -228,6 +255,26 @@ transform (values) {
   pure: false
 })
 export class ReverseVideos1 {
+  
+transform (values) {
+    return values.reverse();
+  }
+}
+@Pipe({
+  name: 'ReverseHome',
+  pure: false
+})
+export class ReverseHome {
+  
+transform (values) {
+    return values.reverse();
+  }
+}
+@Pipe({
+  name: 'ReverseHomeVideos',
+  pure: false
+})
+export class ReverseHomeVideos {
   
 transform (values) {
     return values.reverse();

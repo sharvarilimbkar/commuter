@@ -24,10 +24,10 @@ ionViewDidLoad(){
   
         this.getKidsPhotos()  
 }
-loadHomepage(){
-   
-      
-  }
+ionViewDidEnter(){
+        this.getKidsPhotos()  
+}
+
 getKidsPhotos(){
     this.childDataRef = firebase.database().ref(this.auth.databaseChildren);
       this.childDataRef.on('value', childDataList => {
@@ -45,7 +45,8 @@ getKidsPhotos(){
                   
                   parentData = data.val().username
                   if(this.navParams.get("isDaycare")){
-                    
+                     var duid= child.val().uid_daycare;
+                    if(duid == firebase.auth().currentUser.uid)
                      childData.push({id:child.key,value:child.val(),parentsData:parentData});
                   
                   }else{

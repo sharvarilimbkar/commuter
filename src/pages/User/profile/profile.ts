@@ -99,6 +99,7 @@ Selectprofile(){
                                                           console.log(toast);
                                                         }
                                                     );
+                                                    this.navCtrl.setRoot("HomePage");
                                                 }
                                           })
                                         }else if(!this.isparent){// daycare login update data
@@ -110,6 +111,7 @@ Selectprofile(){
                                                           console.log(toast);
                                                         }
                                                     );
+                                                    this.navCtrl.setRoot("HomePage");
                                                 }
 
                                             })
@@ -177,6 +179,7 @@ updateData(data){
                               console.log(toast);
                             }
                         );
+                        this.navCtrl.setRoot("HomePage");
                     }
                  })
   }else if(!this.isparent){
@@ -188,6 +191,7 @@ updateData(data){
                               console.log(toast);
                             }
                         );
+                        this.navCtrl.setRoot("HomePage");
                     }
                  })
   }

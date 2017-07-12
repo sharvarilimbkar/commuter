@@ -36,29 +36,29 @@
         </button>
     </ion-grid>
 
-    <ion-grid class="photos">
+    <ion-grid class="videos">
         <ion-row padding-left>
-            <p>Recently added <span>5 Photos</span></p>
+            <p>Recently added <span>5 Videos</span></p>
         </ion-row>
 
         <ion-row>
             <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysv | reverseVideo ">
                 <!--{{KidPhotos|json}}-->
                 <!--<img [src]="kidpic.url">-->
-                <video #myvideo height="200" width="300" controls>
+                <video #myvideo>
                     <source src="{{domainFileUrl+kidpic.url}}" type="video/mp4">
-                    </video>
+                </video>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-     <ion-grid class="photos">
+     <ion-grid class="videos">
         <ion-row padding-left>
-            <p>Photos <span></span></p>
+            <p>Videos <span></span></p>
         </ion-row>
 
         <ion-row>
-            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysv | reverseVideo| slice:5">
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysv | slice:5">
                 <!--{{KidPhotos|json}}-->
                 <img [src]="kidpic.url">
             </ion-col>

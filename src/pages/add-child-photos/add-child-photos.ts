@@ -5,7 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import firebase from 'firebase';
 import { Camera } from '@ionic-native/camera'
 import { SelectImageProvider } from '../../providers/select-image/select-image';
-
+import{ Toast } from '@ionic-native/toast'
 @IonicPage()
 @Component({
   selector: 'page-add-child-photos',
@@ -27,7 +27,7 @@ export class AddChildPhotosPage {
   uid_children
   description
   Images
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public toast:Toast) {
   }
 
 
@@ -66,10 +66,18 @@ export class AddChildPhotosPage {
     console.log("hiiii ");
     console.log("imageuris length====>>>> " + this.multiImages.length);
     console.log("this.multiImages ==>" + this.multiImages);
+    this.selectImage.presentLoading();
     this.auth.uploadMultiImage(this.multiImages,this.uid_children,this.description)
       .then((snapshot: any) => {
-        this.uploadedImage = snapshot.downloadURL;
-        console.log(this.uploadedImage)
+        // this.uploadedImage = snapshot.downloadURL;
+        // console.log(this.uploadedImage)
+
+        this.selectImage.dismissLoading();
+                this.toast.show("sucessfully uploaded..","long",'bottom');
+
+        this.navCtrl.setRoot("HomePage");
+      }).catch((error)=>{
+          alert("error : "+error.message)
       })
 
   }

@@ -46,14 +46,11 @@ showParents:boolean = false
       countryList.forEach( country => {
           
           // console.log()
-          // this.uid = country.val().d_uid;
-          // console.log(typeof this.uid+" "+this.uid);
-          // console.log(typeof firebase.auth().currentUser.uid.toString() + " "+firebase.auth().currentUser.uid);
-          // console.log(this.uid === firebase.auth().currentUser.uid)
+          this.uid = country.val().uid_daycare;
           // if(this.uid === firebase.auth().currentUser.uid){
               countries.push({id:country.key,value:country.val()});
               return false;
-          // }
+          //  }
           
       });
       this.countryList = countries;
@@ -137,20 +134,19 @@ showParents:boolean = false
  getItems(searchbar) {
   
       this.initializeItems();
-      var q = searchbar.srcElement.value;
+        var q = searchbar.srcElement.value;
       if (!q) {
         return;
       }
 
       this.countryList = this.countryList.filter((v) => {
-        // console.log(v.value.username)
+        console.log(v.value.username)
         if(v.value.username && q) {
           //  console.log(v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1)
 
           if (v.value.username.toLowerCase().indexOf(q.toLowerCase()) > -1) {
             this.showList = true;
             return true;
-
           }
           
           return false;

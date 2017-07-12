@@ -43,7 +43,7 @@
 
         <ion-row>
          
-            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | reverse1| slice:0:5 ">
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | slice:0:5 ">
                 
                 <img [src]="kidpic.url">
             </ion-col>
@@ -56,7 +56,7 @@
         </ion-row>
 
         <ion-row>
-            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | reverse1| slice:5">
+            <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos |  slice:5">
                 <!--{{KidPhotos|json}}-->
                 <img [src]="kidpic.url">
             </ion-col>
