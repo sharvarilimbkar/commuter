@@ -1,50 +1,52 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle icon-only> 
+    <button ion-button menuToggle icon-only> 
         <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
       </button>
-    </ion-buttons>
-    
+
     <ion-title>Profile</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding >
+<ion-content padding>
   <!--{{userProfile |json}}-->
   <div *ngIf="userProfile">
-  <ion-grid class="profilePic" >
-     <img src="{{userProfile.profile_pic}}">
-     <!--<img src="http://enadcity.org/enadcity/wp-content/uploads/2017/02/profile-pictures.png">-->
+    <ion-grid class="profilePic">
+      <img src="{{userProfile.profile_pic}}">
+      <!--<img src="http://enadcity.org/enadcity/wp-content/uploads/2017/02/profile-pictures.png">-->
       <button icon-only clear (click)="Selectprofile()">
         <ion-icon ios="ios-camera" md="md-camera" ></ion-icon>
       </button>
-  </ion-grid>
+    </ion-grid>
 
-  <ion-grid class="profileDetail">
-    <ion-grid>
-      <ion-row>
-        <h4>{{userProfile.username}}</h4>
-      </ion-row>
+    <ion-grid class="profileDetail">
+      <ion-grid>
+        <ion-row>
+          <h4>{{userProfile.username}}</h4>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <h4>Address</h4>
+        </ion-row>
+        <ion-row>
+          <p>please add address </p>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <h4>Contact</h4>
+        </ion-row>
+        <ion-row>
+          <p>{{userProfile.mobile}}</p>
+        </ion-row>
+      </ion-grid>
+
     </ion-grid>
-    
-    <ion-grid>
-      <ion-row><h4>Address</h4></ion-row>
-      <ion-row>
-        <p>please add address </p>
-      </ion-row>
-    </ion-grid>
-    
-    <ion-grid>
-      <ion-row><h4>Contact</h4></ion-row>
-      <ion-row>
-        <p>{{userProfile.mobile}}</p>
-      </ion-row>
-    </ion-grid>
-    
-  </ion-grid>
   </div>
 </ion-content>

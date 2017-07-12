@@ -1,67 +1,97 @@
 page-addchild {
-    .grid{
-        max-width: 450px;
-        .list{
-            margin-bottom:0px;
-
-            .item{
-                padding-right: 16px;
-                padding-bottom: 16px;
-                .item-inner{
-                     padding: 0px !important;
-
-                    ion-label{
-                    padding-left: 15px !important;
-                            padding: 5px 0px;
-                    }
-                }
-                .input{
-                    border: 1px solid #c1c1c1;
-                    border-radius: 50px;
-
-                    .text-input{
-                    margin: 0px !important;    
-                    padding: 10px 15px;
-                    }
-                }
-                ion-datetime{
-                    @extend .input;
-
-                    .datetime-text{
-                        padding: 0px 15px;
-                    }
-                    .datetime-placeholder {
-                        @extend .datetime-placeholder;
-                    }
-                }
-            }
-            .item-input:last-child{
-                border-bottom: none;
-            }
+  .grid {
+    max-width: 450px;
+    .list {
+      margin-bottom: 0px;
+      .item {
+        padding-right: 16px;
+        padding-bottom: 16px;
+        .item-inner {
+          padding: 0px !important;
+          ion-label {
+            padding-left: 15px !important;
+            padding: 5px 0px;
+          }
         }
-
-        .row{
-            align-items: center;
-            .col{
-                text-align: right;
-                button{
-                    width:100%;
-                    height: 2.2em;
-                }
-
-                img{
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50px;
-                }
-            }
+        .input {
+          border: 1px solid #c1c1c1;
+          border-radius: 50px;
+          .text-input {
+            margin: 0px !important;
+            padding: 10px 15px;
+          }
         }
-        .parent_profile {
-            margin-left: 0;
-            /* margin-right: 16px; */
-            margin-top: 50px;
-            margin-bottom: 8px;
+        ion-datetime {
+          @extend .input;
+          .datetime-text {
+            padding: 0px 15px;
+          }
+          .datetime-placeholder {
+            @extend .datetime-placeholder;
+          }
         }
+      }
+      .item-input:last-child {
+        border-bottom: none;
+      }
     }
-    
+    .row {
+      align-items: center;
+      .col {
+        text-align: right;
+        button {
+          width: 100%;
+          height: 3.2em;
+          text-transform: capitalize;
+          font-size: 1.7rem !important;
+        }
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50px;
+        }
+      }
+    }
+    .parent_profile {
+      margin-left: 0;
+      /* margin-right: 16px; */
+      margin-top: 50px;
+      margin-bottom: 8px;
+    }
+  }
+  ion-navbar {
+    button {
+      color: #fff !important;
+    }
+  }
+  .header .toolbar-title {
+    width: 80%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  ion-searchbar {
+    padding: 16px !important;
+    background: transparent !important;
+    .searchbar-input-container {
+      border: 1px solid #c1c1c1;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+  }
+  ion-item {
+    .input-wrapper {
+      ion-label {
+        font-family: "MontserratRegular";
+        color: #3d3a3b !important;
+        font-size: 1.4rem !important;
+        font-weight: 400;
+      }
+    }
+  }
+  .buttons button {
+    height: 3.5em;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    text-transform: capitalize;
+  }
 }
