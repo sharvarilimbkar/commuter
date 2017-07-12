@@ -1,3 +1,24 @@
 page-edit-profile {
-
+  ion-navbar {
+    button {
+      color: #fff !important;
+    }
+  }
+  .header .toolbar-title {
+    width: 80%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  ion-searchbar {
+    padding: 16px !important;
+    background: transparent !important;
+    .searchbar-input-container {
+      border: 1px solid #c1c1c1;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+  }
+  .searchbar-ios {
+    border-bottom: 0;
+  }
 }
