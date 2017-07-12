@@ -1,14 +1,5 @@
 page-edit-profile {
-  ion-navbar {
-    button {
-      color: #fff !important;
-    }
-  }
-  .header .toolbar-title {
-    width: 80%;
-    text-align: center;
-    text-transform: capitalize;
-  }
+  //   ion-navbar {
   ion-searchbar {
     padding: 16px !important;
     background: transparent !important;
@@ -20,5 +11,24 @@ page-edit-profile {
   }
   .searchbar-ios {
     border-bottom: 0;
+  }
+  .searchbar-ios .searchbar-input {
+    height: 4rem;
+    padding-top: 10px;
+    padding-left: 40px !important;
+    padding-bottom: 10px;
+  }
+  .searchbar-ios .searchbar-search-icon {
+    left: 15px;
+    top: 15px;
+  }
+  button {
+    color: #fff !important;
+  }
+  //   }
+  .header .toolbar-title {
+    width: 80%;
+    text-align: center;
+    text-transform: capitalize;
   }
 }
