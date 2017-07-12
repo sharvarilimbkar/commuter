@@ -11,39 +11,39 @@
   <form [formGroup]="loginForm">
     <ion-grid padding class="formContain">
       <ion-row>
-        <ion-input type="email" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" placeholder="Email" [(ngModel)]="logindata.email" name="email" clearInput></ion-input>
+        <ion-input type="email" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"
+          placeholder="Email" [(ngModel)]="logindata.email" name="email" clearInput></ion-input>
       </ion-row>
-      <ion-item class="error-message" 
-        *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+      <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
         <p>Please enter a valid email.</p>
       </ion-item>
       <ion-row>
-        <ion-input type="password" formControlName="password"  [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty" placeholder="password" [(ngModel)]="logindata.password" name="password" clearInput></ion-input>
+        <ion-input type="password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"
+          placeholder="password" [(ngModel)]="logindata.password" name="password" clearInput></ion-input>
       </ion-row>
-      <ion-item class="error-message" 
-      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
-    </ion-item>
-    <ion-row>
-      <ion-checkbox [(ngModel)]="cucumber"  formControlName="checkbox"  (ionChange)="updateCucumber()"></ion-checkbox>Please check this if you are parent
-    </ion-row>
+      <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
+        <p>Your password needs more than 6 characters.</p>
+      </ion-item>
+      <ion-row class="forgot-pwd-section">
+        <ion-checkbox [(ngModel)]="cucumber" formControlName="checkbox" (ionChange)="updateCucumber()"></ion-checkbox>Please check this if you are parent
+      </ion-row>
     </ion-grid>
   </form>
-   
+
   <ion-grid class="buttons">
     <button ion-button round (click)="loginUser()">
       Login
     </button>
   </ion-grid>
-{{ (user | async)?.uid }}
+  {{ (user | async)?.uid }}
   <ion-grid text-center>
     <ion-row>
       <ion-col>
-        <a  (click)="forgotPass()">Forgot Password?</a>
+        <a (click)="forgotPass()">Forgot Password?</a>
       </ion-col>
 
       <ion-col>
-        <a  (click)="signup()">Sign Up</a>
+        <a (click)="signup()">Sign Up</a>
       </ion-col>
     </ion-row>
   </ion-grid>
