@@ -99,19 +99,6 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-
-    <ion-fab right bottom *ngIf="daycare">
-      <button ion-fab color="confirm" class="openButton">
-            <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
-        </button>
-
-      <ion-fab-list side="left">
-        <button ion-fab (click)="goToPage('SendAnnoncementPage')"> <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
-        <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
-        <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
-        <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
-      </ion-fab-list>
-    </ion-fab>
   </div>
   <div *ngIf="!daycare">
     <ion-card class="kidsPic">
@@ -155,4 +142,16 @@
       </ion-card-content>
     </ion-card>
   </div>
+  <ion-fab right bottom *ngIf="daycare">
+    <button ion-fab color="confirm" class="openButton">
+            <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
+        </button>
+
+    <ion-fab-list side="left">
+      <button ion-fab (click)="goToPage('SendAnnoncementPage')"> <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
+      <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
+      <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
+      <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
