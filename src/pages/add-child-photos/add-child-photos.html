@@ -8,7 +8,6 @@
 
 <ion-content padding>
   <ion-card>
-
     <ion-label class="sigleLbl">Select Child</ion-label>
     <ion-searchbar placeholder="Add Child Name" [(ngModel)]="childName" (ionInput)="getItems($event)">
     </ion-searchbar>
@@ -72,11 +71,10 @@
       <ion-label stacked>Add Description</ion-label>
       <ion-textarea type="text" [(ngModel)]="description" rows="2"></ion-textarea>
     </ion-item>
-  </ion-card>
-
-  <ion-row class="pblBtn">
-    <button ion-button round color="secondary" (click)="multiuploadChildImages()">
+    <ion-row class="pblBtn">
+      <button ion-button round color="secondary" (click)="multiuploadChildImages()">
         Upload
       </button>
-  </ion-row>
+    </ion-row>
+  </ion-card>
 </ion-content>

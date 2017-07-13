@@ -122,7 +122,10 @@ page-add-child-photos {
     text-transform: capitalize !important;
   }
   ion-textarea {
-    background-color: #f7f7f7;
+    background-color: transparent;
+    textarea {
+      background-color: #f7f7f7 !important;
+    }
   }
   .button-icon {
     button {
@@ -145,5 +148,8 @@ page-add-child-photos {
     ion-label {
       margin: 0 !important;
     }
+  }
+  .desc {
+    padding: 0 !important;
   }
 }
