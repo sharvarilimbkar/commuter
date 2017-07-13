@@ -31,8 +31,10 @@ import { Storage } from '@ionic/storage';
       const authObserver = afAuth.authState.subscribe( user => {
         if (user) {
               this.rootPage = "HomePage";
+
               this.event.subscribe('userProfile', (userProfile) => {
               this.userProfile = userProfile;
+              console.log("from appcomponent ===>>>> "+this.userProfile)
               this.storage.getStorage("isparent").then(data=>{
               if(data){
                 this.daycare=false
@@ -48,6 +50,17 @@ import { Storage } from '@ionic/storage';
         } else {
             // this.rootPage = 'SelectDaycarePage';
             this.rootPage = 'LoginPage';
+            this.event.subscribe('userProfile', (userProfile) => {
+              this.userProfile = userProfile;
+              this.storage.getStorage("isparent").then(data=>{
+              if(data){
+                this.daycare=false
+              }else if(!data){
+                this.daycare=true
+              }
+              })
+              console.log("from appcomponent ===>>>> "+this.userProfile)
+            })
             authObserver.unsubscribe();
         }
       })

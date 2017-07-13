@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{allPhotos.name}}</ion-title>
+    <ion-title>{{nameofchildren}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -45,7 +45,7 @@
          
             <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos | slice:0:5 ">
                 
-                <img [src]="kidpic.url">
+                <img [src]="kidpic.url" imageViewer>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -58,7 +58,7 @@
         <ion-row>
             <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysPhotos |  slice:5">
                 <!--{{KidPhotos|json}}-->
-                <img [src]="kidpic.url">
+                <img [src]="kidpic.url" imageViewer>
             </ion-col>
         </ion-row>
     </ion-grid>

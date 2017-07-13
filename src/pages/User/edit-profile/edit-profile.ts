@@ -74,7 +74,7 @@ export class EditProfilePage {
       this.addchild.profileUri =this.addchild.pro_image;
       this.addchild.gender = this.gender  
           if(this.profile_flag){
-      
+            this.addchild.profile_selected="set"
             console.log("parent ===> "+this.addchild.gender)        
             this.auth.updateChild(this.addchild).then((data)=>{
                 if(data){
@@ -92,7 +92,24 @@ export class EditProfilePage {
                 alert(error.message);
               })
       }else{
-          
+        
+        this.addchild.profile_selected="unset"
+            console.log("parent ===> "+this.addchild.gender)        
+            this.auth.updateChildWithoutProfile(this.addchild).subscribe((data)=>{
+                // if(data){
+                  console.log(JSON.stringify(data))
+                      this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
+                          toast => {
+                            console.log(toast);
+                          }
+                      );
+                      firebase.database().ref(this.auth.databaseChildren).child(this.addchild.uid_child).update({name: this.addchild.childname,dob:this.addchild.birthday,profile_pic:this.addchild.pro_image,age:this.addchild.age,uid_daycare:firebase.auth().currentUser.uid});
+                  
+                      this.profile_flag = false
+                      this.navCtrl.setRoot("HomePage");
+                // }
+                console.log(data);
+              })
       }
   }
 

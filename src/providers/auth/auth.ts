@@ -350,44 +350,68 @@ childList =[]
 
                         }
                         options1.params = params;
-                        fileTransfer.upload(data.pro_image, encodeURI(this.domainURL+'updateChild'), options1)
-                            .then((data1) => {
-                              let res = JSON.parse(data1.response); 
-                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
-                                // this.toastCtrl.dismissLoadin();
-                                if(data1.response){
-                                    // this.picChange=false;
-                                    // this.toastCtrl.publishToast("Profile Updated Successfully..");
-                                    //  alert("updated Successfully")
-                                     console.log(res.profile_pic);
-                                     firebase.database().ref(this.databaseChildren).child(data.uid_child).update({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_daycare:firebase.auth().currentUser.uid});
-                                    resolve(true);
+                        if(data.profile_selected =='set'){
+                          fileTransfer.upload(data.pro_image, encodeURI(this.domainURL+'uploadChild'), options1)
+                              .then((data1) => {
+                                let res = JSON.parse(data1.response); 
+                                console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                                  // this.toastCtrl.dismissLoadin();
+                                  if(data1.response){
+                                      console.log(res.profile_pic);
+                                      firebase.database().ref(this.databaseChildren).child(data.uid_child).update({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_daycare:firebase.auth().currentUser.uid});
+                                      resolve(true);
 
-                                 }
+                                  }
 
-                                }, (err) => {
-                            // error
-                            alert("error" + JSON.stringify(err));
-                            resolve(false);
-                            }); 
+                                  }, (err) => {
+                                    // error
+                                    alert("error" + JSON.stringify(err));
+                                    resolve(false);
+                              }); 
+                        }
+                      // }else{
+                      //    var params12 = {
+                      //      uid:data.uid_child,
+                      //      name: data.childname,
+                      //      dob:data.birthday,
+                      //      age:data.age,
+                      //      gender:data.gender,
+                      //      uid_parent:data.uid_parent,
+                      //      flag:'unset',
+                      //      uid_daycare:firebase.auth().currentUser.uid ,
+                      //      profile_pic:data.pro_image   
+                      //                              // uid_parent:data.uid_parent,
+                      //       // uid_daycare:firebase.auth().currentUser.uid
+                      //     }
+                      //   this.http.post(this.domainURL + 'uploadChild', params12)
+                      //     .map(res => { 
+                      //                 firebase.database().ref(this.databaseChildren).child(data.uid_child).update({name: data.childname,dob:data.birthday,profile_pic:data.pro_image,age:data.age,uid_daycare:firebase.auth().currentUser.uid});
+                      //                 resolve(true);
+                      //               }
+                      //               )
+                      //     .catch(this.handleError);
+                      //     }
       })
     }
     updateChildWithoutProfile(data){
       let formData = new URLSearchParams();
           var params = {
                   uid:data.uid_child,
-                  name: data.childname,
-                  dob:data.birthday,
-                  age:data.age,
-                  gender:data.gender,
-                  uid_parent:data.uid_parent,
+                  // name: data.childname,
+                  // dob:data.birthday,
+                  // age:data.age,
+                  // gender:data.gender,
+                  // uid_parent:data.uid_parent,
                   flag:'unset',
-                  uid_daycare:firebase.auth().currentUser.uid                            // uid_parent:data.uid_parent,
+                  // uid_daycare:firebase.auth().currentUser.uid ,
+                  profile_pic:data.profileUri                          // uid_parent:data.uid_parent,
                   // uid_daycare:firebase.auth().currentUser.uid
                 }
         // formData.append("uid",firebase.auth().currentUser.uid);
-      return      this.http.post(this.domainURL + 'updateChild', params)
-            .map(res => res.json())
+             return      this.http.post(this.domainURL + 'updateChild', params)
+                .map(res =>res.json()
+                   
+            )
             .catch(this.handleError);
       
     }
@@ -396,23 +420,52 @@ childList =[]
               firebase.database().ref(this.databaseChildren)
                  .on('value', data => {
                     let childData = [];
-          
                     data.forEach( child => {
                           var duid = child.val().uid_daycare
-                          console.log("duid firebase.auth().currentUser.uid "+ child.val().uid_daycare === firebase.auth().currentUser.uid)
-                          console.log( duid+'='+ firebase.auth().currentUser.uid)
-                          // if(child.val().uid_daycare === firebase.auth().currentUser.uid){
-                          //   // childData.push({id:child.key,value:child.val()});
-                          //   // console.log("dfgdfgdfg "+JSON.stringify(child.val()))
-                          //   // firebase.database().ref(this.databaseChildren+'/'+child.key+'/'+'announcements').push({title:data12.title,description:data12.description})
-                            
-                          // }
+                          childData.push({"id":child.key,"daycareUid":child.val().uid_daycare});
+                         
                             return false;
                       
                     });
-                    // this.childList = childData
-                    resolve(true);
+                    this.childList = childData
+                   
                   });
+                  var today:any = new Date();
+                  let dd :any= today.getDate();
+                  let mm :any= today.getMonth()+1; //January is 0!
+
+                  var yyyy = today.getFullYear();
+                  if(dd<10){
+                      dd='0'+dd;
+                  } 
+                  if(mm<10){
+                      mm='0'+mm;
+                  } 
+                  var today :any = dd+'/'+mm+'/'+yyyy;
+                  var d1 = new Date(today);
+                  var d2 = new Date();
+                  console.log("date "+(d1 == d2))
+                  console.log("this.childList.length " +this.childList.length)
+                  firebase.database().ref(this.databaseDaycare+'/'+firebase.auth().currentUser.uid+'/'+'announcements').push({title:data12.title,description:data12.description,date:today})
+                   for(let i=0;i<this.childList.length ;i++){
+                    if(this.childList[i].daycareUid == firebase.auth().currentUser.uid){
+                      // console.log("turee => " + (this.childList[i] == firebase.auth().currentUser.uid))
+                      firebase.database().ref(this.databaseChildren+'/'+this.childList[i].id+'/'+'announcements').push({title:data12.title,description:data12.description,date:today})
+                    }
+                  }
+// for date checking
+
+  //                 var alignFillDate = new Date("2017-07-11");
+  // var pickUpDate = new Date();
+
+
+  // // if (pickUpDate < alignFillDate) {
+  // //   alignFillDate = alignFillDate.setDate(alignFillDate.getDate() + 30);
+  // // }
+  
+  // $scope.pickUpDate = (pickUpDate.toDateString() == alignFillDate.toDateString());
+  // $scope.alignFillDate = alignFillDate;
+                 resolve(true);  
         })
     }
 

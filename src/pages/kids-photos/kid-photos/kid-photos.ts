@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AuthProvider } from '../../../providers/auth/auth'
 import {Toast} from '@ionic-native/toast'
 import firebase from 'firebase';
+
 @IonicPage()
 @Component({
   selector: 'page-kid-photos',
@@ -11,6 +12,7 @@ import firebase from 'firebase';
 export class KidPhotosPage {
   allPhotos=[];
   KidPhotos =[]
+  nameofchildren
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
   }
 
@@ -22,7 +24,8 @@ export class KidPhotosPage {
   getkidData(){
     // alert(this.navParams.get("uid"))                     
     this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
-        // console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
+        console.log("Sharvari data ==> "+data.name);
+        this.nameofchildren = data.name
         this.KidPhotos = data.photos
         console.log("ppp =>> "+JSON.stringify(this.KidPhotos))
           // this.userProfile.profile_pic=data.values[0].profileUrl

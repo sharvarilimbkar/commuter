@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { KidPhotosPage } from './kid-photos';
 import { keysPhotos , Reverse } from '../../../providers/select-image/select-image';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { keysPhotos , Reverse } from '../../../providers/select-image/select-ima
   ],
   imports: [
     IonicPageModule.forChild(KidPhotosPage),
-    
+    IonicImageViewerModule
     
   ],
   exports: [

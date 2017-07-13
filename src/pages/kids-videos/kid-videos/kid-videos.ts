@@ -13,6 +13,7 @@ export class KidVideosPage {
   allVideos=[];
 KidPhotos=[]
 domainFileUrl
+nameofchildren
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider) {
   }
 
@@ -26,6 +27,7 @@ domainFileUrl
                         
                             this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
                                 // console.log("Sharvari data ==> "+JSON.stringify(data.values[0].profileUrl));
+                                 this.nameofchildren = data.name
                                 this.KidPhotos = data.videos
                                 console.log("ppp =>> "+JSON.stringify(this.KidPhotos))
                                   // this.userProfile.profile_pic=data.values[0].profileUrl

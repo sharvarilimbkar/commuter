@@ -23,6 +23,7 @@ import { SearchProvider } from '../providers/search/search';
 import { SelectImageProvider } from '../providers/select-image/select-image';
 import { Toast } from "@ionic-native/toast"
 import { MediaCapture } from '@ionic-native/media-capture';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 const config = {
  apiKey: "AIzaSyBM1ysxV1LMxhfhpvT67H26DlxlWZpyWfQ",
@@ -47,7 +48,8 @@ firebase.initializeApp(config);
     HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
-     IonicStorageModule.forRoot()
+     IonicStorageModule.forRoot(),
+     IonicImageViewerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,6 +67,8 @@ firebase.initializeApp(config);
     ImagePicker,
     MediaCapture,
     Toast,
+    IonicImageViewerModule,
+    
     Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageProvider,

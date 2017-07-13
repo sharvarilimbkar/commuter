@@ -276,7 +276,21 @@ transform (values) {
 })
 export class ReverseHomeVideos {
   
-transform (values) {
-    return values.reverse();
-  }
+transform(value: any, args?: any[]): any[] {
+      
+      if(value) {
+        // create instance vars to store keys and final output
+        let keyArr: any[] = Object.keys(value),
+            dataArr = [];
+
+        // loop through the object,
+        // pushing values to the return array
+        keyArr.forEach((key: any) => {
+            dataArr.push(value[key]);
+            // console.log(dataArr)
+        });
+        // return the resulting array
+        return dataArr.reverse();
+      }
+    }
 }

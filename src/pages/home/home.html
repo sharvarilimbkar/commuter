@@ -49,7 +49,7 @@
                         <img [src]="kidPic.profilePic">
                     </ion-col>-->
                     <!--<div *ngIf="childDataList">-->
-                    <ion-col col-4 *ngFor="let kidPic of childDataList;let i = index">
+                    <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
                        <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
                     </ion-col>
@@ -68,12 +68,12 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                    <div *ngFor="let kidPic of childDataList ; let i = index" col-4>
-                     <ion-col  *ngIf="kidPic.value.videos" col-4>
+                    <!--<div  col-4 *ngIf="kidPic.value.videos">-->
+                     <ion-col  *ngFor="let kidPic of childDataList | slice:0:3  let i = index" col-4>
                         <!--{{kidPic.value.videos}}-->
                          <img  src="{{kidPic.value.profile_pic}}">
                     </ion-col>
-                    </div>
+                    <!--</div>-->
                 </ion-row>
             </ion-grid>
         </ion-card-content>
@@ -84,22 +84,25 @@
             Announcements
             <a (click)="goToPage('AnnouncementPage')">view all...</a>
         </ion-card-header>
-
-        <ion-card-content>
+        <!--<div *ngFor="let announcement of loadedChildList">-->
+            <!--{{announcement.value |json}}-->
+        <ion-card-content *ngFor="let announcement1 of loadedChildList | ReverseHomeVideos">
+            <!--{{announcement1 |json}}-->
             <ion-grid>
                 <ion-row>
-                    <h6>Today</h6>
+                    <h6>{{announcement1.date}}</h6>
                 </ion-row>
                 <ion-row>
-                    <h5>Art & Craft Festival</h5>
+                    <h5>{{announcement1.title}}</h5>
                 </ion-row>
                 <ion-row>
                     <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    {{announcement1.description}}
                     </p>
                 </ion-row>
             </ion-grid>
         </ion-card-content>
+        <!--</div>-->
     </ion-card>
 
     <ion-fab right bottom *ngIf="daycare">
@@ -127,9 +130,9 @@
             <ion-grid>
                 <ion-row>
                    
-                    <ion-col col-4 *ngFor="let kidPic of childDataList ;let i = index">
+                    <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
-                       <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
+                       <img  src="{{kidPic.value.profile_pic}}">
                     </ion-col>
                     <!--</div>-->
                 </ion-row>
