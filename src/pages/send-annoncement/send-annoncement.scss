@@ -55,6 +55,9 @@ page-send-annoncement {
         color: rgba(35, 31, 32, 0.54);
       }
     }
+    ion-car:first-child {
+      background-color: red !important;
+    }
   }
   ion-navbar {
     button {
@@ -71,6 +74,11 @@ page-send-annoncement {
       p {
         color: rgba(35, 31, 32, 0.54) !important;
       }
+    }
+  }
+  .card {
+    &:first-child {
+      margin-top: 0;
     }
   }
 }

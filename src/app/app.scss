@@ -113,3 +113,8 @@ body {
     }
   }
 }
+
+.item-md.item-input.input-has-focus .item-inner {
+  border: none;
+  box-shadow: none;
+}
