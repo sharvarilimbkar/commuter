@@ -17,7 +17,7 @@ page-add-child-photos {
           .text-input {
             margin: 5px 5px;
             width: calc(100% - 5px);
-            border: 1px solid #999;
+            border: 1px solid rgba(153, 153, 153, 0.45);
             border-radius: 50px;
             padding: 15px;
           }
@@ -33,7 +33,7 @@ page-add-child-photos {
       .searchbar {
         margin: 8px 15px 0px;
         width: calc(100% - 30px);
-        border: 1px solid #999;
+        border: 1px solid rgba(153, 153, 153, 0.45);
         border-radius: 50px;
         padding: 10px;
         background: transparent;
@@ -147,6 +147,9 @@ page-add-child-photos {
     padding-bottom: 0 !important;
     ion-label {
       margin: 0 !important;
+    }
+    p {
+      @extend .font;
     }
   }
   .desc {
