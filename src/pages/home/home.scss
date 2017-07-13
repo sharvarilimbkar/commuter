@@ -1,12 +1,13 @@
 page-home {
   .scroll-content {
     background-color: #f2f2f2;
+    @extend .MontserratRegular;
     .card {
       margin: 0px;
       width: 100%;
       margin-bottom: 10px;
       ion-card-header {
-        color: #525050;
+        color: rgba(35, 31, 32, 0.87);
         font-size: 1em;
         padding-bottom: 5px;
       }
@@ -23,6 +24,9 @@ page-home {
           }
           .col:last-child {
             padding-right: 0px;
+          }
+          .col:nth-child(3n) {
+            padding-right: 0;
           }
         }
       }
