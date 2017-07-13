@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-grid padding>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar  placeholder="Search Parent" (ionInput)="getItems($event)"></ion-searchbar>
     <div>
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
