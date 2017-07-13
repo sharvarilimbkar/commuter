@@ -7,39 +7,40 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
-      <ion-item>
-        <ion-label stacked>Add Title</ion-label>
-        <ion-input type="text" [(ngModel)]="anno.title" placeholder="Enter Title Here"></ion-input>
-      </ion-item> 
-    </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label stacked>Add Title</ion-label>
+      <ion-input type="text" [(ngModel)]="anno.title" placeholder="Enter Title Here"></ion-input>
+    </ion-item>
+  </ion-card>
 
-    <ion-card>
-      <ion-item>
-        <ion-label stacked>Add Description</ion-label>
-        <ion-textarea type="text" [(ngModel)]="anno.description" rows="10"></ion-textarea>
-      </ion-item>
-    </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label stacked>Add Description</ion-label>
+      <ion-textarea type="text" [(ngModel)]="anno.description" rows="10"></ion-textarea>
+    </ion-item>
+  </ion-card>
 
-    <ion-row class="pblBtn">
-      <button ion-button (click)="publishAnnouncement()" round color="secondary">
+  <ion-row class="pblBtn">
+    <button ion-button (click)="publishAnnouncement()" round color="secondary">
         Publish
       </button>
-    </ion-row>
+  </ion-row>
 
-    <ion-row class="annoceTlt">
-      <h4>Last Annoncement</h4>
-      <p>On 22nd June, 2017</p>
-    </ion-row>
+  <ion-row class="annoceTlt">
+    <h4>Last Annoncement</h4>
+    <p>On 22nd June, 2017</p>
+  </ion-row>
 
-    
-    <ion-card>
-      <ion-card-header>
-        Annual Festival 2017
-      </ion-card-header>
-      <ion-card-content>
-        The British use the term "header", but the American term "head-shot" 
-        the English simply refuse to adopt.
-      </ion-card-content>
-    </ion-card>
+
+  <ion-card class="announcement">
+    <ion-card-header class="date">
+      Annual Festival 2017
+    </ion-card-header>
+    <ion-card-content class="ann-snipet">
+      <p>
+        The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
