@@ -7,77 +7,76 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
-     
-      <ion-label class="sigleLbl">Select Child</ion-label>
-      <ion-searchbar placeholder="Add Child Name" [(ngModel)]="childName" (ionInput)="getItems($event)">
-      </ion-searchbar>
-        <!--<ion-list>-->
-           <ion-list *ngIf="showList">
-          <ion-item *ngFor="let item of searchChildren">
-            <ion-avatar item-start >
-              <img src="{{item.value.profile_pic}}">
-            </ion-avatar>
-            <h2> {{ item.value.name }}</h2>
-            <!--<p>{{ item.value.email }}</p>-->
-            <button ion-button outline item-end (click)="selectChildren(item.id,item.value.uid_parent,item.value.name)">select</button>
-            <!--<ion-checkbox  item-end  [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>-->
-          </ion-item>
-          
-        </ion-list>
+  <ion-card>
 
-
-      <ion-item>
-        <ion-label stacked>Parent's Name</ion-label>
-        <ion-input type="text" [(ngModel)]="showParents" placeholder=" Parent's Name"></ion-input>
-      </ion-item>
-      
-      <ion-item (click)="takephoto()">
-        <ion-row>
-          <ion-col col-2>
-            <button ion-button clear>  
-              <img src="" alt="">
-            </button>
-          </ion-col>
-          <ion-col>
-            <p>Take a Photo</p>
-          </ion-col>
-        </ion-row>
+    <ion-label class="sigleLbl">Select Child</ion-label>
+    <ion-searchbar placeholder="Add Child Name" [(ngModel)]="childName" (ionInput)="getItems($event)">
+    </ion-searchbar>
+    <!--<ion-list>-->
+    <ion-list *ngIf="showList">
+      <ion-item *ngFor="let item of searchChildren">
+        <ion-avatar item-start>
+          <img src="{{item.value.profile_pic}}">
+        </ion-avatar>
+        <h2> {{ item.value.name }}</h2>
+        <!--<p>{{ item.value.email }}</p>-->
+        <button ion-button outline item-end (click)="selectChildren(item.id,item.value.uid_parent,item.value.name)">select</button>
+        <!--<ion-checkbox  item-end  [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>-->
       </ion-item>
 
-      <ion-item (click)="uploadChildImages()">
-        <ion-row>
-          <ion-col col-2>
-            <button ion-button clear >  
-              <img src="" alt="">
-            </button>
-          </ion-col>
-          <ion-col>
-            <p>Select From gallery</p>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-card>
+    </ion-list>
 
-    <div>
-      
-      <ion-slides>
-      <ion-slide *ngFor="let img of multiImages" >
-          <img src="{{img.images}}" >
+
+    <ion-item>
+      <ion-label stacked>Parent's Name</ion-label>
+      <ion-input type="text" [(ngModel)]="showParents" placeholder=" Parent's Name"></ion-input>
+    </ion-item>
+
+    <ion-item (click)="takephoto()" class="photo-section">
+      <ion-row align-items-center>
+        <ion-col col-3 class="button-icon">
+          <button ion-button clear>  
+            <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <p>Take a Photo</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item (click)="uploadChildImages()" class="photo-section">
+      <ion-row align-items-center>
+        <ion-col col-3 class="button-icon">
+          <button ion-button clear class="gallary-cta">  
+           <ion-icon ios="ios-images" md="md-images"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <p>Select From gallery</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-card>
+
+  <div>
+    <ion-slides>
+      <ion-slide *ngFor="let img of multiImages">
+        <img src="{{img.images}}">
       </ion-slide>
     </ion-slides>
-    </div>
+  </div>
 
-    <ion-card class="desc">
-      <ion-item>
-        <ion-label stacked>Add Description</ion-label>
-        <ion-textarea type="text" [(ngModel)]="description" rows="2"></ion-textarea>
-      </ion-item>
-    </ion-card>
+  <ion-card class="desc">
+    <ion-item>
+      <ion-label stacked>Add Description</ion-label>
+      <ion-textarea type="text" [(ngModel)]="description" rows="2"></ion-textarea>
+    </ion-item>
+  </ion-card>
 
-    <ion-row class="pblBtn">
-      <button ion-button round color="secondary" (click)="multiuploadChildImages()">
+  <ion-row class="pblBtn">
+    <button ion-button round color="secondary" (click)="multiuploadChildImages()">
         Upload
       </button>
-    </ion-row>
+  </ion-row>
 </ion-content>

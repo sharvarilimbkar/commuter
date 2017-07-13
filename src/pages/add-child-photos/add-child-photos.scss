@@ -1,4 +1,5 @@
 page-add-child-photos {
+  font-family: "MontserratRegular" !important;
   .font {
     font-size: 1.6rem;
     font-weight: 500;
@@ -9,13 +10,14 @@ page-add-child-photos {
     .card {
       margin: 12px 0px;
       width: 100%;
+      padding: 15px 0;
       .item {
         padding: 10px;
         .input {
           .text-input {
             margin: 5px 5px;
             width: calc(100% - 5px);
-            border: 1px solid #676767;
+            border: 1px solid #999;
             border-radius: 50px;
             padding: 15px;
           }
@@ -31,7 +33,7 @@ page-add-child-photos {
       .searchbar {
         margin: 8px 15px 0px;
         width: calc(100% - 30px);
-        border: 1px solid #676767;
+        border: 1px solid #999;
         border-radius: 50px;
         padding: 10px;
         background: transparent;
@@ -48,6 +50,9 @@ page-add-child-photos {
       justify-content: center;
       button {
         padding: 5px 4.6rem;
+        height: 4.6rem;
+        text-transform: capitalize;
+        letter-spacing: .5px;
       }
     }
     .swiper-container {
@@ -85,7 +90,7 @@ page-add-child-photos {
     padding: 0 !important;
     border: none !important;
     .searchbar-input-container {
-      border: 1px solid #676767;
+      border: 1px solid #999;
       border-radius: 50px;
       overflow: hidden;
     }
@@ -110,9 +115,35 @@ page-add-child-photos {
   .searchbar-ios .searchbar-search-icon {
     left: 15px;
     top: 19px;
-  } //   .searchbar-ios .searchbar-input {
-  //     height: 5rem;
-  //     padding-top: 15px;
-  //     padding-bottom: 15px;
-  //   }
+  }
+  .header .toolbar-title {
+    width: 80% !important;
+    text-align: center !important;
+    text-transform: capitalize !important;
+  }
+  ion-textarea {
+    background-color: #f7f7f7;
+  }
+  .button-icon {
+    button {
+      border-radius: 50px;
+      background-color: red;
+      height: 5rem;
+      color: #fff;
+      span {
+        font-size: 2rem;
+      }
+    }
+    .gallary-cta {
+      background-color: #ff6f18;
+    }
+  }
+  .photo-section {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    ion-label {
+      margin: 0 !important;
+    }
+  }
 }
