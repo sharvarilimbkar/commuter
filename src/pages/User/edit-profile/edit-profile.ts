@@ -139,6 +139,6 @@ export class EditProfilePage {
 
       console.log(q, this.countryList.length);
 
-}
+  }
 
 }

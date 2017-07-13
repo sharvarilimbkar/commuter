@@ -1,15 +1,11 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-buttons start>
-      <button ion-button menuToggle icon-only> 
+    <!--<ion-buttons>-->
+    <button ion-button menuToggle icon-only> 
         <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-        <!--<div class="menubtn"></div>
-        <div class="menubtn" style="width:30px"></div>
-        <div class="menubtn"></div>-->
       </button>
-    </ion-buttons>
-    
+    <!--</ion-buttons>-->
+
     <ion-title>Home</ion-title>
   </ion-navbar>
 
@@ -17,37 +13,38 @@
 
 
 <ion-content padding>
-   <div *ngIf="daycare">
+  <div *ngIf="daycare">
     <ion-card class="recently">
-        <ion-card-header>
-            Recently Subscribed
-            <a (click)="goToPage('SubscriptionPage')">view all...</a>
-        </ion-card-header>
+      <ion-card-header>
+        Recently Subscribed
+        <a (click)="goToPage('SubscriptionPage')">view all...</a>
+      </ion-card-header>
 
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <ion-col *ngFor="let kid of (KidsData | slice:KidsData.length - 5);">
-                        <img [src]="kid.profilePic">
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let kid of (KidsData | slice:KidsData.length - 5);">
+              <img [src]="kid.profilePic">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
     </ion-card>
 
     <ion-card class="kidsPic">
-        <ion-card-header>
-            Kids Photos
-            <!--<a (click)="goToPage('KidsPhotosPage')">view all...</a>-->
-            <a (click)="goToPage('KidsPhotosPage')">view all...</a>
-        </ion-card-header>
+      <ion-card-header>
+        Kids Photos
+        <!--<a (click)="goToPage('KidsPhotosPage')">view all...</a>-->
+        <a (click)="goToPage('KidsPhotosPage')">view all...</a>
+      </ion-card-header>
 
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <!--<ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <!--<ion-col col-4 *ngFor="let kidPic of (KidsData | slice:KidsData.length - 3);">
                         <img [src]="kidPic.profilePic">
                     </ion-col>-->
+
                     <!--<div *ngIf="childDataList">-->
                     <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
@@ -57,9 +54,11 @@
                 </ion-row>
             </ion-grid>
         </ion-card-content>
+
     </ion-card>
-    
+
     <ion-card class="kidsVid">
+
         <ion-card-header>
             Kids Videos
             <a (click)="goToPage('KidsVideosPage')">view all...</a>
@@ -103,21 +102,11 @@
             </ion-grid>
         </ion-card-content>
         <!--</div>-->
+
     </ion-card>
-
-    <ion-fab right bottom *ngIf="daycare">
-        <button ion-fab color="confirm" class="openButton">
-            <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
-        </button>
-
-        <ion-fab-list side="left">
-            <button ion-fab (click)="goToPage('SendAnnoncementPage')"> <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
-            <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
-            <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
-            <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
-        </ion-fab-list>
-    </ion-fab>
-   </div>
+  </div>
+ 
+      
    <div *ngIf="!daycare">
             <ion-card class="kidsPic">
         <ion-card-header>
@@ -138,26 +127,39 @@
                 </ion-row>
             </ion-grid>
         </ion-card-content>
-    </ion-card>
-    
-    <ion-card class="kidsVid">
-        <ion-card-header>
-            Kids Videos
-            <a (click)="goToPage('KidsVideosPage')">view all...</a>
-        </ion-card-header>
 
-        <ion-card-content>
-            <ion-grid>
-                <ion-row>
-                    <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
-                     <ion-col  *ngIf="kidPic.value.videos" col-4>
-                        <!--{{kidPic.value.videos}}-->
-                         <img  src="{{kidPic.value.profile_pic}}">
-                    </ion-col>
-                    </div>
-                </ion-row>
-            </ion-grid>
-        </ion-card-content>
     </ion-card>
-   </div>
+
+    <ion-card class="kidsVid">
+      <ion-card-header>
+        Kids Videos
+        <a (click)="goToPage('KidsVideosPage')">view all...</a>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
+              <ion-col *ngIf="kidPic.value.videos" col-4>
+                <!--{{kidPic.value.videos}}-->
+                <img src="{{kidPic.value.profile_pic}}">
+              </ion-col>
+            </div>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-fab right bottom *ngIf="daycare">
+    <button ion-fab color="confirm" class="openButton">
+            <ion-icon ios="ios-add" md="md-add"  icon-only></ion-icon>
+        </button>
+
+    <ion-fab-list side="left">
+      <button ion-fab (click)="goToPage('SendAnnoncementPage')"> <ion-icon ios="ios-megaphone" md="md-megaphone" ></ion-icon></button>
+      <button ion-fab><ion-icon ios="ios-text" md="md-text"></ion-icon></button>
+      <button ion-fab (click)="goToPage('AddChildVideosPage')"><ion-icon ios="logo-youtube" md="logo-youtube" ></ion-icon></button>
+      <button ion-fab (click)="goToPage('AddChildPhotosPage')"><ion-icon ios="ios-images" md="md-images"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

@@ -1,104 +1,119 @@
 page-home {
- .scroll-content{
-        background-color: #f2f2f2;
-
-        .card {
-            margin: 0px;
-            width:100%;
-            margin-bottom: 10px;
-            
-            ion-card-header{
-                color: #525050;
-                font-size: 1em;
-                padding-bottom: 5px;
-            }
-
-            a{
-                color: #416cb6;
-                text-decoration: none;
-                float: right;
-            }
-
-            .grid{
-                padding: 0px;
-                .row{
-                    .col:first-child{
-                        padding-left: 0px;
-                    }
-                    .col:last-child{
-                        padding-right: 0px;
-                    }
-                }
-            }
+  .scroll-content {
+    background-color: #f2f2f2;
+    @extend .MontserratRegular;
+    .card {
+      margin: 0px;
+      width: 100%;
+      margin-bottom: 10px;
+      ion-card-header {
+        color: rgba(35, 31, 32, 0.87);
+        font-size: 1em;
+        padding-bottom: 5px;
+      }
+      a {
+        color: #416cb6;
+        text-decoration: none;
+        float: right;
+      }
+      .grid {
+        padding: 0px;
+        .row {
+          .col:first-child {
+            padding-left: 0px;
+          }
+          .col:last-child {
+            padding-right: 0px;
+          }
+          .col:nth-child(3n) {
+            padding-right: 0;
+          }
         }
-
-        .recently{
-            .grid{
-                .col{
-                   max-width: 20%;
-                   width: 20%; 
-                    img{
-                        border-radius: 100%;
-                        // width: 55px;
-                        // height: 55px;    
-                        height: 100%;
-                        width: 100%;
-                        border: 1px solid #f1e9e9;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
-                }
-            }
-        }
-
-        .kidsPic, .kidsVid{
-               img{
-                //height: 4em;
-                height: 80px;
-                //    height: 90% !important;
-                width: 100%;
-                border: 1px solid #f1e9e9;
-                border-radius: 5px;
-               }
-               
-        }
-
-        .annouce{
-            .card-content{
-                .grid{
-                    .row{
-                        h6{
-                            padding: 16px 0px !important;
-                            color: #a1a0a0;
-                            font-size: 12px;
-                        }
-
-                        h5{
-                            color:#525050;
-                            font-size: 1em;
-                        }
-                        p{
-                            color: #a1a0a0;
-                            font-size: 12px;
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
-
-    ion-fab{
-        .openButton{
-            ion-icon{
-                font-size: 4.5rem;
-            }
+    .recently {
+      .grid {
+        .col {
+          max-width: 20%;
+          width: 20%;
+          img {
+            border-radius: 100%; // width: 55px;
+            // height: 55px;    
+            height: 100%;
+            width: 100%;
+            border: 1px solid #f1e9e9;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
-        ion-fab-list{
-            button{
-                color: #4c4c4c !important;
-                background: #fff;
-                box-shadow: 0px 0px 20px 8px #9c9c9c;
-            }
-        }
+      }
     }
+    .kidsPic,
+    .kidsVid {
+      img {
+        //height: 4em;
+        height: 80px; //    height: 90% !important;
+        width: 100%;
+        border: 1px solid #f1e9e9;
+        border-radius: 5px;
+      }
+    }
+    .annouce {
+      .card-content {
+        .grid {
+          .row {
+            h6 {
+              padding: 16px 0px !important;
+              color: #a1a0a0;
+              font-size: 12px;
+            }
+            h5 {
+              color: #525050;
+              font-size: 1em;
+            }
+            p {
+              color: #a1a0a0;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+  ion-fab {
+    right: 30px !important;
+    .openButton {
+      background-color: #ff6f18;
+      ion-icon {
+        font-size: 4.5rem;
+      }
+    }
+    ion-fab-list {
+      button {
+        color: #4c4c4c !important;
+        background: #fff;
+        box-shadow: 0px 0px 20px 8px #9c9c9c;
+      }
+    }
+  }
+  ion-navbar {
+    button {
+      color: #fff !important;
+    }
+  }
+  .header .toolbar-title {
+    width: 80% !important;
+    text-align: center !important;
+    text-transform: capitalize !important;
+  }
+  .kidsVid {
+    .row {
+      >div:nth-child(3n) {
+        padding-right: 0 !important;
+      }
+      >div:nth-child(3n-2) {
+        padding-left: 0 !important;
+      }
+    }
+  }
 }

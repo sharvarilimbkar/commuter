@@ -1,46 +1,53 @@
 page-resgister {
-	 .fixed-content{
-            background: url(../assets/images/bg.png);
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        .grid{
-            max-width: 450px;
-        }
-         .formContain{
-            height: 105vw;
-            //height: 24em;
-            align-items: center;
-            justify-content: center;
-            padding-top: 0px !important;
-            padding-bottom:4em !important;
-            .row{
-                width: 90%;
-                padding-bottom:16px;
-
-                input{
-                border-bottom: 1px solid #f6a65c;
-                text-align: center;
-                padding: 0px !important;
-                margin-right: 0px;
-                color: #ffe8dc;
-            }
-            
-            input::placeholder {
-                color:#ffe8dc;
-            }
-
-            }
-        }
-
-        .buttons{
-                button{
-                background-color:#2e8bfe ;
-            }
-        }
-        .invalid { border-bottom: 1px solid #FF6153; }
-
-         .error-message .item-inner { border-bottom: 0 !important; }
-    
-
+  .fixed-content {
+    background: url(../assets/images/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .grid {
+    max-width: 450px;
+  }
+  .formContain {
+    height: 105vw; //height: 24em;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0px !important;
+    padding-bottom: 4em !important;
+    .row {
+      width: 90%;
+      padding-bottom: 15px;
+      input {
+        border-bottom: 1px solid #f6a65c;
+        text-align: center;
+        padding: 0 0 8px 0 !important;
+        margin-right: 0px;
+        color: #ffe8dc;
+      }
+      input::placeholder {
+        color: #ffe8dc;
+      }
+    }
+  }
+  .buttons {
+    button {
+      background-color: #2e8bfe;
+    }
+  }
+  .invalid {
+    border-bottom: 1px solid #FF6153;
+  }
+  .error-message .item-inner {
+    border-bottom: 0 !important;
+  }
+  .header-md::after,
+  .tabs-md[tabsPlacement="top"]>.tabbar::after,
+  .footer-md::before,
+  .tabs-md[tabsPlacement="bottom"]>.tabbar::before {
+    background: none !important;
+  }
+  .header .toolbar-title {
+    width: 80%;
+    text-align: center;
+    text-transform: capitalize;
+  }
 }

@@ -1,7 +1,9 @@
 <ion-header>
 
   <ion-navbar color="primary">
+
     <ion-title>Sign Up</ion-title>
+
   </ion-navbar>
 
 </ion-header>
@@ -9,46 +11,46 @@
 
 <ion-content padding>
   <div>
-   <form  [formGroup]="signupForm" >
-    <ion-grid padding class="formContain">
-      <ion-row>
-        <ion-input type="text" formControlName="username" [class.invalid]="!signupForm.controls.username.valid && signupForm.controls.username.dirty" [(ngModel)]="username" placeholder="Username"  clearInput></ion-input>
-      </ion-row>
-         <ion-item class="error-message" 
-        *ngIf="!signupForm.controls.mobile.valid  && signupForm.controls.mobile.dirty">
-        <p>Please enter username.</p>
-      </ion-item>
+    <form [formGroup]="signupForm">
+      <ion-grid padding class="formContain">
+        <ion-row>
+          <ion-input type="text" formControlName="username" [class.invalid]="!signupForm.controls.username.valid && signupForm.controls.username.dirty"
+            [(ngModel)]="username" placeholder="Username" clearInput></ion-input>
+        </ion-row>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.mobile.valid  && signupForm.controls.mobile.dirty">
+          <p>Please enter username.</p>
+        </ion-item>
 
-      <ion-row>
-        <ion-input type="number" formControlName="mobile" [class.invalid]="!signupForm.controls.mobile.valid && signupForm.controls.mobile.dirty" [(ngModel)]="mobile" placeholder="Mobile Number" clearInput></ion-input>
-      </ion-row>
-      <ion-item class="error-message" 
-        *ngIf="!signupForm.controls.mobile.valid  && signupForm.controls.mobile.dirty">
-        <p>Please enter a mobile number.</p>
-      </ion-item>
-      <ion-row>
-        <ion-input type="email" formControlName="email" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" [(ngModel)]="email" placeholder="Email" clearInput></ion-input>
-      </ion-row>
-      <ion-item class="error-message" 
-      *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
-      <p>Please enter a valid email.</p>
-    </ion-item>
-      <ion-row>
-        <ion-input type="password"  [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" formControlName="password" [(ngModel)]="password" placeholder="Password" clearInput></ion-input>
-      </ion-row>
-      <ion-item class="error-message" 
-      *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
-    </ion-item>
-      <ion-row>
-        <ion-input type="password" formControlName="cnfpassword" [class.invalid]="!signupForm.controls.cnfpassword.valid && signupForm.controls.cnfpassword.dirty" placeholder="Confirm Password" clearInput></ion-input>
-      </ion-row>
-      <ion-item class="error-message" 
-      *ngIf="!signupForm.controls.cnfpassword.valid  && signupForm.controls.cnfpassword.dirty">
-      <p>Your password needs more than 6 characters.</p>
-    </ion-item>
-    </ion-grid>
-   </form>
+        <ion-row>
+          <ion-input type="number" formControlName="mobile" [class.invalid]="!signupForm.controls.mobile.valid && signupForm.controls.mobile.dirty"
+            [(ngModel)]="mobile" placeholder="Mobile Number" clearInput></ion-input>
+        </ion-row>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.mobile.valid  && signupForm.controls.mobile.dirty">
+          <p>Please enter a mobile number.</p>
+        </ion-item>
+        <ion-row>
+          <ion-input type="email" formControlName="email" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"
+            [(ngModel)]="email" placeholder="Email" clearInput></ion-input>
+        </ion-row>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
+          <p>Please enter a valid email.</p>
+        </ion-item>
+        <ion-row>
+          <ion-input type="password" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" formControlName="password"
+            [(ngModel)]="password" placeholder="Password" clearInput></ion-input>
+        </ion-row>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
+          <p>Your password needs more than 6 characters.</p>
+        </ion-item>
+        <ion-row>
+          <ion-input type="password" formControlName="cnfpassword" [class.invalid]="!signupForm.controls.cnfpassword.valid && signupForm.controls.cnfpassword.dirty"
+            placeholder="Confirm Password" clearInput></ion-input>
+        </ion-row>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.cnfpassword.valid  && signupForm.controls.cnfpassword.dirty">
+          <p>Your password needs more than 6 characters.</p>
+        </ion-item>
+      </ion-grid>
+    </form>
   </div>
 
   <ion-grid class="buttons">

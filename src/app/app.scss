@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,74 +12,113 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
 /* Global style */
-h1, h2,h3,h4,h5,h6,p{
-    padding: 0px;
-    margin:0px;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0px;
+  margin: 0px;
 }
 
+@font-face {
+  font-family: "Montserratbold";
+  src: url('../assets/fonts/Montserrat/Montserrat-Bold.eot');
+  src: url('../assets/fonts/Montserrat/Montserrat-Bold.woff') format('woff'), url('../assets//fonts/Montserrat/Montserrat-Bold.ttf') format('truetype'), url('../assets//fonts/Montserrat/Montserrat-Bold.svg#svgFontName') format('svg');
+}
+
+@font-face {
+  font-family: "MontserratRegular";
+  src: url('../assets//fonts/Montserrat/Montserrat-Regular.eot');
+  src: url('../assets//fonts/Montserrat/Montserrat-Regular.woff') format('woff'), url('../assets//fonts/Montserrat/Montserrat-Regular.ttf') format('truetype'), url('../assets//fonts/Montserrat/Montserrat-Regular.svg#svgFontName') format('svg');
+}
+
+@font-face {
+  font-family: "MontserratLight";
+  src: url('../assets//fonts/Montserrat/Montserrat-Light.eot');
+  src: url('../assets//fonts/Montserrat/Montserrat-Light.woff') format('woff'), url('../assets//fonts/Montserrat/Montserrat-Light.ttf') format('truetype'), url('../assets//fonts/Montserrat/Montserrat-Light.svg#svgFontName') format('svg');
+}
+
+body {
+  font-family: "MontserratRegular" !important;
+}
+
+.MontserratRegular {
+  font-family: "MontserratRegular" !important;
+}
 
 //Navbar Global Style
-.header{
-    
-    .toolbar-background{
-        border-width: inherit !important;
-        background-color: #ff6f18;
-    }
-    .toolbar-title{
-        color:#fff;
-    }
-} 
+.header {
+  .toolbar-background {
+    border-width: inherit !important;
+    background-color: #ff6f18;
+  }
+  .toolbar-title {
+    color: #fff;
+  }
+}
 
 //Global Form & Buttons Style
-.buttons{
-    justify-content: center;
-    align-items: center;
-
-    button{
-        padding-left: 5rem;
-        padding-right: 5rem;
-        height: 2.5em;
-        background-color:#4bcf18 ;
-    }
-    .activated{
-        background-color:#49c31a;
-    }
+.buttons {
+  justify-content: center;
+  align-items: center;
+  button {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    height: 2.5em;
+    background-color: #4bcf18;
+  }
+  .activated {
+    background-color: #49c31a;
+  }
 }
+
 
 /*Menu Style*/
-.back-button{
-    .back-button-text, .back-button-icon{
-        color: #fff;
-    }
-}
-.bar-buttons{
-    button{
-        color: #fff;
-    }
+
+.back-button {
+  .back-button-text,
+  .back-button-icon {
+    color: #fff;
+  }
 }
 
-.menuBar{
-    padding: 20px 5px;
-    .col{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        img{
-            border-radius: 50px;
-            height: 70px;
-            width: 70px;
-        }
-    }
+.bar-buttons {
+  button {
+    color: #fff;
+  }
 }
 
-.menuButton{
-    .item{
-        height: 4rem;
-        .button{
-            color: #a1a0a0;
-            font-size: 14px;    
-        }
+.menuBar {
+  padding: 20px 5px;
+  .col {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+      border-radius: 50px;
+      height: 70px;
+      width: 70px;
     }
+  }
 }
 
+.menuButton {
+  .item {
+    height: 4rem;
+    .button {
+      color: #a1a0a0;
+      font-size: 14px;
+    }
+  }
+}
+
+.item-md.item-input.input-has-focus .item-inner {
+  border: none;
+  box-shadow: none;
+}
