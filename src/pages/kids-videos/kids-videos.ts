@@ -23,9 +23,9 @@ export class KidsVideosPage {
 ionViewDidLoad(){
         this.getKidsPhotos()  
 }
-ionViewDidEnter(){
-        this.getKidsPhotos()  
-}
+// ionViewDidEnter(){
+//         this.getKidsPhotos()  
+// }
 loadHomepage(){
    
       

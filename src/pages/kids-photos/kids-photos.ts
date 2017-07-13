@@ -24,9 +24,9 @@ ionViewDidLoad(){
   
         this.getKidsPhotos()  
 }
-ionViewDidEnter(){
-        this.getKidsPhotos()  
-}
+// ionViewDidEnter(){
+//         this.getKidsPhotos()  
+// }
 
 getKidsPhotos(){
     this.childDataRef = firebase.database().ref(this.auth.databaseChildren);
