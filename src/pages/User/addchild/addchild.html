@@ -20,7 +20,7 @@
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
           <ion-avatar item-start>
-            <img src="{{domainUrl+item.value.profile_pic}}">
+            <img src="{{domainuri+item.value.profile_pic}}">
           </ion-avatar>
           <h2> {{ item.value.username }}</h2>
           <p>{{ item.value.email }}</p>
@@ -30,16 +30,24 @@
 
       </ion-list>
     </div>
-    <ion-list no-lines>
+    <ion-list no-lines class="parent-section">
+      <ion-label stacked>Parent Name</ion-label>
       <ion-item *ngIf="showParents">
-        <ion-label stacked>Parent Name</ion-label>
+       
+      <ion-avatar item-start>
+        <img src="{{domainuri+profile}}">
+      </ion-avatar>
+      <p>{{name}}</p>
+    </ion-item>
+        <!--<ion-label stacked>Parent Name</ion-label>
         <ion-avatar class="parent_profile">
+          {{profile}}
           <img src="{{profile}}">
         </ion-avatar>
-        <ion-label>{{name}}</ion-label>
+        <img src="{{domainuri+profile}}"> <ion-label>{{name}}</ion-label>
 
       </ion-item>
-
+   -->
 
          
       </ion-list>
@@ -59,9 +67,9 @@
             <ion-label stacked>Age (years)</ion-label>
             <ion-input class="rounded-input" [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
          </ion-item>
-         <ion-item>
+         <ion-item class="gender-section">
          <ion-label>Gender</ion-label>
-            <ion-select [(ngModel)]="gender">
+            <ion-select [(ngModel)]="gender" >
               <ion-option value="f">Baby Girls</ion-option>
               <ion-option value="m">Baby Boy</ion-option>
             </ion-select>

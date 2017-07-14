@@ -23,6 +23,7 @@ showParents:boolean = false
   items;
   uid_parent
   errorMessage
+  domainuri
   addchild ={childname:'',age:'',birthday:'',pro_image:'',uid_parent:'',profileUri:'',gender:''}
   name:string = "shssh"
   uid :string
@@ -38,6 +39,7 @@ showParents:boolean = false
            
   }
   ionViewDidLoad() {
+    this.domainuri=this.auth.domainStorageUrl
     console.log('ionViewDidLoad LoginPage');
       this.countryRef = firebase.database().ref(this.auth.databaseParents);
       this.countryRef.on('value', countryList => {
@@ -69,7 +71,7 @@ showParents:boolean = false
     this.showList = false;
     this.name = email;
     this.uid_parent = id;
-    this.profile =profile_pic
+    this.profile = profile_pic
     console.log(email)
    
   }
