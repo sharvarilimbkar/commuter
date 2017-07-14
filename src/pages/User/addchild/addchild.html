@@ -20,7 +20,7 @@
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
           <ion-avatar item-start>
-            <img src="{{item.value.profile_pic}}">
+            <img src="{{domainUrl+item.value.profile_pic}}">
           </ion-avatar>
           <h2> {{ item.value.username }}</h2>
           <p>{{ item.value.email }}</p>
@@ -45,19 +45,19 @@
       </ion-list>
      <ion-item>
         <ion-label stacked>Child Name</ion-label>
-        <ion-input [(ngModel)]="addchild.childname" type="text" placeholder="Enter Name"></ion-input>
+        <ion-input class="rounded-input" [(ngModel)]="addchild.childname" type="text" placeholder="Enter Name"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Date Of Birth</ion-label>
         <!--<ion-input type="text" placeholder="Enter DOB"></ion-input>-->
-        <ion-datetime [(ngModel)]="addchild.birthday" displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date">
+        <ion-datetime class="rounded-input" [(ngModel)]="addchild.birthday" displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date">
         </ion-datetime>
       </ion-item>
 
       <ion-item>
             <ion-label stacked>Age (years)</ion-label>
-            <ion-input [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
+            <ion-input class="rounded-input" [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
          </ion-item>
          <ion-item>
          <ion-label>Gender</ion-label>

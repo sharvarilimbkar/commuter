@@ -15,7 +15,7 @@
     <ion-list *ngIf="showList">
       <ion-item *ngFor="let item of searchChildren">
         <ion-avatar item-start>
-          <img src="{{item.value.profile_pic}}">
+          <img src="{{domainUrl+item.value.profile_pic}}">
         </ion-avatar>
         <h2> {{ item.value.name }}</h2>
         <!--<p>{{ item.value.email }}</p>-->

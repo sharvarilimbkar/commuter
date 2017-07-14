@@ -21,7 +21,7 @@
             <ion-card-header>
         <ion-item>
           <ion-avatar item-start>
-            <img src="{{obj.value.profile_pic}}">
+            <img src="{{domainUrl+obj.value.profile_pic}}">
           </ion-avatar>
           <h3>{{obj.value.name}}</h3>
           <p>Child of {{obj.parentsData}}</p>
@@ -40,7 +40,7 @@
                   <!--<ion-col col-3 *ngFor="let kidPic of (kids.allpic | slice:kids.allpic.length - 4);">-->
                  <ion-col col-3 *ngFor="let route of obj.value.photos | keys  let i = index;">
                     <!--fghf{{route|json}}-->
-                      <img *ngIf="i<4" src="{{route.url}}">
+                      <img *ngIf="i<4" src="{{domainUrl+route.url}}">
                   </ion-col>
               </ion-row>
           </ion-grid>

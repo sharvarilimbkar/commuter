@@ -24,8 +24,8 @@ export class AuthProvider {
 countryList=[]
 childList =[]
   base64textString
-  public domainStorageUrl = 'http://192.168.10.194:3000/'
-   public domainURL = 'http://192.168.10.194:3000/api/';
+  public domainStorageUrl = 'http://daycare.deapps.io:3006/'
+   public domainURL = 'http://daycare.deapps.io:3006/api/';
   constructor(public afDatabase: AngularFireDatabase,public http:Http,public transfer:Transfer,public toast:Toast) {
     console.log('Hello AuthProvider Provider');
     
@@ -278,7 +278,7 @@ childList =[]
       }
   
     addChild(data):Promise<any>{
-        
+        console.log("gender : "+data.gender)
         let uid_child       : string  =  new Date().getTime().toString();
         return new Promise((resolve) =>
               {
@@ -313,7 +313,7 @@ childList =[]
                                     // this.toastCtrl.publishToast("Profile Updated Successfully..");
                                     //  alert("updated Successfully")
                                      console.log(res.profile_pic);
-                                     firebase.database().ref(this.databaseChildren).child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
+                                     firebase.database().ref(this.databaseChildren).child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age, gender:data.gender,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
                                     resolve(true);
 
                                  }
@@ -358,7 +358,7 @@ childList =[]
                                   // this.toastCtrl.dismissLoadin();
                                   if(data1.response){
                                       console.log(res.profile_pic);
-                                      firebase.database().ref(this.databaseChildren).child(data.uid_child).update({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_daycare:firebase.auth().currentUser.uid});
+                                      firebase.database().ref(this.databaseChildren).child(data.uid_child).update({name: data.childname,gender:data.gender,dob:data.birthday,profile_pic:res.profile_pic,age:data.age,uid_daycare:firebase.auth().currentUser.uid});
                                       resolve(true);
 
                                   }

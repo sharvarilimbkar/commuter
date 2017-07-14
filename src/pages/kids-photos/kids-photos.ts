@@ -11,6 +11,7 @@ import firebase from 'firebase';
 })
 export class KidsPhotosPage {
   kidsPhotos=[];
+  domainUrl
   public childDataList:Array<any>;
   // public loadedChildList:Array<any>;
   public childDataRef:firebase.database.Reference
@@ -21,7 +22,7 @@ export class KidsPhotosPage {
   }
 
 ionViewDidLoad(){
-  
+  this.domainUrl=this.auth.domainStorageUrl
         this.getKidsPhotos()  
 }
 // ionViewDidEnter(){

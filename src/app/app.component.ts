@@ -20,13 +20,14 @@ import { Storage } from '@ionic/storage';
   pages: Array<{title: string, component: any}>;
   userProfile
   daycare:boolean;
+  domainUrl
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider
   ,public storage:StorageProvider,public store:Storage, public event:Events) {
       platform.ready().then(() => {
 
           statusBar.styleDefault();
           splashScreen.hide();
-
+          this.domainUrl =this.auth.domainStorageUrl
       });
       const authObserver = afAuth.authState.subscribe( user => {
         if (user) {

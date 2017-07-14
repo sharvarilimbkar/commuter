@@ -12,11 +12,13 @@ export class MychildPage {
 
   kidsPhotos;
   kidsVideos;
+  domainUrl
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.picvid = "photos";
   }
 
   ngOnInit(){
+    // this.domainUrl =
     this.kidsPhotos = [];
   }
  

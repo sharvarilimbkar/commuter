@@ -26,6 +26,7 @@ export class AddChildVideosPage {
   uid_children
   videoUrl
   description
+  domainUrl
   filedomainUrl = this.auth.domainStorageUrl;
   @ViewChild('myvideo') myVideo: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public videoCapture:MediaCapture,public toast:Toast) {
@@ -33,6 +34,7 @@ export class AddChildVideosPage {
 
 ionViewDidLoad() {
     this.getChildrenList()
+    this.domainUrl= this.auth.domainStorageUrl;
   }
   getChildrenList() {
     this.auth.getChildren().then((data) => {

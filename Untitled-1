@@ -1,0 +1,109 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle icon-only> 
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Add Child</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid padding>
+      <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+       <div> <ion-list *ngIf="showList">
+          <ion-item *ngFor="let item of countryList">
+            <ion-avatar item-start >
+              <img src="{{item.value.profile_pic}}">
+            </ion-avatar>
+            <h2> {{ item.value.username }}</h2>
+            <p>{{ item.value.email }}</p>
+            <button ion-button outline item-end (click)="selectParent(item.value.email,item.id,item.value.profile_pic)">select</button>
+            <!--<ion-checkbox  item-end  [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>-->
+          </ion-item>
+          
+        </ion-list>
+       </div>
+      <ion-list no-lines>
+        <ion-item *ngIf="showParents">
+          <ion-label stacked>Parent Name</ion-label>
+          <ion-avatar class="parent_profile">
+              <img src="{{profile}}">
+            </ion-avatar><ion-label>{{name}}</ion-label>
+          
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Child Name</ion-label>
+          <ion-input [(ngModel)]="addchild.childname" type="text" placeholder="Enter Name"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Date Of Birth</ion-label>
+          <!--<ion-input type="text" placeholder="Enter DOB"></ion-input>-->
+          <ion-datetime [(ngModel)]="addchild.birthday" displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date"> </ion-datetime>
+        </ion-item>
+
+         <ion-item>
+          <ion-label stacked>Age</ion-label>
+          <ion-input [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
+         </ion-item>
+         <ion-item>
+         <ion-label>Gender</ion-label>
+          <ion-select [(ngModel)]="gender">
+            <ion-option value="f">Baby Girls</ion-option>
+            <ion-option value="m">Baby Boy</ion-option>
+          </ion-select>
+    </ion-item>
+      </ion-list>
+
+      <ion-row>
+        <ion-col padding-left>
+          <button ion-button round (click)="Selectprofile()">
+            Select
+          </button>
+           <!--<button ion-button round (click)="uploadChildImages()">
+            multiSelect
+          </button>-->
+        </ion-col>
+
+        <ion-col padding-right>
+            <img src="{{addchild.pro_image}}" alt="">
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+     <ion-grid class="buttons">
+        <button ion-button round (click)="uploadChild()">
+          Upload
+        </button>
+        <!--<button ion-button round (click)="multiuploadChildImages()">
+          multiUpload
+        </button>-->
+        <!--<button ion-button round (click)="takephoto()">
+          captureandupload
+        </button>-->
+      </ion-grid>
+</ion-content>
+
+
+<!--<ion-row><p>Child Name</p></ion-row>
+  <ion-row>
+      <ion-input type="text" placeholder="Enter Name"></ion-input>
+  </ion-row>
+
+  <ion-row> <p padding-top>Date Of Birth</p></ion-row>
+  <ion-row>
+      <ion-input type="text" placeholder="Enter Name"></ion-input>
+      <ion-datetime displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date"> </ion-datetime>
+  </ion-row>
+
+  <ion-row> <p padding-top>Date Of Birth</p></ion-row>
+  <ion-row>
+      <ion-input type="number" placeholder="Enter Age"></ion-input>
+  </ion-row>-->

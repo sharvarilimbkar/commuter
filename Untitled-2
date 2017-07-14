@@ -15,7 +15,15 @@ page-addchild {
                             padding: 5px 0px;
                     }
                 }
+                .input{
+                    border: 1px solid #c1c1c1;
+                    border-radius: 50px;
 
+                    .text-input{
+                    margin: 0px !important;    
+                    padding: 10px 15px;
+                    }
+                }
                 ion-datetime{
                     @extend .input;
 
@@ -55,17 +63,5 @@ page-addchild {
             margin-bottom: 8px;
         }
     }
-  .rounded-input {
-                 
-         border: 1px solid #c1c1c1 !important ;
-         border-radius: 50px !important;
-         .text-input {
-           margin: 0px !important;
-           padding: 10px 15px;
-         }
-       }
-
-       .item-ios.item-block .item-inner {
-         border-bottom: 0;
-       }
+    
 }

@@ -13,11 +13,13 @@ export class KidPhotosPage {
   allPhotos=[];
   KidPhotos =[]
   nameofchildren
+  domainUrl 
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
   }
 
   ionViewDidLoad(){
     this.allPhotos = this.navParams.data;
+    this.domainUrl =this.auth.domainStorageUrl;
     this.getkidData()
   }
 

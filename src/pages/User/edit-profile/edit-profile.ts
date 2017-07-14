@@ -103,7 +103,7 @@ export class EditProfilePage {
                             console.log(toast);
                           }
                       );
-                      firebase.database().ref(this.auth.databaseChildren).child(this.addchild.uid_child).update({name: this.addchild.childname,dob:this.addchild.birthday,profile_pic:this.addchild.pro_image,age:this.addchild.age,uid_daycare:firebase.auth().currentUser.uid});
+                      firebase.database().ref(this.auth.databaseChildren).child(this.addchild.uid_child).update({name: this.addchild.childname,dob:this.addchild.birthday,profile_pic:this.addchild.pro_image,age:this.addchild.age,gender:this.addchild.gender,uid_daycare:firebase.auth().currentUser.uid});
                   
                       this.profile_flag = false
                       this.navCtrl.setRoot("HomePage");

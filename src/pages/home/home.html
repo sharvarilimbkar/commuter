@@ -48,7 +48,7 @@
                     <!--<div *ngIf="childDataList">-->
                     <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
-                       <img *ngIf="i<3" src="{{kidPic.value.profile_pic}}">
+                       <img *ngIf="i<3" src="{{domainUrl+kidPic.value.profile_pic}}">
                     </ion-col>
                     <!--</div>-->
                 </ion-row>
@@ -70,7 +70,7 @@
                     <!--<div  col-4 *ngIf="kidPic.value.videos">-->
                      <ion-col  *ngFor="let kidPic of childDataList | slice:0:3  let i = index" col-4>
                         <!--{{kidPic.value.videos}}-->
-                         <img  src="{{kidPic.value.profile_pic}}">
+                         <img  src="{{domainUrl+kidPic.value.profile_pic}}">
                     </ion-col>
                     <!--</div>-->
                 </ion-row>
@@ -121,7 +121,7 @@
                    
                     <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
-                       <img  src="{{kidPic.value.profile_pic}}">
+                       <img  src="{{domainUrl+kidPic.value.profile_pic}}">
                     </ion-col>
                     <!--</div>-->
                 </ion-row>
@@ -142,7 +142,7 @@
             <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
               <ion-col *ngIf="kidPic.value.videos" col-4>
                 <!--{{kidPic.value.videos}}-->
-                <img src="{{kidPic.value.profile_pic}}">
+                <img src="{{domainUrl+kidPic.value.profile_pic}}">
               </ion-col>
             </div>
           </ion-row>

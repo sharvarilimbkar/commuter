@@ -13,6 +13,7 @@ import firebase from 'firebase';
 export class HomePage {
   KidsData: any= [];
 userProfile
+domainUrl
 daycare
   public childDataList:Array<any>;
    public childDataList1:Array<any>;
@@ -24,7 +25,7 @@ daycare
   }
 
   ionViewDidLoad(){
-                    
+         this.domainUrl=this.auth.domainStorageUrl;           
                this.load()
 
   }

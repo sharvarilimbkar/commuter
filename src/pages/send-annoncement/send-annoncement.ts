@@ -23,7 +23,8 @@ export class SendAnnoncementPage {
       console.log(JSON.stringify(this.anno))
       this.auth.publishAnnouncement(this.anno).then((data)=>{
         if(data){
-          alert("sucessfully published")
+          // alert("sucessfully published")
+          this.navCtrl.setRoot("HomePage")
         }else{
           alert("not published")
         }

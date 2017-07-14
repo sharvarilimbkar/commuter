@@ -33,7 +33,7 @@
       <ion-grid>
         <ion-row>
             <ion-col col-4 *ngFor="let kidPic of kidsPhotos">
-                <img [src]="kidPic.profilePic">
+                <img src="{{domainUrl+kidPic.profilePic}}">
                 <p>pic name</p>
             </ion-col>
         </ion-row>
@@ -46,7 +46,7 @@
         <ion-grid>
           <ion-row>
               <ion-col col-4 *ngFor="let kidPic of kidsPhotos">
-                  <img [src]="kidPic.profilePic">
+                  <img src="{{domainUrl.kidPic.profilePic}}">
               </ion-col>
           </ion-row>
         </ion-grid>

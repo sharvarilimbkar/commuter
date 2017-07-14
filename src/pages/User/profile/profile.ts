@@ -18,12 +18,16 @@ import firebase from "firebase";
 export class ProfilePage {
 // userProfile
 isparent
+profileflag:boolean=false;
+profileflag1:boolean=true;;
+domainUrl
 userProfile ={username:'',address:'',mobile:'',subcription:'',profile_pic:''}
 flag ={profile:'profile_pic',username:'username',address:'address',mobile:'mobile'}
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public camera:Camera,public storage:StorageProvider, public transfer:Transfer,
   public toast:Toast,public selectImage:SelectImageProvider) {
   }
 ionViewDidLoad() {
+  this.domainUrl=this.auth.domainStorageUrl
     console.log('ionViewDidLoad ProfilePage');
   }
 
@@ -41,6 +45,7 @@ ionViewDidLoad() {
                                   // this.userProfile.profile_pic=data.values[0].profileUrl
                             // })
                             // this.birthDate = this.userProfile.birthDate;
+                           
                           });
                     }else if(!data){
                           this.auth.getdaycareProfile().then( profileSnap => {
@@ -58,6 +63,8 @@ ionViewDidLoad() {
   }
 
 Selectprofile(){
+  this.profileflag = true;
+  this.profileflag1=false
             this.selectImage.Selectprofile(this.camera.PictureSourceType.SAVEDPHOTOALBUM).then(imageUri=>{
             console.log(imageUri);
             this.userProfile.profile_pic = imageUri;
@@ -85,6 +92,7 @@ Selectprofile(){
                         //file transfer to upload image
                         fileTransfer.upload(imageUri, encodeURI(this.auth.domainURL+'upload'), options1)
                             .then((data) => {
+                              
                               let res = JSON.parse(data.response); 
                               console.log('JSON parsed result.response = ' + JSON.stringify(res));
                                 // this.toastCtrl.dismissLoadin();
@@ -99,6 +107,7 @@ Selectprofile(){
                                                           console.log(toast);
                                                         }
                                                     );
+                                                    this.profileflag = false
                                                     this.navCtrl.setRoot("HomePage");
                                                 }
                                           })
@@ -111,6 +120,7 @@ Selectprofile(){
                                                           console.log(toast);
                                                         }
                                                     );
+                                                    this.profileflag = false
                                                     this.navCtrl.setRoot("HomePage");
                                                 }
 

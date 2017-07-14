@@ -27,12 +27,14 @@ export class AddChildPhotosPage {
   uid_children
   description
   Images
+  domainUrl ;
   constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public toast:Toast) {
   }
 
 
   ionViewDidLoad() {
     this.getChildrenList()
+    this.domainUrl = this.auth.domainStorageUrl;
   }
   getChildrenList() {
     this.auth.getChildren().then((data) => {
