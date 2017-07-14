@@ -15,8 +15,8 @@
   <!--{{userProfile |json}}-->
   <div *ngIf="userProfile">
     <ion-grid class="profilePic">
-      <img *ngIf="profileflag1" src="{{domainUrl+userProfile.profile_pic}}">
-       <img *ngIf="profileflag" src="{{userProfile.profile_pic}}">
+      <img *ngIf="profileflag1" alt="Profile pic" src="{{domainUrl+userProfile.profile_pic}}">
+       <img *ngIf="profileflag" alt="Profile pic" src="{{userProfile.profile_pic}}">
       
       <!--<img src="http://enadcity.org/enadcity/wp-content/uploads/2017/02/profile-pictures.png">-->
       <button icon-only clear (click)="Selectprofile()">

@@ -27,9 +27,10 @@ import { Storage } from '@ionic/storage';
 
           statusBar.styleDefault();
           splashScreen.hide();
-          this.domainUrl =this.auth.domainStorageUrl
+          
       });
       const authObserver = afAuth.authState.subscribe( user => {
+        this.domainUrl =this.auth.domainStorageUrl
         if (user) {
               this.rootPage = "HomePage";
 
@@ -37,6 +38,7 @@ import { Storage } from '@ionic/storage';
               this.userProfile = userProfile;
               console.log("from appcomponent ===>>>> "+this.userProfile)
               this.storage.getStorage("isparent").then(data=>{
+                
               if(data){
                 this.daycare=false
               }else if(!data){

@@ -27,13 +27,16 @@ export class EditProfilePage {
   name
   showParents
   gender
+  domainUrl
   profile_flag :boolean=false
+  profile_flag1:boolean= true
   addchild ={childname:'',age:'',birthday:'',pro_image:'',uid_parent:'',profileUri:'',gender:'',uid_child:'',profile_selected:''}
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth :AuthProvider,public selectImage:SelectImageProvider,private toast: Toast,public transfer:Transfer,public camera:Camera) {
   }
   
 
   ionViewDidLoad() {
+    this.domainUrl = this.auth.domainStorageUrl
     console.log('ionViewDidLoad EditProfilePage');
       this.loadChildrendata()
   }
@@ -58,11 +61,13 @@ export class EditProfilePage {
     this.addchild.birthday = item.value.dob
     this.addchild.age = item.value.age
     this.addchild.uid_child = item.id
+    this.addchild.gender = item.value.gender
     console.log( this.addchild.birthday )
    
   }
    Selectprofile(){
      this.profile_flag = true;
+     this.profile_flag1 = false;
       this.selectImage.Selectprofile(this.camera.PictureSourceType.SAVEDPHOTOALBUM).then(imageUri=>{
         console.log(imageUri);
         this.addchild.pro_image= imageUri;
@@ -84,6 +89,7 @@ export class EditProfilePage {
                           }
                       );
                       this.profile_flag = false
+                      this.profile_flag1 = true;
                       this.navCtrl.setRoot("HomePage");
                 }
                 console.log(data);

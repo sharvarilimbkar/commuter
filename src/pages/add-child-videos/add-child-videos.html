@@ -13,7 +13,7 @@
         <ion-input type="text" placeholder="Add Child Name"></ion-input>
       </ion-item>-->
     <ion-label class="sigleLbl">Select Child</ion-label>
-    <ion-searchbar placeholder="Add Child Name" [(ngModel)]="childName" (ionInput)="getItems($event)">
+    <ion-searchbar placeholder="Search Children" [(ngModel)]="childName" (ionInput)="getItems($event)">
     </ion-searchbar>
     <!--<ion-list>-->
     <ion-list *ngIf="showList">

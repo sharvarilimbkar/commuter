@@ -38,7 +38,9 @@
 
     <ion-grid class="videos">
         <ion-row padding-left>
-            <p>Recently added <span>5 Videos</span></p>
+           <!--<p>Recently added <span>5 Videos</span></p>-->
+                      <p>Recently added</p>
+
         </ion-row>
 
         <ion-row>
@@ -60,7 +62,7 @@
         <ion-row>
             <ion-col col-4 *ngFor="let kidpic of KidPhotos | keysv | slice:5">
                 <!--{{KidPhotos|json}}-->
-                <img [src]="kidpic.url">
+                <img src="{{domainFileUrl+kidpic.url}}">
             </ion-col>
         </ion-row>
     </ion-grid>

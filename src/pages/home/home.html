@@ -23,9 +23,10 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col *ngFor="let kid of (KidsData | slice:KidsData.length - 5);">
+            <ion-col>No data</ion-col>
+            <!--<ion-col *ngFor="let kid of (KidsData | slice:KidsData.length - 5);">
               <img [src]="kid.profilePic">
-            </ion-col>
+            </ion-col>-->
           </ion-row>
         </ion-grid>
       </ion-card-content>
@@ -109,16 +110,16 @@
       
    <div *ngIf="!daycare">
             <ion-card class="kidsPic">
-        <ion-card-header>
+        <ion-card-header >
             Kids Photos
             <!--<a (click)="goToPage('KidsPhotosPage')">view all...</a>-->
-            <a (click)="goToPage('KidsPhotosPage')">view all...</a>
+            <a (click)="goToPage('KidsPhotosPage')" *ngIf="childDataList !='' ">view all...</a>
         </ion-card-header>
 
         <ion-card-content>
             <ion-grid>
                 <ion-row>
-                   
+                   <ion-col col-12 *ngIf="childDataList =='' ">No Photos</ion-col>
                     <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
                        <img  src="{{domainUrl+kidPic.value.profile_pic}}">
@@ -133,12 +134,13 @@
     <ion-card class="kidsVid">
       <ion-card-header>
         Kids Videos
-        <a (click)="goToPage('KidsVideosPage')">view all...</a>
+        <a (click)="goToPage('KidsVideosPage')"  *ngIf="childDataList !='' ">view all...</a>
       </ion-card-header>
 
       <ion-card-content>
         <ion-grid>
           <ion-row>
+            <ion-col col-12 *ngIf="childDataList =='' ">No Videos</ion-col>
             <div *ngFor="let kidPic of childDataList ;let i = index" col-4>
               <ion-col *ngIf="kidPic.value.videos" col-4>
                 <!--{{kidPic.value.videos}}-->

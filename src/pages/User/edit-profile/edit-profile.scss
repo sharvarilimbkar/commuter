@@ -1,14 +1,14 @@
 page-edit-profile {
   //   ion-navbar {
   ion-searchbar {
-    padding: 16px !important;
+  //   padding: 16px !important;
     background: transparent !important;
-    .searchbar-input-container {
-      border: 1px solid #c1c1c1;
-      border-radius: 50px;
-      overflow: hidden;
+  //   .searchbar-input-container {
+  //     border: 1px solid #c1c1c1;
+  //     border-radius: 50px;
+  //     overflow: hidden;
     }
-  }
+  // }
   .searchbar-ios {
     border-bottom: 0;
   }
@@ -31,4 +31,147 @@ page-edit-profile {
     text-align: center;
     text-transform: capitalize;
   }
+
+    font-family: "MontserratRegular" !important;
+  .font {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #333;
+  }
+  
+      .card {
+      margin: 0;
+      width: 100%;
+      padding: 15px 0;
+      .item {
+        padding: 10px;
+        .input {
+          .text-input {
+            margin: 5px 5px;
+            width: calc(100% - 5px);
+            border: 1px solid rgba(153, 153, 153, 0.45);
+            border-radius: 50px;
+            padding: 15px;
+          }
+        }
+        textarea {
+          border-radius: 5px !important;
+        }
+        .label {
+          margin-left: 25px;
+          @extend .font;
+        }
+      }
+      .searchbar {
+        margin: 8px 15px 0px;
+        width: calc(100% - 30px);
+        border: 1px solid rgba(153, 153, 153, 0.45);
+        border-radius: 50px;
+        padding: 10px;
+        background: transparent;
+      }
+      .sigleLbl {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #333;
+        padding-left: 35px;
+      }
+    }
+   .pblBtn {
+      align-items: center;
+      justify-content: center;
+      button {
+        padding: 5px 4.6rem;
+        height: 4.6rem;
+        text-transform: capitalize;
+        letter-spacing: .5px;
+      }
+    }
+
+        .desc {
+      background: transparent;
+      border: 0px;
+      box-shadow: none;
+      .item {
+        background: transparent;
+        textarea {
+          background: #fff;
+        }
+      }
+    }
+
+  .searchbar-ios .searchbar-input {
+    height: 4rem;
+    padding-top: 15px;
+    padding-left: 40px !important;
+    padding-bottom: 15px;
+  }
+  .searchbar-md .searchbar-search-icon {
+    top: 15px;
+  }
+  .searchbar-ios .searchbar-search-icon {
+    left: 25px;
+    top: 14px;
+  }
+
+    .rounded-input {
+                 
+         border: 1px solid #c1c1c1 !important ;
+         border-radius: 50px !important;
+         font-size: 1.3rem;
+         .text-input {
+           margin: 0px !important;
+           padding: 10px 15px;
+         }
+       }
+        .list{
+            margin-bottom:0px;
+
+            .item{
+                padding-right: 16px;
+                padding-bottom: 16px;
+                .item-inner{
+                     padding: 0px !important;
+                    ion-label{
+                    padding-left: 15px !important;
+                    padding: 5px 0px;
+                    font-family: "MontserratRegular";
+                    font-size: 1.4rem;
+
+                    }
+                }
+.input {
+         border: 1px solid #c1c1c1 ;
+         border-radius: 50px;
+         .text-input {
+           margin: 0px !important;
+           padding: 10px 15px;
+         }
+       }
+
+                ion-datetime{
+                    @extend .input;
+                    padding-left: 10px !important;
+
+                    .datetime-text{
+                        padding: 0px 15px;
+                    }
+                    .datetime-placeholder {
+                        @extend .datetime-placeholder;
+                    }
+                }
+            }
+            .item-input:last-child{
+                border-bottom: none;
+            }
+        }
+
+               .searchbar-ios.searchbar-left-aligned .searchbar-input {
+            padding-left: 30px;
+            
+            margin-left: 10px;
+            border: 1px solid #999;
+            border-radius: 50px;
+            height: 4rem !important;
+      }
 }

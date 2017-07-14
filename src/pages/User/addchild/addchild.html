@@ -31,7 +31,7 @@
       </ion-list>
     </div>
     <ion-list no-lines class="parent-section">
-      <ion-label stacked>Parent Name</ion-label>
+      <ion-label stacked *ngIf="showParents">Parent Name</ion-label>
       <ion-item *ngIf="showParents">
        
       <ion-avatar item-start>

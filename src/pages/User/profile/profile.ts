@@ -105,10 +105,12 @@ Selectprofile(){
                                                   this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
                                                         toast => {
                                                           console.log(toast);
+                                                          this.profileflag = false
+                                                           this.profileflag1=true
+                                                    this.navCtrl.setRoot("HomePage");
                                                         }
                                                     );
-                                                    this.profileflag = false
-                                                    this.navCtrl.setRoot("HomePage");
+                                                    
                                                 }
                                           })
                                         }else if(!this.isparent){// daycare login update data
@@ -118,10 +120,12 @@ Selectprofile(){
                                                   this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
                                                         toast => {
                                                           console.log(toast);
+                                                           this.profileflag = false
+                                                          this.profileflag1=true
+                                                    this.navCtrl.setRoot("HomePage");
                                                         }
                                                     );
-                                                    this.profileflag = false
-                                                    this.navCtrl.setRoot("HomePage");
+                                                   
                                                 }
 
                                             })

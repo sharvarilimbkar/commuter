@@ -5,6 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import {Toast} from '@ionic-native/toast'
 
 
 @IonicPage()
@@ -21,7 +22,7 @@ username
   public signupForm: FormGroup;
 
 registerdata={email:'',password:''}
-  constructor(public navCtrl: NavController, public navParams: NavParams,public authService:AuthProvider, public formBuilder: FormBuilder, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public authService:AuthProvider, public formBuilder: FormBuilder, public loadingCtrl: LoadingController,public toast:Toast) {
     this.signupForm = formBuilder.group({
         email: ['', Validators.compose([Validators.required])],
         password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
@@ -42,7 +43,13 @@ registerdata={email:'',password:''}
  
    this.authService.register(this.email, this.password,this.mobile,this.username).then( data => {
         console.log("data ==>>>> "+data)
-         this.navCtrl.setRoot('HomePage');
+        //  this.navCtrl.setRoot('HomePage');
+        this.toast.show("Successfully signup. Please Login to view details",'long','center').subscribe(
+          toast => {
+            console.log(toast);
+            this.navCtrl.setRoot('LoginPage');
+          }
+        );
         
         // this.navCtrl.setRoot('SelectDaycarePage');
 

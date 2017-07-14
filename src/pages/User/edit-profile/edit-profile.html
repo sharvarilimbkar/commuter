@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-grid padding>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Search Child"  (ionInput)="getItems($event)"></ion-searchbar>
     <div>
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
@@ -30,7 +30,7 @@
 
       </ion-list>
     </div>
-    <ion-list no-lines *ngIf="showParents">
+    <ion-list no-lines *ngIf="showParents" class="parent-section">
       <!--<ion-item >
           <ion-label stacked>Parent Name</ion-label>
           <ion-avatar class="parent_profile">
@@ -41,31 +41,31 @@
 
       <ion-item>
         <ion-label stacked>Child Name</ion-label>
-        <ion-input [(ngModel)]="addchild.childname" type="text" placeholder="Children Name"></ion-input>
+        <ion-input class="rounded-input"  [(ngModel)]="addchild.childname" type="text" placeholder="Children Name"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Date Of Birth</ion-label>
         <!--<ion-input type="text" placeholder="Enter DOB"></ion-input>-->
-        <ion-datetime displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date" [(ngModel)]="addchild.birthday">
+        <ion-datetime class="rounded-input"  displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date" [(ngModel)]="addchild.birthday">
         </ion-datetime>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Age</ion-label>
-        <ion-input [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
+        <ion-input class="rounded-input"  [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Gender</ion-label>
-        <ion-select [(ngModel)]="gender">
-          <ion-option value="f">Baby Girls</ion-option>
+        <ion-select [(ngModel)]="addchild.gender">
+          <ion-option value="f">Baby Girl</ion-option>
           <ion-option value="m">Baby Boy</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
 
-    <ion-row>
-      <ion-col padding-left *ngIf="showParents">
+    <ion-row *ngIf="showParents">
+      <ion-col padding-left >
         <button ion-button round (click)="Selectprofile()">
             Select
           </button>
@@ -76,7 +76,7 @@
 
       <ion-col padding-right>
         <img *ngIf="profile_flag" src="{{addchild.pro_image}}" alt="">
-        <img src="{{domainUrl+addchild.pro_image}}" alt="">
+        <img *ngIf="profile_flag1" src="{{domainUrl+addchild.pro_image}}" alt="">
       </ion-col>
     </ion-row>
 
