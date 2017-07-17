@@ -26,25 +26,34 @@
     <ion-grid class="profileDetail">
       <ion-grid>
         <ion-row>
-          <h4>{{userProfile.username}}</h4>
+          <!--<h4>{{userProfile.username}}</h4>-->
+          <!--{{stateButtonusername}}-->
+         <input type="text" value="" [disabled]="stateButtonusername"  [(ngModel)]="userProfile.username" (blur)="updateProfile(flag.username)">
+          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.username)"></ion-icon>
         </ion-row>
       </ion-grid>
 
       <ion-grid>
         <ion-row>
           <h4>Address</h4>
+         
+          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.address)"></ion-icon>
         </ion-row>
-        <ion-row>
-          <p>please add address </p>
+        <ion-row >
+          <!--{{stateButtonaddress}}-->
+          <input type="text" value="" [disabled]="stateButtonaddress" class="{{stateButtonaddress ? '' : ''}}" placeholder="please add address" [(ngModel)]="userProfile.address" (blur)="updateProfile(flag.address)">
         </ion-row>
       </ion-grid>
 
       <ion-grid>
         <ion-row>
           <h4>Contact</h4>
+          
+          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.mobile)"></ion-icon>
         </ion-row>
         <ion-row>
-          <p>{{userProfile.mobile}}</p>
+          <!--<p>{{userProfile.mobile}}</p>-->
+          <input type="text" value="" [disabled]="stateButtonmobile"  [(ngModel)]="userProfile.mobile" (blur)="updateProfile(flag.mobile)">
         </ion-row>
       </ion-grid>
 

@@ -24,7 +24,6 @@ import { SelectImageProvider } from '../providers/select-image/select-image';
 import { Toast } from "@ionic-native/toast"
 import { MediaCapture } from '@ionic-native/media-capture';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
-
 const config = {
 //  apiKey: "AIzaSyBM1ysxV1LMxhfhpvT67H26DlxlWZpyWfQ",
 //  authDomain: "ssss-164410.firebaseapp.com",

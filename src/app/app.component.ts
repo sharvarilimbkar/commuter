@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
 import{Camera} from "@ionic-native/camera"
 import { Storage } from '@ionic/storage';
-
+// import { OneSignal } from '@ionic-native/onesignal';
   @Component({
   templateUrl: 'app.html'
   })
@@ -27,6 +27,7 @@ import { Storage } from '@ionic/storage';
 
           statusBar.styleDefault();
           splashScreen.hide();
+     
           
       });
       const authObserver = afAuth.authState.subscribe( user => {
@@ -36,7 +37,7 @@ import { Storage } from '@ionic/storage';
 
               this.event.subscribe('userProfile', (userProfile) => {
               this.userProfile = userProfile;
-              console.log("from appcomponent ===>>>> "+this.userProfile)
+              // console.log("from appcomponent ===>>>> "+this.userProfile)
               this.storage.getStorage("isparent").then(data=>{
                 
               if(data){
@@ -62,7 +63,7 @@ import { Storage } from '@ionic/storage';
                 this.daycare=true
               }
               })
-              console.log("from appcomponent ===>>>> "+this.userProfile)
+              // console.log("from appcomponent ===>>>> "+this.userProfile)
             })
             authObserver.unsubscribe();
         }

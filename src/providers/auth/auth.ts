@@ -8,14 +8,7 @@ import { Transfer,TransferObject,FileUploadOptions } from '@ionic-native/transfe
 import {Toast} from '@ionic-native/toast'
 import { MediaCapture } from '@ionic-native/media-capture';
 
-// import SERVER_NAME from ‘../config’;
-// 
-/*
-  Generated class for the AuthProvider provider.
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class AuthProvider {
   public databaseParents ='/parentsData'
@@ -26,6 +19,8 @@ childList =[]
   base64textString
   public domainStorageUrl = 'http://daycare.deapps.io:3006/'
    public domainURL = 'http://daycare.deapps.io:3006/api/';
+  //  public domainStorageUrl = 'http://192.168.10.189:3000/'
+  //  public domainURL = 'http://192.168.10.189:3000/api/';
   constructor(public afDatabase: AngularFireDatabase,public http:Http,public transfer:Transfer,public toast:Toast) {
     console.log('Hello AuthProvider Provider');
     
@@ -40,7 +35,7 @@ childList =[]
         return firebase.auth().createUserWithEmailAndPassword(email, password)
         
           .then((newUser) => {
-              firebase.database().ref(this.databaseParents).child(newUser.uid).set({email: email,password:password,mobile:mobile,username:username,isparent:1,profile_pic:''});
+              firebase.database().ref(this.databaseParents).child(newUser.uid).set({email: email,password:password,mobile:mobile,username:username,isparent:1,profile_pic:'',address:''});
           })
       }
 

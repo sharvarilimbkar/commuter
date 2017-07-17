@@ -77,7 +77,7 @@ export class EditProfilePage {
       // console.log(" addchild ===>>> "+JSON.stringify(this.addchild)+"parent ===> "+this.uid_parent)
       this.addchild.uid_parent = this.uid_parent;
       this.addchild.profileUri =this.addchild.pro_image;
-      this.addchild.gender = this.gender  
+      this.addchild.gender = this.addchild.gender  
           if(this.profile_flag){
             this.addchild.profile_selected="set"
             console.log("parent ===> "+this.addchild.gender)        

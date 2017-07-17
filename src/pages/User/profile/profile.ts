@@ -16,11 +16,15 @@ import firebase from "firebase";
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+    stateButtonaddress: boolean=true;
+    stateButtonusername: boolean=true;
+    stateButtonmobile: boolean=true;
 // userProfile
 isparent
 profileflag:boolean=false;
 profileflag1:boolean=true;;
 domainUrl
+stateButton =true
 userProfile ={username:'',address:'',mobile:'',subcription:'',profile_pic:''}
 flag ={profile:'profile_pic',username:'username',address:'address',mobile:'mobile'}
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public camera:Camera,public storage:StorageProvider, public transfer:Transfer,
@@ -50,11 +54,11 @@ ionViewDidLoad() {
                     }else if(!data){
                           this.auth.getdaycareProfile().then( profileSnap => {
                             this.userProfile = profileSnap;
-                           this.auth.getProfile().subscribe(data =>{
-                                console.log("Sharvari data ==>  "+data);
-                                // this.userProfile.profile_pic=JSON.stringify(data.values[0].profileUrl)
-                                console.log("Sharvari data ==> "+data.values[0].profileUrl)
-                            })
+                          //  this.auth.getProfile().subscribe(data =>{
+                          //       console.log("Sharvari data ==>  "+data);
+                          //       // this.userProfile.profile_pic=JSON.stringify(data.values[0].profileUrl)
+                          //       console.log("Sharvari data ==> "+data.values[0].profileUrl)
+                          //   })
                             // this.birthDate = this.userProfile.birthDate;
                           });
                     }
@@ -174,13 +178,27 @@ Selectprofile(){
        
 
 }
+
+buttonState(flag) {
+    console.log('buttonState() called' + flag);
+  
+      if(flag == this.flag.username){
+        return this.stateButtonusername = false;
+    }else if(flag == this.flag.address){
+        return this.stateButtonaddress = false;
+    }else if(flag == this.flag.mobile){
+       return this.stateButtonmobile = false;
+    }
+  }
+
 updateProfile(flag){
+  console.log("sdfsdf : "+flag);
    if(flag == this.flag.username){
-    this.updateData({address:this.userProfile.username})
+    this.updateData({username:this.userProfile.username})
   }else if(flag == this.flag.address){
     this.updateData({address:this.userProfile.address})
   }else if(flag == this.flag.mobile){
-    this.updateData({address:this.userProfile.mobile})
+    this.updateData({mobile:this.userProfile.mobile})
   }
 }
 updateData(data){
@@ -193,6 +211,9 @@ updateData(data){
                               console.log(toast);
                             }
                         );
+                        this.stateButtonaddress=true;
+                  this.stateButtonusername=true;
+                  this.stateButtonmobile=true;
                         this.navCtrl.setRoot("HomePage");
                     }
                  })
@@ -205,6 +226,9 @@ updateData(data){
                               console.log(toast);
                             }
                         );
+                         this.stateButtonaddress=true;
+                  this.stateButtonusername=true;
+                  this.stateButtonmobile=true;
                         this.navCtrl.setRoot("HomePage");
                     }
                  })
