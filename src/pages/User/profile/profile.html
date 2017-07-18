@@ -16,44 +16,52 @@
   <div *ngIf="userProfile">
     <ion-grid class="profilePic">
       <img *ngIf="profileflag1" alt="Profile pic" src="{{domainUrl+userProfile.profile_pic}}">
-       <img *ngIf="profileflag" alt="Profile pic" src="{{userProfile.profile_pic}}">
-      
+      <img *ngIf="profileflag" alt="Profile pic" src="{{userProfile.profile_pic}}">
+      <h2>Rainbow Daycare</h2>
       <!--<img src="http://enadcity.org/enadcity/wp-content/uploads/2017/02/profile-pictures.png">-->
       <button icon-only clear (click)="Selectprofile()">
         <ion-icon ios="ios-camera" md="md-camera" ></ion-icon>
       </button>
     </ion-grid>
     <ion-grid class="profileDetail">
-      <ion-grid>
-        <ion-row>
-          <!--<h4>{{userProfile.username}}</h4>-->
-          <!--{{stateButtonusername}}-->
-         <input type="text" value="" [disabled]="stateButtonusername"  [(ngModel)]="userProfile.username" (blur)="updateProfile(flag.username)">
+      <!--<ion-grid>-->
+      <!--<ion-row>-->
+      <!--<h4>{{userProfile.username}}</h4>-->
+      <!--{{stateButtonusername}}-->
+      <!--<input type="text" value="" [disabled]="stateButtonusername" [(ngModel)]="userProfile.username" (blur)="updateProfile(flag.username)">
           <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.username)"></ion-icon>
         </ion-row>
-      </ion-grid>
+      </ion-grid>-->
 
       <ion-grid>
         <ion-row>
-          <h4>Address</h4>
-         
-          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.address)"></ion-icon>
+          <ion-col col-11 col-sm-11 col-xs-11>
+            <h4>Address</h4>
+          </ion-col>
+          <ion-col col-1 col-sm-1 col-xs-1>
+            <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.address)"></ion-icon>
+          </ion-col>
         </ion-row>
-        <ion-row >
+
+        <ion-row>
           <!--{{stateButtonaddress}}-->
-          <input type="text" value="" [disabled]="stateButtonaddress" class="{{stateButtonaddress ? '' : ''}}" placeholder="please add address" [(ngModel)]="userProfile.address" (blur)="updateProfile(flag.address)">
+          <input type="text" value="" [disabled]="stateButtonaddress" class="{{stateButtonaddress ? '' : ''}}" placeholder="please add address"
+            [(ngModel)]="userProfile.address" (blur)="updateProfile(flag.address)">
         </ion-row>
       </ion-grid>
 
       <ion-grid>
         <ion-row>
-          <h4>Contact</h4>
-          
-          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.mobile)"></ion-icon>
+          <ion-col col-11 col-sm-11 col-xs-11>
+            <h4>Contact</h4>
+          </ion-col>
+          <ion-col col-1 col-sm-1 col-xs-1>
+            <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.mobile)"></ion-icon>
+          </ion-col>
         </ion-row>
         <ion-row>
           <!--<p>{{userProfile.mobile}}</p>-->
-          <input type="text" value="" [disabled]="stateButtonmobile"  [(ngModel)]="userProfile.mobile" (blur)="updateProfile(flag.mobile)">
+          <input type="text" value="" [disabled]="stateButtonmobile" [(ngModel)]="userProfile.mobile" (blur)="updateProfile(flag.mobile)">
         </ion-row>
       </ion-grid>
 
