@@ -28,10 +28,17 @@ import { OneSignal } from '@ionic-native/onesignal';
           statusBar.styleDefault();
           splashScreen.hide();
      
-          this.oneSignal.startInit('f1edd1a5-35f5-4b50-bbdc-ccc8bcdfd420', '398522364586');
+         
+    
+      });
+      const authObserver = afAuth.authState.subscribe( user => {
+        this.domainUrl =this.auth.domainStorageUrl
+        if (user) {
+           this.oneSignal.startInit('f1edd1a5-35f5-4b50-bbdc-ccc8bcdfd420', '398522364586');
 
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-
+        // alert(user.uid)
+        // this.oneSignal.sendTags({user_id: "value", key2: "value2"});
         this.oneSignal.handleNotificationReceived().subscribe((data) => {
         // do something when notification is received
         console.log(JSON.stringify(data))
@@ -41,11 +48,6 @@ import { OneSignal } from '@ionic-native/onesignal';
           // do something when a notification is opened
         });
       this.oneSignal.endInit();
-    
-      });
-      const authObserver = afAuth.authState.subscribe( user => {
-        this.domainUrl =this.auth.domainStorageUrl
-        if (user) {
               this.rootPage = "HomePage";
 
               this.event.subscribe('userProfile', (userProfile) => {
