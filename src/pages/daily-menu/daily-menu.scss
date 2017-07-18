@@ -1,3 +1,31 @@
 page-daily-menu {
-
+    .card {
+        width: 100%;
+        margin: 0 0 15px 0 !important;
+        .card-content {
+            padding: 0;
+            .breakfast {
+                border-right: 1px solid rgba(160, 155, 155, 0.24)
+            }
+            .breakfast,
+            .lunch {
+                padding-left: 12px;
+                p {
+                    margin-top: 7px;
+                    color: #b4b3b3;
+                    font-size: 14px;
+                }
+            }
+        }
+        h1,
+        h2 {
+            margin-bottom: -3px;
+            color: #5f5d5d;
+            font-size: 18px;
+        }
+        span {
+            color: #cccbcb;
+            font-size: 12px;
+        }
+    }
 }
