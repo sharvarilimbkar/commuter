@@ -1,6 +1,8 @@
     page-announcement {
         .scroll-content {
             .card {
+                width: 100%;
+                margin: 0!important;
                 ion-card-header {
                     color: rgba(35, 31, 32, 0.87);
                     font-size: 1em;
