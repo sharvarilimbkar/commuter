@@ -14,6 +14,7 @@ import { AngularFireAuth, } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { OneSignal } from '@ionic-native/onesignal';
 
 import {Transfer} from "@ionic-native/transfer"
 import{Camera} from "@ionic-native/camera"
@@ -67,7 +68,7 @@ firebase.initializeApp(config);
     MediaCapture,
     Toast,
     IonicImageViewerModule,
-    
+    OneSignal,
     Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageProvider,

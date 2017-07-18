@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
 import{Camera} from "@ionic-native/camera"
 import { Storage } from '@ionic/storage';
-// import { OneSignal } from '@ionic-native/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
   @Component({
   templateUrl: 'app.html'
   })
@@ -22,13 +22,26 @@ import { Storage } from '@ionic/storage';
   daycare:boolean;
   domainUrl
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider
-  ,public storage:StorageProvider,public store:Storage, public event:Events) {
+  ,public storage:StorageProvider,public store:Storage, public event:Events, public oneSignal:OneSignal) {
       platform.ready().then(() => {
 
           statusBar.styleDefault();
           splashScreen.hide();
      
-          
+          this.oneSignal.startInit('f1edd1a5-35f5-4b50-bbdc-ccc8bcdfd420', '398522364586');
+
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+
+        this.oneSignal.handleNotificationReceived().subscribe((data) => {
+        // do something when notification is received
+        console.log(JSON.stringify(data))
+        });
+
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          // do something when a notification is opened
+        });
+      this.oneSignal.endInit();
+    
       });
       const authObserver = afAuth.authState.subscribe( user => {
         this.domainUrl =this.auth.domainStorageUrl

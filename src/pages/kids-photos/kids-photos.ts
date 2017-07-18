@@ -16,7 +16,8 @@ export class KidsPhotosPage {
   // public loadedChildList:Array<any>;
   public childDataRef:firebase.database.Reference
     public childDataRef12:firebase.database.Reference
-
+public people:any = [];
+  private start:number=0;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
   }
