@@ -2,8 +2,8 @@
     <ion-header>
     </ion-header>
     <ion-content>
-         <ion-grid class="menuBar">
-             <!--{{userProfile |json}}-->
+        <ion-grid class="menuBar">
+            <!--{{userProfile |json}}-->
             <ion-row *ngIf="userProfile">
                 <ion-col col-4 *ngIf="userProfile.profile_pic !=''">
                     <!--<img src="../assets/images/profile.png" alt="Profile Pic">-->
@@ -17,7 +17,7 @@
                     <h4>{{userProfile.username}}</h4>
                 </ion-col>
             </ion-row>
-         </ion-grid>
+        </ion-grid>
 
         <ion-grid class="menuButton">
             <ion-row>
@@ -28,23 +28,23 @@
                         </button>
                     </ion-item>
 
-                    <ion-item> 
+                    <ion-item>
                         <button ion-button clear (click)="onLoad('ProfilePage')">
                         Profile
                         </button>
                     </ion-item>
 
-                    <ion-item *ngIf="daycare"> 
+                    <ion-item *ngIf="daycare">
                         <button ion-button clear (click)="onLoad('AddchildPage')">
                         Add Child
                         </button>
                     </ion-item>
-                      <ion-item *ngIf="daycare"> 
-                            <button ion-button clear (click)="onLoad('EditProfilePage')">
+                    <ion-item *ngIf="daycare">
+                        <button ion-button clear (click)="onLoad('EditProfilePage')">
                             Edit Child
                             </button>
-                    </ion-item>   
-                     <ion-item> 
+                    </ion-item>
+                    <ion-item>
                         <button ion-button clear (click)="onLoad('SubscriptionPage')">
                         Subscription
                         </button>
@@ -55,12 +55,11 @@
                         Settings
                         </button>
                     </ion-item>-->
-
-                    <ion-item> 
+                    <ion-item>
                         <button ion-button clear (click)="onLogout()">
                         Log Out
                         </button>
-                    </ion-item>             
+                    </ion-item>
                 </ion-list>
             </ion-row>
         </ion-grid>

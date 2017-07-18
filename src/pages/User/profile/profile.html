@@ -17,22 +17,21 @@
     <ion-grid class="profilePic">
       <img *ngIf="profileflag1" alt="Profile pic" src="{{domainUrl+userProfile.profile_pic}}">
       <img *ngIf="profileflag" alt="Profile pic" src="{{userProfile.profile_pic}}">
-      <h2>Rainbow Daycare</h2>
+      <h2>{{userProfile.username}}</h2>
       <!--<img src="http://enadcity.org/enadcity/wp-content/uploads/2017/02/profile-pictures.png">-->
       <button icon-only clear (click)="Selectprofile()">
         <ion-icon ios="ios-camera" md="md-camera" ></ion-icon>
       </button>
     </ion-grid>
     <ion-grid class="profileDetail">
-      <!--<ion-grid>-->
-      <!--<ion-row>-->
+      <!--<ion-grid>
+      <ion-row>-->
       <!--<h4>{{userProfile.username}}</h4>-->
       <!--{{stateButtonusername}}-->
-      <!--<input type="text" value="" [disabled]="stateButtonusername" [(ngModel)]="userProfile.username" (blur)="updateProfile(flag.username)">
-          <ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.username)"></ion-icon>
-        </ion-row>
-      </ion-grid>-->
-
+      <!--<input type="text" value="" [disabled]="stateButtonusername" [(ngModel)]="userProfile.username" (blur)="updateProfile(flag.username)">-->
+      <!--<ion-icon ios="ios-create" md="md-create" (click)="buttonState(flag.username)"></ion-icon>
+      </ion-row>
+    </ion-grid>-->
       <ion-grid>
         <ion-row>
           <ion-col col-11 col-sm-11 col-xs-11>

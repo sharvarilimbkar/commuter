@@ -26,12 +26,8 @@ export class MyApp {
     // , public oneSignal:OneSignal
   ) {
     platform.ready().then(() => {
-
       statusBar.styleDefault();
       splashScreen.hide();
-
-
-
     });
     const authObserver = afAuth.authState.subscribe(user => {
       this.domainUrl = this.auth.domainStorageUrl
@@ -51,6 +47,7 @@ export class MyApp {
         //   });
         // this.oneSignal.endInit();
         this.rootPage = "HomePage";
+        // this.rootPage = "AnnouncementPage";
 
         this.event.subscribe('userProfile', (userProfile) => {
           this.userProfile = userProfile;

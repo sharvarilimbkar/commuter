@@ -1,3 +1,24 @@
-page-announcement {
-
-}
+    page-announcement {
+        .scroll-content {
+            .card {
+                ion-card-header {
+                    color: rgba(35, 31, 32, 0.87);
+                    font-size: 1em;
+                    padding-bottom: 5px;
+                    span {
+                        padding: 16px 0px !important;
+                        color: #a1a0a0;
+                        font-size: 12px;
+                    }
+                }
+            }
+            .card-content {
+                .grid {
+                    .row p {
+                        color: #a1a0a0;
+                        font-size: 12px
+                    }
+                }
+            }
+        }
+    }
