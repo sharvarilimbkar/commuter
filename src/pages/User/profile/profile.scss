@@ -1,65 +1,80 @@
 page-profile {
-  .scroll-content {
-    padding: 0px !important;
-  }
-  .profilePic {
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0px;
-    img {
-      width: 100%; //height: 35vh;
-      height: 62vw;
+    .scroll-content {
+        padding: 0px !important;
     }
-    .layer {
-      background-color: rgba(0, 0, 0, 0.21);
-      position: absolute;
-      width: 100%;
-      height: 62vw;
-    }
-    .row {
-      position: absolute;
-      padding-bottom: 16px;
-      color: #fff;
-    }
-    button {
-      z-index: 1000; // top: 30vh;
-      top: 53vw; // right: 2vh;
-      right: 3vw;
-      position: absolute;
-      background: #2e8bfe;
-      color: #fff;
-      border-radius: 50px;
-      height: 4em;
-      .icon {
-        font-size: 3em;
-        padding: 5px;
-      }
-    }
-  }
-  .profileDetail {
-    padding-top: 16px;
-    .grid {
-      padding-bottom: 16px;
-      .row {
-        padding: 5px;
-        h4 {
-          color: #535151;
-          font-size: 18px;
+    .profilePic {
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0px;
+        img {
+            width: 100%; //height: 35vh;
+            height: 62vw;
         }
-        p {
-          color: #a1a0a0;
+        .layer {
+            background-color: rgba(0, 0, 0, 0.21);
+            position: absolute;
+            width: 100%;
+            height: 62vw;
         }
-      }
+        .row {
+            position: absolute;
+            padding-bottom: 16px;
+            color: #fff;
+        }
+        button {
+            z-index: 1000; // top: 30vh;
+            top: 53vw; // right: 2vh;
+            right: 3vw;
+            position: absolute;
+            background: #2e8bfe;
+            color: #fff;
+            border-radius: 50px;
+            height: 4em;
+            .icon {
+                font-size: 3em;
+                padding: 5px;
+            }
+        }
+        h2 {
+            position: absolute;
+            bottom: 63%;
+            font-size: 22px;
+            color: #fff;
+        }
     }
-  }
-  ion-navbar {
-    button {
-      color: #fff !important;
+    .profileDetail {
+        padding-top: 25px;
+        .grid {
+            padding-bottom: 16px;
+            .row {
+                padding: 5px;
+                h4 {
+                    color: #535151;
+                    font-size: 18px;
+                }
+                p {
+                    color: #a1a0a0;
+                }
+            }
+        }
+        .ng-untouched {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: transparent;
+        }
+        .ng-valid {
+            border: 1px solid #cecece;
+        }
     }
-  }
-  .header .toolbar-title {
-    width: 80%;
-    text-align: center;
-    text-transform: capitalize;
-  }
+    ion-navbar {
+        button {
+            color: #fff !important;
+        }
+    }
+    .header .toolbar-title {
+        width: 80%;
+        text-align: center;
+        text-transform: capitalize;
+    }
 }

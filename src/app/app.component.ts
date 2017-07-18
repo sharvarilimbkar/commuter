@@ -7,20 +7,22 @@ import { StorageProvider } from '../providers/storage/storage';
 // import {HomePage} from "../pages/home/home"
 import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
-import{Camera} from "@ionic-native/camera"
+import { Camera } from "@ionic-native/camera"
 import { Storage } from '@ionic/storage';
+
 import { OneSignal } from '@ionic-native/onesignal';
   @Component({
   templateUrl: 'app.html'
-  })
-  export class MyApp {
-  rootPage:any;
+})
+export class MyApp {
+  rootPage: any;
 
   @ViewChild(Nav) nav: Nav;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
   userProfile
-  daycare:boolean;
+  daycare: boolean;
   domainUrl
+
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider
   ,public storage:StorageProvider,public store:Storage, public event:Events
   , public oneSignal:OneSignal
@@ -87,9 +89,10 @@ import { OneSignal } from '@ionic-native/onesignal';
       })
 
 
+
   }
-  
-  onLogout(){ 
+
+  onLogout() {
     // this.storage.removeStorage("isparent")
     this.store.remove("isparent")
     this.menuCtrl.close();
@@ -99,10 +102,10 @@ import { OneSignal } from '@ionic-native/onesignal';
 
   }
 
-  onLoad(page: any){
+  onLoad(page: any) {
     this.nav.setRoot(page);
     this.menuCtrl.close();
-  } 
-
   }
+
+}
 
