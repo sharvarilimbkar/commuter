@@ -9,10 +9,45 @@
   <ion-navbar>
     <ion-title>weeklymenu</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-list class="selectday">
+        <h5>Select Day</h5>
+        <ion-item class="item">
+          <ion-label>Select Day</ion-label>
+          <ion-select [(ngModel)]="days">
+            <ion-option value="mon">Monday</ion-option>
+            <ion-option value="tes">Tuesday</ion-option>
+            <ion-option value="wed">Wednesday</ion-option>
+            <ion-option value="thr">Thrusday</ion-option>
+            <ion-option value="fri">Friday</ion-option>
+            <ion-option value="sat">Saturday</ion-option>
+            <ion-option value="sun">Sunday</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+
+    <ion-row>
+      <ion-list class="breakfast">
+        <h5>Breakfast</h5>
+        <ion-item class="input-item">
+          <ion-textarea type="text" value=""></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+
+    <ion-row>
+      <ion-list class="breakfast">
+        <h5>Lunch</h5>
+        <ion-item class="input-item">
+          <ion-textarea type="text" value=""></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

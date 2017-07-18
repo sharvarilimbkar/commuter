@@ -1,3 +1,37 @@
 page-weeklymenu {
-
+    .selectday,
+    .breakfast {
+        width: 100%;
+        .item-block:last-child {
+            border: 0;
+        }
+        .button-inner {
+            border: 1px solid #ededed !important;
+            border-radius: 25px;
+        }
+        h5 {
+            padding-left: 25px;
+            margin-bottom: 5px;
+            color: #5e5c5c;
+            font-size: inherit;
+        }
+        .input-wrapper {
+            padding: 0 10px !important;
+        }
+        ion-label {
+            font-size: 15px;
+            color: #abaaaa;
+        }
+    }
+    .breakfast {
+        width: 100%;
+        .input-item {
+            padding: 0 0 0 10px;
+            border: 1px solid #ededed !important;
+            border-radius: 5px;
+        }
+        .input-wrapper {
+            padding: 0 !important;
+        }
+    }
 }
