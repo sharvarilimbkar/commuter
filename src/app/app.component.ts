@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
 import{Camera} from "@ionic-native/camera"
 import { Storage } from '@ionic/storage';
-// import { OneSignal } from '@ionic-native/onesignal';
+import { OneSignal } from '@ionic-native/onesignal';
   @Component({
   templateUrl: 'app.html'
   })
@@ -23,33 +23,33 @@ import { Storage } from '@ionic/storage';
   domainUrl
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl: MenuController,private afAuth: AngularFireAuth,public auth:AuthProvider
   ,public storage:StorageProvider,public store:Storage, public event:Events
-  // , public oneSignal:OneSignal
+  , public oneSignal:OneSignal
   ) {
       platform.ready().then(() => {
 
           statusBar.styleDefault();
           splashScreen.hide();
      
-         
+         this.oneSignal.startInit('f1edd1a5-35f5-4b50-bbdc-ccc8bcdfd420', '398522364586');
+
+        this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+        // alert(user.uid)
+        // this.oneSignal.sendTags({user_id: user.uid});
+        this.oneSignal.handleNotificationReceived().subscribe((data) => {
+        // do something when notification is received
+        console.log(JSON.stringify(data))
+        });
+
+        this.oneSignal.handleNotificationOpened().subscribe(() => {
+          // do something when a notification is opened
+        });
+      this.oneSignal.endInit();
     
       });
       const authObserver = afAuth.authState.subscribe( user => {
         this.domainUrl =this.auth.domainStorageUrl
         if (user) {
-      //      this.oneSignal.startInit('f1edd1a5-35f5-4b50-bbdc-ccc8bcdfd420', '398522364586');
-
-      //   this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
-      //   // alert(user.uid)
-      //   this.oneSignal.sendTags({user_id: user.uid});
-      //   this.oneSignal.handleNotificationReceived().subscribe((data) => {
-      //   // do something when notification is received
-      //   console.log(JSON.stringify(data))
-      //   });
-
-      //   this.oneSignal.handleNotificationOpened().subscribe(() => {
-      //     // do something when a notification is opened
-      //   });
-      // this.oneSignal.endInit();
+           
               this.rootPage = "HomePage";
 
               this.event.subscribe('userProfile', (userProfile) => {
