@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 // import {Transfer} from "@ionic-native/transfer"
 import { Camera } from "@ionic-native/camera"
 import { Storage } from '@ionic/storage';
-
+import firebase from 'firebase'
 import { OneSignal } from '@ionic-native/onesignal';
   @Component({
   templateUrl: 'app.html'
@@ -37,6 +37,7 @@ export class MyApp {
         this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
         // alert(user.uid)
         // this.oneSignal.sendTags({user_id: user.uid});
+        this.oneSignal.sendTag("user_id", firebase.auth().currentUser.uid);
         this.oneSignal.handleNotificationReceived().subscribe((data) => {
         // do something when notification is received
         console.log(JSON.stringify(data))
@@ -51,20 +52,17 @@ export class MyApp {
       const authObserver = afAuth.authState.subscribe( user => {
         this.domainUrl =this.auth.domainStorageUrl
         if (user) {
-           
-              this.rootPage = "HomePage";
-
-              this.event.subscribe('userProfile', (userProfile) => {
-              this.userProfile = userProfile;
-              // console.log("from appcomponent ===>>>> "+this.userProfile)
-              this.storage.getStorage("isparent").then(data=>{
-                
-              if(data){
-                this.daycare=false
-              }else if(!data){
-                this.daycare=true
-              }
-              })
+                this.rootPage = "HomePage";
+                this.event.subscribe('userProfile', (userProfile) => {
+                this.userProfile = userProfile;
+                // console.log("from appcomponent ===>>>> "+this.userProfile)
+                this.storage.getStorage("isparent").then(data=>{
+                  if(data){
+                    this.daycare=false
+                  }else if(!data){
+                    this.daycare=true
+                  }
+                })
          
             });
 
@@ -76,11 +74,11 @@ export class MyApp {
             this.event.subscribe('userProfile', (userProfile) => {
               this.userProfile = userProfile;
               this.storage.getStorage("isparent").then(data=>{
-              if(data){
-                this.daycare=false
-              }else if(!data){
-                this.daycare=true
-              }
+                if(data){
+                  this.daycare=false
+                }else if(!data){
+                  this.daycare=true
+                }
               })
               // console.log("from appcomponent ===>>>> "+this.userProfile)
             })

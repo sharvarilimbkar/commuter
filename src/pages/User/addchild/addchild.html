@@ -1,12 +1,9 @@
 <ion-header>
 
   <ion-navbar>
-    <!--<ion-buttons start>-->
     <button ion-button menuToggle icon-only> 
         <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-      </button>
-    <!--</ion-buttons>-->
-
+    </button>
     <ion-title>Add Child</ion-title>
   </ion-navbar>
 
@@ -15,8 +12,13 @@
 
 <ion-content padding>
   <ion-grid padding>
-    <ion-searchbar  placeholder="Search Parent" (ionInput)="getItems($event)"></ion-searchbar>
-    <div>
+    <div [formGroup]="addChildForm">
+      <ion-searchbar  formControlName="parents" placeholder="Search Parent" (ionInput)="getItems($event)"></ion-searchbar>
+     <span style="color: red;padding: 0 30px;" *ngIf="!addChildForm.controls.parents.valid  && (addChildForm.controls.parents.touched || addChildForm.controls.parents.dirty)">You can't leave this empty.</span>
+    </div>
+        
+
+    <div >
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
           <ion-avatar item-start>
@@ -31,49 +33,47 @@
       </ion-list>
     </div>
     <ion-list no-lines class="parent-section">
-      <ion-label stacked *ngIf="showParents">Parent Name</ion-label>
-      <ion-item *ngIf="showParents">
-       
-      <ion-avatar item-start>
-        <img src="{{domainuri+profile}}">
-      </ion-avatar>
-      <p>{{name}}</p>
-    </ion-item>
-        <!--<ion-label stacked>Parent Name</ion-label>
-        <ion-avatar class="parent_profile">
-          {{profile}}
-          <img src="{{profile}}">
+        <ion-label stacked *ngIf="showParents">Parent Name</ion-label>
+        <ion-item *ngIf="showParents">
+        
+        <ion-avatar item-start>
+          <img src="{{domainuri+profile}}">
         </ion-avatar>
-        <img src="{{domainuri+profile}}"> <ion-label>{{name}}</ion-label>
-
+        <p>{{name}}</p>
       </ion-item>
-   -->
-
-         
-      </ion-list>
-     <ion-item>
+    </ion-list>
+    <div [formGroup]="addChildForm">
+     <ion-item >
         <ion-label stacked>Child Name</ion-label>
-        <ion-input class="rounded-input" [(ngModel)]="addchild.childname" type="text" placeholder="Enter Name"></ion-input>
+        <ion-input class="rounded-input"  formControlName="child" [(ngModel)]="addchild.childname" type="text" placeholder="Enter Name"></ion-input>
       </ion-item>
+               <span style="color: red;padding: 0 30px;" *ngIf="!addChildForm.controls.child.valid  && (addChildForm.controls.child.touched || addChildForm.controls.child.dirty)">You can't leave this empty.</span>
+   
 
-      <ion-item>
+      <ion-item >
         <ion-label stacked>Date Of Birth</ion-label>
         <!--<ion-input type="text" placeholder="Enter DOB"></ion-input>-->
-        <ion-datetime class="rounded-input" [(ngModel)]="addchild.birthday" displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date">
+        <ion-datetime class="rounded-input"  formControlName="birthday" [(ngModel)]="addchild.birthday" displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date">
         </ion-datetime>
       </ion-item>
+      <span style="color: red;padding: 0 30px;" *ngIf="!addChildForm.controls.birthday.valid  && (addChildForm.controls.birthday.touched || addChildForm.controls.birthday.dirty)">You can't leave this empty.</span>
+
 
       <ion-item>
             <ion-label stacked>Age (years)</ion-label>
-            <ion-input class="rounded-input" [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
+            <ion-input class="rounded-input"  formControlName="age" [(ngModel)]="addchild.age" type="number" placeholder="Enter Age"></ion-input>
          </ion-item>
-         <ion-item class="gender-section">
-         <ion-label>Gender</ion-label>
-            <ion-select [(ngModel)]="gender" >
+                  <span style="color: red;padding: 0 30px;" *ngIf="!addChildForm.controls.age.valid  && (addChildForm.controls.age.touched || addChildForm.controls.age.dirty)">You can't leave this empty.</span>
+
+         <ion-item class="gender-section" >
+            <ion-label>Gender</ion-label>
+            <ion-select  formControlName="gender" [(ngModel)]="gender" >
               <ion-option value="f">Baby Girls</ion-option>
               <ion-option value="m">Baby Boy</ion-option>
             </ion-select>
-      </ion-item>
+        </ion-item>
+      <span style="color:red;padding: 0 30px;" *ngIf="!addChildForm.controls.gender.valid  && (addChildForm.controls.gender.touched || addChildForm.controls.gender.dirty)">You can't leave this empty.</span>
+  </div>
  
 
 
@@ -82,9 +82,6 @@
         <button ion-button round (click)="Selectprofile()">
             Select
           </button>
-        <!--<button ion-button round (click)="uploadChildImages()">
-            multiSelect
-          </button>-->
       </ion-col>
 
       <ion-col padding-right>
@@ -94,31 +91,10 @@
 
   </ion-grid>
   <ion-grid class="buttons">
-    <button ion-button round (click)="uploadChild()">
+    <button ion-button round [disabled] = "!addChildForm.valid || addchild.pro_image =='' " (click)="uploadChild()">
           Upload
         </button>
-    <!--<button ion-button round (click)="multiuploadChildImages()">
-          multiUpload
-        </button>-->
-    <!--<button ion-button round (click)="takephoto()">
-          captureandupload
-        </button>-->
+    
   </ion-grid>
 </ion-content>
 
-
-<!--<ion-row><p>Child Name</p></ion-row>
-  <ion-row>
-      <ion-input type="text" placeholder="Enter Name"></ion-input>
-  </ion-row>
-
-  <ion-row> <p padding-top>Date Of Birth</p></ion-row>
-  <ion-row>
-      <ion-input type="text" placeholder="Enter Name"></ion-input>
-      <ion-datetime displayFormat="DD-MM-YY" pickerFormat="DD MM YY" placeholder="Select Date"> </ion-datetime>
-  </ion-row>
-
-  <ion-row> <p padding-top>Date Of Birth</p></ion-row>
-  <ion-row>
-      <ion-input type="number" placeholder="Enter Age"></ion-input>
-  </ion-row>-->

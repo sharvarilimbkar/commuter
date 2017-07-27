@@ -35,7 +35,7 @@ export class EditProfilePage {
   }
   
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.domainUrl = this.auth.domainStorageUrl
     console.log('ionViewDidLoad EditProfilePage');
       this.loadChildrendata()

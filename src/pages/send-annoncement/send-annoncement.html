@@ -7,39 +7,43 @@
 </ion-header>
 
 <ion-content padding>
+<div [formGroup]="announceForm">
   <ion-card>
     <ion-item>
       <ion-label stacked>Add Title</ion-label>
-      <ion-input type="text" [(ngModel)]="anno.title" placeholder="Enter Title Here"></ion-input>
+      <ion-input type="text" [(ngModel)]="anno.title" formControlName="title"  [class.has-error]="!announceForm.controls.title.valid  && (announceForm.controls.title.dirty)"  placeholder="Enter Title Here"></ion-input>
     </ion-item>
+     <span style="color: red;padding: 0 30px;" *ngIf="!announceForm.controls.title.valid  && (announceForm.controls.title.touched || announceForm.controls.title.dirty)">You can't leave this empty.</span>
   </ion-card>
 
   <ion-card>
     <ion-item>
       <ion-label stacked>Add Description</ion-label>
-      <ion-textarea type="text" [(ngModel)]="anno.description" rows="10"></ion-textarea>
+      <ion-textarea type="text" formControlName="description" [class.has-error]="!announceForm.controls.description.valid  && (announceForm.controls.description.dirty)" [(ngModel)]="anno.description" rows="10"></ion-textarea>
     </ion-item>
+      <span style="color: red;padding: 0 30px;" *ngIf="!announceForm.controls.description.valid  && (announceForm.controls.description.touched || announceForm.controls.description.dirty)">You can't leave this empty.</span>
   </ion-card>
-
+</div>
   <ion-row class="pblBtn">
-    <button ion-button (click)="publishAnnouncement()" round color="secondary">
+    <button ion-button (click)="publishAnnouncement()" [disabled]="!announceForm.valid" round color="secondary">
         Publish
       </button>
   </ion-row>
 
-  <ion-row class="annoceTlt">
+  <ion-row class="annoceTlt" *ngIf="announcementData">
     <h4>Last Annoncement</h4>
-    <p>On 22nd June, 2017</p>
+    <p>On {{announcementData[0].date}}</p>
   </ion-row>
 
 
-  <ion-card class="announcement">
+  <ion-card class="announcement" *ngIf="announcementData">
     <ion-card-header class="date">
-      Annual Festival 2017
+     {{announcementData[0].title}}
     </ion-card-header>
     <ion-card-content class="ann-snipet">
       <p>
-        The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+        
+        {{announcementData[0].description}}
       </p>
     </ion-card-content>
   </ion-card>

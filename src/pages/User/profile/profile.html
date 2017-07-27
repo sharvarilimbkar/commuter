@@ -44,8 +44,8 @@
 
         <ion-row>
           <!--{{stateButtonaddress}}-->
-          <input type="text" value="" [disabled]="stateButtonaddress" class="{{stateButtonaddress ? '' : ''}}" placeholder="please add address"
-            [(ngModel)]="userProfile.address" (blur)="updateProfile(flag.address)">
+          <textarea type="text" value="" style="    height: 78px;" [disabled]="stateButtonaddress" class="{{stateButtonaddress ? '' : ''}}" placeholder="please add address"
+            [(ngModel)]="userProfile.address" (blur)="updateProfile(flag.address)"></textarea>
         </ion-row>
       </ion-grid>
 

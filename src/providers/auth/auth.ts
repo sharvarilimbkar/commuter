@@ -14,6 +14,7 @@ export class AuthProvider {
   public databaseParents ='/parentsData'
   public databaseChildren ='/childrenData'
   public databaseDaycare ='/userData'
+  public databaseWeeklymenu='/weeklyMenu'
 countryList=[]
 childList =[]
   base64textString
@@ -102,7 +103,6 @@ childList =[]
       // console.log("helloo sharvari ===> "+SERVER_NAME)
         return new Promise( (resolve, reject) => {
           firebase.database().ref(this.databaseDaycare)
-          //  firebase.database().ref(db)
           .child(firebase.auth().currentUser.uid)
           .on('value', data => {
             resolve(data.val());
@@ -125,7 +125,7 @@ childList =[]
     updateDaycare(data): Promise<any>{
        return new Promise((resolve) =>
       {
-         var updateRef = firebase.database().ref('parentsData').child(firebase.auth().currentUser.uid);
+         var updateRef = firebase.database().ref(this.databaseParents).child(firebase.auth().currentUser.uid);
 	        updateRef.update(data);
          resolve(true);
       });
@@ -168,7 +168,7 @@ childList =[]
    {
       return new Promise((resolve) =>
       {
-         var updateRef = firebase.database().ref('parentsData').child(firebase.auth().currentUser.uid);
+         var updateRef = firebase.database().ref(this.databaseParents).child(firebase.auth().currentUser.uid);
 	        updateRef.update(data);
          resolve(true);
       });
@@ -214,7 +214,7 @@ childList =[]
                                      console.log(res.profile_pic);
                                      var d = new Date();
                                       var month = d.getMonth();
-                                     firebase.database().ref('childrenData/'+uid_children+'/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time,description:description,key_month:month});
+                                     firebase.database().ref(this.databaseChildren+'/'+uid_children+'/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time,description:description,key_month:month});
                                    
                                  }
                                 }, (err) => {
@@ -409,6 +409,12 @@ childList =[]
             )
             .catch(this.handleError);
       
+    }
+    saveWeeklyMenu(data):Promise<any>{
+      return new Promise((resolve=>{
+         firebase.database().ref(this.databaseWeeklymenu).push({daycare_id:firebase.auth().currentUser.uid,"day":data.day});
+      }))
+     
     }
     publishAnnouncement(data12):Promise<any>{
         return new Promise((resolve) =>{

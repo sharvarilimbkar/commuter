@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { AuthProvider } from '../../providers/auth/auth';
 import firebase from 'firebase';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Camera } from '@ionic-native/camera'
 import { SelectImageProvider } from '../../providers/select-image/select-image';
 import{ Toast } from '@ionic-native/toast'
@@ -22,13 +23,22 @@ export class AddChildPhotosPage {
   childName
   // selectImage
   uid_parent
-  multiImages 
+  multiImages =[]
   uploadedImage
   uid_children
   description
   Images
   domainUrl ;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public toast:Toast) {
+  addChildPhotosForm
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public toast:Toast,public formBuilder:FormBuilder) {
+    this.addChildPhotosForm = this.formBuilder.group({
+        children :["",Validators.required],
+        parents :["",Validators.required],
+        description:["",Validators.required]
+
+    })
   }
 
 

@@ -6,7 +6,7 @@ import { SelectImageProvider } from '../../../providers/select-image/select-imag
 import { Toast } from "@ionic-native/toast"
 import firebase from "firebase";
 import{Camera,CameraOptions} from "@ionic-native/camera"
-
+import { FormGroup , FormBuilder ,Form,Validators} from '@angular/forms'
 import {Transfer ,TransferObject,FileUploadOptions} from '@ionic-native/transfer'
 @IonicPage()
 @Component({
@@ -29,14 +29,22 @@ showParents:boolean = false
   uid :string
   profile
   gender
+  addChildForm
   public countryList:Array<any>;
   public loadedCountryList:Array<any>;
   public countryRef:firebase.database.Reference;
   uploadedImage
+
   multiImages = []
   constructor(public navCtrl: NavController, public navParams: NavParams,private el:ElementRef,public e2:ElementRef,public auth:AuthProvider,
-  public selectImage:SelectImageProvider,private toast: Toast,public transfer:Transfer,public camera:Camera) {
-           
+  public selectImage:SelectImageProvider,private toast: Toast,public transfer:Transfer,public camera:Camera, public formBuilder : FormBuilder) {
+           this.addChildForm= this.formBuilder.group({
+                parents : ["" , Validators.required],
+                child : ["" , Validators.required],
+                birthday : ["" , Validators.required],
+                age : ["" , Validators.required],
+                gender:["",Validators.required]
+           })
   }
   ionViewDidLoad() {
     this.domainuri=this.auth.domainStorageUrl

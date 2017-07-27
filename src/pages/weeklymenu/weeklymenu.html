@@ -5,14 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+    <ion-navbar>
 
-  <ion-navbar>
-    <ion-title>weeklymenu</ion-title>
+    <button ion-button menuToggle icon-only> 
+        <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+      </button>
+    <!--</ion-buttons>-->
+
+    <ion-title>Add Weekly Menu</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
+
+
+    
     <ion-row>
       <ion-list class="selectday">
         <h5>Select Day</h5>
@@ -22,7 +30,7 @@
             <ion-option value="mon">Monday</ion-option>
             <ion-option value="tes">Tuesday</ion-option>
             <ion-option value="wed">Wednesday</ion-option>
-            <ion-option value="thr">Thrusday</ion-option>
+            <ion-option value="thr">Thursday</ion-option>
             <ion-option value="fri">Friday</ion-option>
             <ion-option value="sat">Saturday</ion-option>
             <ion-option value="sun">Sunday</ion-option>

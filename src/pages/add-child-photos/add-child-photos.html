@@ -8,9 +8,12 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-label class="sigleLbl">Select Child</ion-label>
-    <ion-searchbar placeholder="Search Children" [(ngModel)]="childName" (ionInput)="getItems($event)">
-    </ion-searchbar>
+    <div  [formGroup]="addChildPhotosForm">
+      <ion-label class="sigleLbl">Select Child</ion-label>
+      <ion-searchbar placeholder="Search Children" [(ngModel)]="childName" formControlName="children" (ionInput)="getItems($event)">
+      </ion-searchbar>
+       <span style="color: red;padding: 0 30px;" *ngIf="!addChildPhotosForm.controls.children.valid  && (addChildPhotosForm.controls.children.touched || addChildPhotosForm.controls.children.dirty)">You can't leave this empty.</span>
+    </div>
     <!--<ion-list>-->
     <ion-list *ngIf="showList">
       <ion-item *ngFor="let item of searchChildren">
@@ -25,11 +28,15 @@
 
     </ion-list>
 
+    <div [formGroup]="addChildPhotosForm">
+      <ion-item >
+        <ion-label stacked>Parent's Name</ion-label>
+        <ion-input type="text" [(ngModel)]="showParents" formControlName="parents"  placeholder=" Parent's Name"></ion-input>
+          
 
-    <ion-item>
-      <ion-label stacked>Parent's Name</ion-label>
-      <ion-input type="text" [(ngModel)]="showParents" placeholder=" Parent's Name"></ion-input>
-    </ion-item>
+      </ion-item>
+          <span style="color: red;padding: 0 30px;" *ngIf="!addChildPhotosForm.controls.parents.valid  && (addChildPhotosForm.controls.parents.touched || addChildPhotosForm.controls.parents.dirty)">You can't leave this empty.</span>
+    </div>
 
     <ion-item (click)="takephoto()" class="photo-section">
       <ion-row align-items-center>
@@ -59,7 +66,7 @@
   </ion-card>
 
   <div>
-    <ion-slides>
+    <ion-slides  >
       <ion-slide *ngFor="let img of multiImages">
         <img src="{{img.images}}">
       </ion-slide>
@@ -67,14 +74,25 @@
   </div>
 
   <ion-card class="desc">
-    <ion-item>
+    <div  [formGroup]="addChildPhotosForm">
+    <ion-item [formGroup]="addChildPhotosForm">
       <ion-label stacked>Add Description</ion-label>
-      <ion-textarea type="text" [(ngModel)]="description" rows="2"></ion-textarea>
+      <ion-textarea type="text" formControlName="description" [(ngModel)]="description" rows="2"></ion-textarea>
+
     </ion-item>
+                       <span style="color: red;padding: 0 30px;" *ngIf="!addChildPhotosForm.controls.description.valid  && (addChildPhotosForm.controls.description.touched || addChildPhotosForm.controls.description.dirty)">You can't leave this empty.</span>
+
+    </div>
     <ion-row class="pblBtn">
-      <button ion-button round color="secondary" (click)="multiuploadChildImages()">
+      
+      <button ion-button round color="secondary" [disabled]="!addChildPhotosForm.valid || multiImages.length == 0 " (click)="multiuploadChildImages()">
         Upload
       </button>
+       <!--<button ion-button round color="secondary" [disabled]="(!addChildPhotosForm.controls.description.valid  && (addChildPhotosForm.controls.description.touched || addChildPhotosForm.controls.description.dirty)) ||
+      (!addChildPhotosForm.controls.parents.valid  && (addChildPhotosForm.controls.parents.touched || addChildPhotosForm.controls.parents.dirty)) ||
+      (!addChildPhotosForm.controls.children.valid  && (addChildPhotosForm.controls.children.touched || addChildPhotosForm.controls.children.dirty))" (click)="multiuploadChildImages()">
+        Upload
+      </button>-->
     </ion-row>
   </ion-card>
 </ion-content>

@@ -14,6 +14,8 @@ import {Toast} from '@ionic-native/toast'
   templateUrl: 'resgister.html',
 })
 export class ResgisterPage {
+    errormessage: string;
+    showStyle: boolean;
 
  email
 password
@@ -35,6 +37,18 @@ registerdata={email:'',password:''}
    
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignUpPage');
+  }
+  Onkeyup(event: any){
+    console.log(event )
+      console.log(event.target.value== this.password);
+       if(event.target.value!= this.password){
+          this.showStyle=true;
+          this.errormessage ="password ."
+       }else if(event.target.value== this.password){
+          this.showStyle =false;
+          
+       }
+       
   }
   
   doRegister(){

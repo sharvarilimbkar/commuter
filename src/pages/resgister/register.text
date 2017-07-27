@@ -1,20 +1,8 @@
-<ion-header>
-
-  <ion-navbar color="primary">
-
-    <ion-title>Sign Up</ion-title>
-
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-  <div>
+<div>
     <form [formGroup]="signupForm">
       <ion-grid padding class="formContain">
         <ion-row>
-          <ion-input type="text" formControlName="username" 
+          <ion-input type="text" formControlName="username" [class.invalid]="!signupForm.controls.username.valid && signupForm.controls.username.dirty"
             [(ngModel)]="username" placeholder="Username" clearInput></ion-input>
         </ion-row>
         <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!signupForm.controls.username.valid  && (signupForm.controls.username.touched || signupForm.controls.username.dirty)">You can't leave this empty.</span>
@@ -24,7 +12,7 @@
         </ion-item>-->
 
         <ion-row>
-          <ion-input type="number" formControlName="mobile"
+          <ion-input type="number" formControlName="mobile" [class.invalid]="!signupForm.controls.mobile.valid && signupForm.controls.mobile.dirty"
             [(ngModel)]="mobile" placeholder="Mobile Number" clearInput></ion-input>
         </ion-row>
          <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!signupForm.controls.mobile.valid  && (signupForm.controls.mobile.touched || signupForm.controls.mobile.dirty)">You can't leave this empty.</span>
@@ -32,7 +20,7 @@
           <p>Please enter a mobile number.</p>
         </ion-item>-->
         <ion-row>
-          <ion-input type="email" formControlName="email" 
+          <ion-input type="email" formControlName="email" [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty"
             [(ngModel)]="email" placeholder="Email" clearInput></ion-input>
         </ion-row>
         <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!signupForm.controls.email.valid  && (signupForm.controls.email.touched || signupForm.controls.email.dirty)">You can't leave this empty.</span>
@@ -40,7 +28,7 @@
           <p>Please enter a valid email.</p>
         </ion-item>-->
         <ion-row>
-          <ion-input type="password"  formControlName="password"
+          <ion-input type="password" [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" formControlName="password"
             [(ngModel)]="password" placeholder="Password" clearInput></ion-input>
         </ion-row>
        <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!signupForm.controls.password.valid  && (signupForm.controls.password.touched || signupForm.controls.password.dirty)">You can't leave this empty.</span>
@@ -48,7 +36,7 @@
           <p>Your password needs more than 6 characters.</p>
         </ion-item>-->
         <ion-row>
-          <ion-input type="password" formControlName="cnfpassword" 
+          <ion-input type="password" formControlName="cnfpassword" [class.invalid]="!signupForm.controls.cnfpassword.valid && signupForm.controls.cnfpassword.dirty"
             placeholder="Confirm Password" clearInput [(ngModel)]="cnfpassword" (blur)="Onkeyup($event)" [style.border-bottom]="showStyle ? '1px solid #1d2d8a' : 'none'"></ion-input>
         </ion-row>
                 <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="showStyle">These passwords don't match. Try again?</span>
@@ -60,10 +48,3 @@
       </ion-grid>
     </form>
   </div>
-
-  <ion-grid class="buttons">
-    <button ion-button round [disabled]="!signupForm.valid" color="confirm" (click)="doRegister();">
-      Sign Up
-    </button>
-  </ion-grid>
-</ion-content>

@@ -6,6 +6,8 @@ import { Camera } from '@ionic-native/camera'
 import { SelectImageProvider } from '../../providers/select-image/select-image';
 import { MediaCapture } from '@ionic-native/media-capture';
 import {Toast } from '@ionic-native/toast'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @IonicPage()
 @Component({
   selector: 'page-add-child-videos',
@@ -26,10 +28,17 @@ export class AddChildVideosPage {
   uid_children
   videoUrl
   description
+  addChildPhotosForm
   domainUrl
   filedomainUrl = this.auth.domainStorageUrl;
   @ViewChild('myvideo') myVideo: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public videoCapture:MediaCapture,public toast:Toast) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public auth: AuthProvider, public camera: Camera,public selectImage:SelectImageProvider,public videoCapture:MediaCapture,public toast:Toast,public formBuilder:FormBuilder) {
+     this.addChildPhotosForm = this.formBuilder.group({
+        children :["",Validators.required],
+        parents :["",Validators.required],
+        description:["",Validators.required]
+
+    })
   }
 
 ionViewDidLoad() {
