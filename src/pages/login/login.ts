@@ -5,6 +5,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { StorageProvider } from '../../providers/storage/storage';
 import { SelectImageProvider } from '../../providers/select-image/select-image'
+import { Toast } from '@ionic-native/toast'
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -20,7 +21,8 @@ export class LoginPage {
 
 
 logindata ={email:'',password:''}
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public loadingCtrl: LoadingController,public formBuilder: FormBuilder,public auth:AuthProvider,public storage:StorageProvider,public loader:SelectImageProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public loadingCtrl: LoadingController,public formBuilder: FormBuilder,
+  public auth:AuthProvider,public storage:StorageProvider,public loader:SelectImageProvider, public toast:Toast) {
     this.loginForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required])],
       checkbox:[''],
@@ -58,30 +60,23 @@ logindata ={email:'',password:''}
     this.loading = this.loadingCtrl.create();
           this.loading.present();
           this.auth.doLogin(this.loginForm.value.email, this.loginForm.value.password)
-        .then( authData => {
-            console.log("data =>>>> "+JSON.stringify(authData))
-            this.loading.dismiss()
-            this.navCtrl.setRoot("HomePage");
-              // this.auth.getUserProfile().then((data)=>{
-                  
-              //     if(data.isparent == 1){
-              //        this.navCtrl.setRoot("HomePage");
-              //     }else{
-              //       this.navCtrl.setRoot("LoginPage");
-              //       alert("error => login failed. Please select parents checkbox if you are parent. ")
-              //     }
-               
-              // } , error =>{
-              //     alert("error => login failed. ")
-              // })
-              
-            
-            }, error => {
-              this.loading.dismiss().then( () => {
-                alert("login failed")
-              
-            });          
-        })
+            .then( authData => {
+              console.log("data resolve =>>>> "+JSON.stringify(authData))
+              this.loading.dismiss()
+              this.navCtrl.setRoot("HomePage");
+                
+            })
+          .catch((error) => {
+             
+              // this.=== (JSON.stringify(error)).
+                this.loading.dismiss().then( () => {
+                   console.log("Firebase failure: " + JSON.stringify(error));
+                   this.toast.show(error.message,"long","bottom")
+                  // alert("login failed")
+                
+              }); 
+            });
+       
   }
   forgotPass(){
     this.navCtrl.push("ForgotPassPage")

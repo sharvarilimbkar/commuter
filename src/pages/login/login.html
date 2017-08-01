@@ -11,20 +11,18 @@
   <form [formGroup]="loginForm">
     <ion-grid padding class="formContain">
       <ion-row>
-        <ion-input type="email" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"
-          placeholder="Email" [(ngModel)]="logindata.email" name="email" clearInput></ion-input>
+        <input type="email" formControlName="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"
+          placeholder="Email" [(ngModel)]="logindata.email" name="email" clearInput>
       </ion-row>
-      <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
-        <p>Please enter a valid email.</p>
-      </ion-item>
+       <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!loginForm.controls.email.valid  && (loginForm.controls.email.touched || loginForm.controls.email.dirty)">You can't leave this empty.</span>
       <ion-row>
 
-        <ion-input type="password" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"
-          placeholder="Password" [(ngModel)]="logindata.password" name="password" clearInput></ion-input>
+        <input type="password" class="ioninput" formControlName="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"
+          placeholder="Password" [(ngModel)]="logindata.password" name="password" clearInput>
+          <!--</ion-input>-->
       </ion-row>
-      <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
-        <p>Your password needs more than 6 characters.</p>
-      </ion-item>
+             <span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!loginForm.controls.password.valid  && (loginForm.controls.password.touched || loginForm.controls.password.dirty) && logindata.password !=''">Password should be more than 6 characters.</span>
+<span style="color: #1d2d8a;padding: 0 30px;" *ngIf="!loginForm.controls.password.valid  && (loginForm.controls.password.touched || loginForm.controls.password.dirty) && logindata.password ==''">You can't leave this empty.</span>
       <ion-row class="forgot-pwd-section">
         <ion-checkbox [(ngModel)]="cucumber" formControlName="checkbox" (ionChange)="updateCucumber()"></ion-checkbox>Please check this if you are a parent
 

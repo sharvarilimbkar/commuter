@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, Loading ,LoadingController} from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { AuthProvider } from '../../providers/auth/auth';
 import firebase from 'firebase';
+
 // import KidsData from '../../data/KidsData';
 @IonicPage()
 @Component({
@@ -15,12 +16,13 @@ export class HomePage {
 userProfile
 domainUrl
 daycare
+loading
   public childDataList:Array<any>;
    public childDataList1:Array<any>;
   public loadedChildList=[];
   public childDataRef:firebase.database.Reference
   mykey
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage:StorageProvider,public auth:AuthProvider,public event:Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public storage:StorageProvider,public auth:AuthProvider,public event:Events,public loadingCtrl:LoadingController) {
 
   }
 
@@ -30,16 +32,22 @@ daycare
 
   }
    ionViewDidEnter(){
-
+ 
 this.load()
    }
    load(){
+//  this.loading = this.loadingCtrl.create();
+//           this.loading.present();
+
      this.storage.getStorage("isparent").then(data=>{
                       if(data){
                         this.auth.getUserProfile().then( profileSnap => {
-                            this.userProfile = profileSnap;
-                            this.event.publish('userProfile', this.userProfile);
-                            this.daycare=false
+                          // this.loading.dismiss();
+                                this.userProfile = profileSnap;
+                                this.event.publish('userProfile', this.userProfile);
+                                this.daycare=false
+                           
+                            
                             // this.birthDate = this.userProfile.birthDate;
                           });
                          
@@ -50,9 +58,12 @@ this.load()
                           // });
                     }else if(!data){
                           this.auth.getdaycareProfile().then( profileSnap => {
-                            this.userProfile = profileSnap;
-                            this.event.publish('userProfile', this.userProfile);
-                              this.daycare=true
+                            //  this.loading.dismiss();
+                                 this.userProfile = profileSnap;
+                                  this.event.publish('userProfile', this.userProfile);
+                                  this.daycare=true
+                            
+                           
                           });
                            this.loadDaycarepage();
                            this.loadannouncements()
@@ -69,10 +80,14 @@ this.load()
       let childData = [];
       var user = childDataList.val();
       childDataList.forEach( child => {
-        
+          if(child.val().uid_daycare === firebase.auth().currentUser.uid){
            childData.push({id:child.key,value:child.val()});
           //  this.loadedChildList.push(child.val().announcements)
             return false;
+        }
+          //  childData.push({id:child.key,value:child.val()});
+          // //  this.loadedChildList.push(child.val().announcements)
+          //   return false;
           
       });
       this.childDataList = childData.reverse();

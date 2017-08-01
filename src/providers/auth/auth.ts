@@ -28,7 +28,18 @@ childList =[]
    }
 
   doLogin(email: string, password: string):firebase.Promise<any> {
-      return firebase.auth().signInWithEmailAndPassword(email, password);
+    // return new Promise( (resolve, reject) => {
+        return    firebase.auth().signInWithEmailAndPassword(email, password)//.then((data)=>{
+      //   // console.log("data from auth "+data)
+      //     resolve(resolve);
+      // })
+        // firebase.database().ref(this.databaseDaycare)
+        //   .child(data.email)
+        //   .on('value', data => {
+            
+        //   });
+       // });
+      
     }
 
     register(email: string, password: string ,mobile,username):firebase.Promise<any>
@@ -100,12 +111,15 @@ childList =[]
     }
     
     getdaycareProfile(): Promise<any> {
-      // console.log("helloo sharvari ===> "+SERVER_NAME)
+      // console.log("helloo from auth daycare ===> "+firebase.auth().currentUser.uid)
+
         return new Promise( (resolve, reject) => {
           firebase.database().ref(this.databaseDaycare)
           .child(firebase.auth().currentUser.uid)
           .on('value', data => {
+              // console.log(JSON.stringify(data.val()))
             resolve(data.val());
+            
           });
         });
       }
@@ -190,7 +204,7 @@ childList =[]
       {
         console.log("sdkfhjskjdfh ===> "+imageurils.length)
         console.log("sdkfhjskjdfh ===> "+imageurils)
-          for(var i=0;i<imageurils.length;i++){
+          for(var i=0;i<imageurils.length;i++){89            
             console.log(imageurils[i].images)
 
                 var params = {
@@ -218,7 +232,7 @@ childList =[]
                                    
                                  }
                                 }, (err) => {
-                            // error
+                                // error
                                 alert("error" + JSON.stringify(err));
                                 resolve(false);
                               });

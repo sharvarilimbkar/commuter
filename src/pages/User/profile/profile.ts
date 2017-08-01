@@ -111,7 +111,7 @@ export class ProfilePage {
                       console.log(toast);
                       this.profileflag = false
                       this.profileflag1 = true
-                      this.navCtrl.setRoot("HomePage");
+                      // this.navCtrl.setRoot("HomePage");
                     }
                   );
 
@@ -126,7 +126,7 @@ export class ProfilePage {
                       console.log(toast);
                       this.profileflag = false
                       this.profileflag1 = true
-                      this.navCtrl.setRoot("HomePage");
+                      // this.navCtrl.setRoot("HomePage");
                     }
                   );
 
@@ -181,25 +181,24 @@ export class ProfilePage {
 
   buttonState(flag) {
     console.log('buttonState() called' + flag);
-
-    if (flag == this.flag.username) {
-      return this.stateButtonusername = false;
-    } else if (flag == this.flag.address) {
-      return this.stateButtonaddress = false;
-    } else if (flag == this.flag.mobile) {
-      return this.stateButtonmobile = false;
-    }
+      if (flag == this.flag.username) {
+        return this.stateButtonusername = false;
+      } else if (flag == this.flag.address) {
+        return this.stateButtonaddress = false;
+      } else if (flag == this.flag.mobile) {
+        return this.stateButtonmobile = false;
+      }
   }
 
   updateProfile(flag) {
     console.log("sdfsdf : " + flag);
-    if (flag == this.flag.username) {
-      this.updateData({ username: this.userProfile.username })
-    } else if (flag == this.flag.address) {
-      this.updateData({ address: this.userProfile.address })
-    } else if (flag == this.flag.mobile) {
-      this.updateData({ mobile: this.userProfile.mobile })
-    }
+      if (flag == this.flag.username) {
+        this.updateData({ username: this.userProfile.username })
+      } else if (flag == this.flag.address) {
+        this.updateData({ address: this.userProfile.address })
+      } else if (flag == this.flag.mobile) {
+        this.updateData({ mobile: this.userProfile.mobile })
+      }
   }
   updateData(data) {
     if (this.isparent) {
@@ -219,18 +218,18 @@ export class ProfilePage {
       })
     } else if (!this.isparent) {
       this.auth.updateDaycareDatabase(data).then((data) => {
-        console.log(data);
-        if (data) {
-          this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
-            toast => {
-              console.log(toast);
-            }
-          );
-          this.stateButtonaddress = true;
-          this.stateButtonusername = true;
-          this.stateButtonmobile = true;
-          this.navCtrl.setRoot("HomePage");
-        }
+          console.log(data);
+          if (data) {
+            this.toast.show('Successfully uploaded', 'long', 'bottom').subscribe(
+              toast => {
+                console.log(toast);
+              }
+            );
+            this.stateButtonaddress = true;
+            this.stateButtonusername = true;
+            this.stateButtonmobile = true;
+            this.navCtrl.setRoot("HomePage");
+          }
       })
     }
 

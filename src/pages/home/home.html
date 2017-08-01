@@ -47,6 +47,8 @@
                     </ion-col>-->
 
                     <!--<div *ngIf="childDataList">-->
+                      <!--hjdfjhf {{childDataList}}-->
+                      <ion-col *ngIf="childDataList == ''">No data</ion-col>
                     <ion-col col-4 *ngFor="let kidPic of childDataList | slice:0:3 let i = index">
                         <!--{{kidPic.value.videos}}-->
                        <img *ngIf="i<3" src="{{domainUrl+kidPic.value.profile_pic}}">
@@ -68,6 +70,7 @@
         <ion-card-content>
             <ion-grid>
                 <ion-row>
+                   <ion-col *ngIf="childDataList == ''">No data</ion-col>
                     <!--<div  col-4 *ngIf="kidPic.value.videos">-->
                      <ion-col  *ngFor="let kidPic of childDataList | slice:0:3  let i = index" col-4>
                         <!--{{kidPic.value.videos}}-->
@@ -86,6 +89,7 @@
         </ion-card-header>
         <!--<div *ngFor="let announcement of loadedChildList">-->
             <!--{{announcement.value |json}}-->
+            <ion-card-content *ngIf="loadedChildList == ''">No data</ion-card-content>
         <ion-card-content *ngFor="let announcement1 of loadedChildList | ReverseHomeVideos">
             <!--{{announcement1 |json}}-->
             <ion-grid>

@@ -14,6 +14,7 @@ import {Toast} from '@ionic-native/toast'
   templateUrl: 'resgister.html',
 })
 export class ResgisterPage {
+    loading;
     errormessage: string;
     showStyle: boolean;
 
@@ -52,7 +53,8 @@ registerdata={email:'',password:''}
   }
   
   doRegister(){
-
+    this.loading = this.loadingCtrl.create();
+          this.loading.present();
   console.log("email "+this.email+" password "+ this.password + this.mobile + this.username)
  
    this.authService.register(this.email, this.password,this.mobile,this.username).then( data => {
@@ -66,18 +68,15 @@ registerdata={email:'',password:''}
         );
         
         // this.navCtrl.setRoot('SelectDaycarePage');
-
-      }, error => {
-        // console.log(error);
-        alert("errorr while creating")
-       
-      });
-
-      // this.loading = this.loadingCtrl.create({
-      //   dismissOnPageChange: true,
-      // });
-      // this.loading.present();
-    }
-
+   })
+    .catch(error=>{
+         this.loading.dismiss().then( () => {
+                   console.log("Firebase failure: " + JSON.stringify(error));
+                   this.toast.show(error.message,"long","bottom")
+                  // alert("login failed")
+                
+              }); 
+    })
+  }
 
 }

@@ -12,7 +12,7 @@
       <ion-grid padding class="formContain">
         <ion-list no-lines *ngIf="showEmail">
           <ion-row>
-            <ion-input type="email" formControlName="email" name="email" placeholder="Email"  [class.invalid]="!resetPasswordForm.controls.email.valid && resetPasswordForm.controls.email.dirty" clearInput [(ngModel)]="email" ></ion-input>
+            <input type="email" formControlName="email" name="email" placeholder="Email"  [class.invalid]="!resetPasswordForm.controls.email.valid && resetPasswordForm.controls.email.dirty" clearInput [(ngModel)]="email" >
           </ion-row>
           <ion-item class="error-message" 
             *ngIf="!resetPasswordForm.controls.email.valid  && resetPasswordForm.controls.email.dirty">
