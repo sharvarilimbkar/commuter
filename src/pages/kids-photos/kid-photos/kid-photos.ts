@@ -22,7 +22,29 @@ export class KidPhotosPage {
     this.domainUrl =this.auth.domainStorageUrl;
     this.getkidData()
   }
+  searchData(){
+    // console.log(this.navParams.get("childDataList"))
+      let data = this.navParams.get("childDataList")
+      let keyArr: any[] = Object.keys(data),
+      dataArr = [];
+      let dataArr11 = [];
+    
+    
+    // console.log(data.value)
+      //   data.forEach((key: any) => {
+      //         dataArr.push(key.value.photos);
+      //   });
+      //  dataArr.forEach((key: any) => {
+      //   //  console.log(key)
+      //        dataArr11.push(dataArr[key].added_date_time);
+      //   });
+      // console.log( dataArr11)
+        // loop through the object,
+        // pushing values to the return array
+       
 
+        // console.log(JSON.stringify(dataArr))
+  }
   getkidData(){
     // alert(this.navParams.get("uid"))                     
     this.auth.getkidsProfile(this.navParams.get("uid")).then(data =>{
