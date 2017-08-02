@@ -228,7 +228,8 @@ childList =[]
                                      console.log(res.profile_pic);
                                      var d = new Date();
                                       var month = d.getMonth();
-                                     firebase.database().ref(this.databaseChildren+'/'+uid_children+'/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time,description:description,key_month:month});
+                                       var date = this.getdate();
+                                     firebase.database().ref(this.databaseChildren+'/'+uid_children+'/'+'photos').push({ url: res.profile_pic,added_date_time:res.added_date_time,description:description,key_month:month,date:date});
                                    
                                  }
                                 }, (err) => {
@@ -241,39 +242,54 @@ childList =[]
       });
     }
 
+    getdate(){
+      var today = new Date();
+      let dd:any = today.getDate();
+      let mm:any = today.getMonth()+1; //January is 0!
 
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd;
+        } 
+        if(mm<10){
+            mm='0'+mm;
+        } 
+      return yyyy+'-'+mm+'-'+dd //dd+'-'+mm+'-'+yyyy;
+    }
     uploadVideoDataChild(videourl,uid,description): Promise<any>{
       console.log(videourl)
       return new Promise((resolve, reject) =>
       {
         var params = {
-                          uid:uid
-                         }
-                      const fileTransfer: TransferObject = this.transfer.create();
+              uid:uid
+              }
+          const fileTransfer: TransferObject = this.transfer.create();
 
-                            let options1: FileUploadOptions = {
-                            fileKey: 'videoFile',
-                            fileName: videourl.split('/').pop(),
-                            headers: {}
+                let options1: FileUploadOptions = {
+                fileKey: 'videoFile',
+                fileName: videourl.split('/').pop(),
+                headers: {}
 
-                        }
-                        options1.params = params;
-                        fileTransfer.upload(videourl, encodeURI(this.domainURL+'uploadVideoOfChild'), options1)
-                            .then((data1) => {
-                              let res = JSON.parse(data1.response); 
-                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
-                                  if(data1.response){
-                                     console.log(res.profile_pic);
-                                     var d = new Date();
-                                      var month = d.getMonth();
-                                     firebase.database().ref(this.databaseChildren+'/'+uid+'/'+'videos').push({ url: res.profile_pic,added_date_time:res.added_date_time,discription:description,key_month:month});
-                                   
-                                 }
-                                }, (err) => {
-                            // error
-                                alert("error" + JSON.stringify(err));
-                                resolve(false);
-                              });
+            }
+            options1.params = params;
+            fileTransfer.upload(videourl, encodeURI(this.domainURL+'uploadVideoOfChild'), options1)
+                .then((data1) => {
+                  let res = JSON.parse(data1.response); 
+                  console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                      if(data1.response){
+                          console.log(res.profile_pic);
+                          var d = new Date();
+                          var month = d.getMonth();
+
+                          var date = this.getdate();
+                          firebase.database().ref(this.databaseChildren+'/'+uid+'/'+'videos').push({ url: res.profile_pic,added_date_time:res.added_date_time,discription:description,key_month:month,date:date});
+                        
+                      }
+                    }, (err) => {
+                // error
+                    alert("error" + JSON.stringify(err));
+                    resolve(false);
+                  });
               
           resolve({status:true,flag:1});
       });
@@ -311,27 +327,27 @@ childList =[]
                             headers: {}
 
                         }
-                        options1.params = params;
-                        fileTransfer.upload(data.pro_image, encodeURI(this.domainURL+'uploadChild'), options1)
-                            .then((data1) => {
-                              let res = JSON.parse(data1.response); 
-                              console.log('JSON parsed result.response = ' + JSON.stringify(res));
-                                // this.toastCtrl.dismissLoadin();
-                                if(data1.response){
-                                    // this.picChange=false;
-                                    // this.toastCtrl.publishToast("Profile Updated Successfully..");
-                                    //  alert("updated Successfully")
-                                     console.log(res.profile_pic);
-                                     firebase.database().ref(this.databaseChildren).child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age, gender:data.gender,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
-                                    resolve(true);
+            options1.params = params;
+            fileTransfer.upload(data.pro_image, encodeURI(this.domainURL+'uploadChild'), options1)
+                .then((data1) => {
+                  let res = JSON.parse(data1.response); 
+                  console.log('JSON parsed result.response = ' + JSON.stringify(res));
+                    // this.toastCtrl.dismissLoadin();
+                    if(data1.response){
+                        // this.picChange=false;
+                        // this.toastCtrl.publishToast("Profile Updated Successfully..");
+                        //  alert("updated Successfully")
+                          console.log(res.profile_pic);
+                          firebase.database().ref(this.databaseChildren).child(uid_child).set({name: data.childname,dob:data.birthday,profile_pic:res.profile_pic,age:data.age, gender:data.gender,uid_parent:data.uid_parent,uid_daycare:firebase.auth().currentUser.uid});
+                        resolve(true);
 
-                                 }
+                      }
 
-                                }, (err) => {
-                            // error
-                            alert("error" + JSON.stringify(err));
-                            resolve(false);
-                            }); 
+                    }, (err) => {
+                // error
+                alert("error" + JSON.stringify(err));
+                resolve(false);
+                }); 
               
               });
         //  return firebase.database().ref(this.databaseChildren).child(data.uid_parent).set({name: data.childname,dob:data.birthday,profile_pic:data.pro_image,age:data.age});

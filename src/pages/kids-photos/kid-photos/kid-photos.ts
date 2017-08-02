@@ -14,6 +14,9 @@ export class KidPhotosPage {
   KidPhotos =[]
   nameofchildren
   domainUrl 
+  child
+  startdate
+  enddate
   constructor(public navCtrl: NavController, public navParams: NavParams,public auth:AuthProvider,public toast:Toast) {
   }
 
@@ -25,25 +28,14 @@ export class KidPhotosPage {
   searchData(){
     // console.log(this.navParams.get("childDataList"))
       let data = this.navParams.get("childDataList")
-      let keyArr: any[] = Object.keys(data),
-      dataArr = [];
-      let dataArr11 = [];
+    console.log(this.startdate + "dgdg "+ this.enddate)
+     this.child = firebase.database().ref(this.auth.databaseChildren+'/'+this.navParams.get("uid")+'/'+'photos').orderByChild("date").startAt(this.startdate)
+            .endAt(this.enddate).on("value",(data)=>{
+              console.log(data.val())
+              this.KidPhotos = data.val()
+            })
+      
     
-    
-    // console.log(data.value)
-      //   data.forEach((key: any) => {
-      //         dataArr.push(key.value.photos);
-      //   });
-      //  dataArr.forEach((key: any) => {
-      //   //  console.log(key)
-      //        dataArr11.push(dataArr[key].added_date_time);
-      //   });
-      // console.log( dataArr11)
-        // loop through the object,
-        // pushing values to the return array
-       
-
-        // console.log(JSON.stringify(dataArr))
   }
   getkidData(){
     // alert(this.navParams.get("uid"))                     

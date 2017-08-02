@@ -22,6 +22,7 @@ export class EditProfilePage {
   ChildrenData =[]
   countryList
   showList
+  showfulllist:boolean =true
   uid_parent
   profile
   name
@@ -55,7 +56,8 @@ export class EditProfilePage {
 
   selectChildren(item){
     this.showParents = true
-    this.showList = false;
+     this.showList = false;
+     this.showfulllist = false
     this.addchild.childname = item.value.name;
     this.addchild.pro_image =item.value.profile_pic
     this.addchild.birthday = item.value.dob
@@ -120,7 +122,7 @@ export class EditProfilePage {
   }
 
    getItems(searchbar) {
-  
+  this.showfulllist = false
       this.initializeItems();
         var q = searchbar.srcElement.value;
       if (!q) {

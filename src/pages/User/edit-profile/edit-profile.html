@@ -16,7 +16,6 @@
 <ion-content padding>
   <ion-grid padding>
     <ion-searchbar placeholder="Search Child"  (ionInput)="getItems($event)"></ion-searchbar>
-    <div>
       <ion-list *ngIf="showList">
         <ion-item *ngFor="let item of countryList">
           <ion-avatar item-start>
@@ -29,7 +28,19 @@
         </ion-item>
 
       </ion-list>
-    </div>
+       <ion-list *ngIf="showfulllist">
+        <ion-item *ngFor="let item of ChildrenData" >
+          <ion-avatar item-start>
+            <img src="{{domainUrl+item.value.profile_pic}}">
+          </ion-avatar>
+          <h2> {{ item.value.name }}</h2>
+          <!--<p>{{ item.value.email }}</p>-->
+          <button ion-button outline item-end (click)="selectChildren(item)">select</button>
+          <!--<ion-checkbox  item-end  [(ngModel)]="cucumber" (ionChange)="updateCucumber()"></ion-checkbox>-->
+        </ion-item>
+
+      </ion-list>
+     
     <ion-list no-lines *ngIf="showParents" class="parent-section">
       <!--<ion-item >
           <ion-label stacked>Parent Name</ion-label>

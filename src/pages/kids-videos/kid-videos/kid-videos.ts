@@ -10,6 +10,9 @@ import firebase from 'firebase';
   templateUrl: 'kid-videos.html',
 })
 export class KidVideosPage {
+    child
+    enddate: any;
+    startdate: string;
   allVideos=[];
 KidPhotos=[]
 domainFileUrl
@@ -21,6 +24,18 @@ nameofchildren
     this.allVideos = this.navParams.data;
     this.domainFileUrl = this.auth.domainStorageUrl;
     this.getkidData()
+  }
+  searchData(){
+    // console.log(this.navParams.get("childDataList"))
+      let data = this.navParams.get("childDataList")
+    console.log(this.startdate + "dgdg "+ this.enddate)
+     this.child = firebase.database().ref(this.auth.databaseChildren+'/'+this.navParams.get("uid")+'/'+'videos').orderByChild("date").startAt(this.startdate)
+            .endAt(this.enddate).on("value",(data)=>{
+              console.log(data.val())
+              this.KidPhotos = data.val()
+            })
+      
+    
   }
  getkidData(){
     // alert(this.navParams.get("uid"))
